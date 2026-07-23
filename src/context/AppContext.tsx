@@ -214,12 +214,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const openPLP = (categoryId?: CategoryId | 'all', subcategory?: string, searchQuery?: string) => {
-    setFilters(prev => ({
-      ...prev,
+    // Fresh filters so leftover price/subcity don't empty other categories
+    setFilters({
       categoryId: categoryId || 'all',
       subcategory: subcategory || undefined,
-      searchQuery: searchQuery || undefined
-    }));
+      searchQuery: searchQuery || undefined,
+      sortBy: 'recommended'
+    });
     setActiveView('plp');
   };
 
