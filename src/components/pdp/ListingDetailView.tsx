@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   ShieldAlert,
   ChevronRight,
-  MessageSquare,
   Phone,
   Ruler,
   Check,
@@ -41,7 +40,6 @@ export const ListingDetailView: React.FC = () => {
     setActiveView,
     toggleFavorite,
     isFavorite,
-    openChatForListing,
     openContactModal,
     openSellerProfile,
     addToCart
@@ -332,22 +330,15 @@ export const ListingDetailView: React.FC = () => {
                 Add To Bag
               </button>
 
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => openChatForListing(listing)}
-                  className="py-3 px-3 bg-black hover:bg-zinc-800 text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95"
-                >
-                  <MessageSquare className="w-4 h-4 fill-current" />
-                  Chat Seller
-                </button>
-
+              <div className="grid grid-cols-1 gap-2">
                 <button
                   onClick={() => openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar)}
-                  className="py-3 px-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-black text-xs rounded-lg border border-gray-300 flex items-center justify-center gap-1.5 transition-transform active:scale-95"
+                  className="py-3 px-3 bg-black hover:bg-zinc-800 text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95"
                 >
-                  <Phone className="w-4 h-4 text-emerald-600" />
+                  <Phone className="w-4 h-4 text-emerald-400" />
                   Call Seller
                 </button>
+              </div>
               </div>
             </div>
 
@@ -534,10 +525,10 @@ export const ListingDetailView: React.FC = () => {
         </button>
 
         <button
-          onClick={() => openChatForListing(listing)}
+          onClick={() => openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar)}
           className="flex-1 py-3 bg-black hover:bg-zinc-800 text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5"
         >
-          <MessageSquare className="w-4 h-4 fill-current" /> Chat
+          <Phone className="w-4 h-4" /> Call
         </button>
       </div>
 
