@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ProductCard } from '../common/ProductCard';
 import { SafeImage } from '../common/SafeImage';
-import { ChevronRight, Zap, Sparkles } from 'lucide-react';
+import { HeroBannerSlider } from './HeroBannerSlider';
+import { ChevronRight, Zap } from 'lucide-react';
 
 const SHEIN_TOP_TABS = ['All', 'Women', 'Men', 'Kids', 'Curve', 'Home'];
 
@@ -19,15 +20,20 @@ const CIRCULAR_CATEGORIES = [
   { id: 'cat_10', name: 'Gaming', image: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=300&auto=format&fit=crop&q=80', catId: 'electronics', sub: 'Gaming & Consoles' }
 ];
 
-const HERO_LOOKS = [
-  { seed: 'polish1', price: '1,850', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&auto=format&fit=crop&q=80' },
-  { seed: 'polish2', price: '2,400', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&auto=format&fit=crop&q=80' },
-  { seed: 'polish3', price: '1,950', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&auto=format&fit=crop&q=80' }
+const FALLBACK_IMGS = [
+  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&auto=format&fit=crop&q=80'
 ];
 
 export const HomeView: React.FC = () => {
   const { listings, openPDP, openPLP, setMainTab, setActiveView } = useApp();
   const [selectedTopTab, setSelectedTopTab] = useState('All');
+
+  const goTrends = () => {
+    setMainTab('trends');
+    setActiveView('none');
+  };
 
   return (
     <div className="flex flex-col space-y-4 pb-28 max-w-7xl mx-auto w-full bg-white">
@@ -49,59 +55,7 @@ export const HomeView: React.FC = () => {
       </div>
 
       <div className="px-2 md:px-4">
-        <div className="relative rounded-2xl overflow-hidden bg-ink text-paper shadow-md">
-          <div className="grid md:grid-cols-2 gap-0">
-            <div className="p-5 md:p-8 flex flex-col justify-center space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="btn-primary text-xs font-black px-2.5 py-0.5 rounded-sm uppercase tracking-wider inline-flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Trends
-                </span>
-                <span className="text-brand-ring text-xs font-semibold">#CutOutDetails</span>
-              </div>
-              <h2 className="text-2xl md:text-4xl font-black text-paper italic tracking-tight font-serif">
-                #PolishedPieces
-              </h2>
-              <p className="text-xs md:text-sm text-brand-muted max-w-md">
-                The key to any polished look is in the details. Shop local sellers — meetup or ask about
-                vendor delivery.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setMainTab('trends');
-                  setActiveView('none');
-                }}
-                className="mt-1 inline-flex items-center gap-1 btn-primary text-xs font-black px-4 py-2.5 rounded-full w-fit"
-              >
-                View details
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="flex items-stretch gap-2 p-3 md:p-4 overflow-x-auto scrollbar-none">
-              {HERO_LOOKS.map(look => (
-                <button
-                  key={look.seed}
-                  type="button"
-                  onClick={() => {
-                    setMainTab('trends');
-                    setActiveView('none');
-                  }}
-                  className="bg-paper text-ink rounded-xl p-1.5 shadow-xl text-center w-[30%] min-w-[5.5rem] md:flex-1 cursor-pointer hover:scale-[1.02] transition-transform"
-                >
-                  <SafeImage
-                    src={look.img}
-                    alt="look"
-                    fallbackSeed={look.seed}
-                    className="w-full aspect-3/4 object-cover rounded-lg mb-1"
-                  />
-                  <span className="text-xs font-black text-brand block">{look.price} ETB</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <HeroBannerSlider onCta={goTrends} />
       </div>
 
       <div className="mx-2 md:mx-4 bg-brand-soft border border-brand-muted rounded-xl p-2.5 md:p-3 flex items-center justify-between text-xs font-bold text-ink shadow-2xs">
@@ -113,10 +67,7 @@ export const HomeView: React.FC = () => {
           </span>
         </div>
         <button
-          onClick={() => {
-            setMainTab('trends');
-            setActiveView('none');
-          }}
+          onClick={goTrends}
           className="text-[11px] font-black text-brand flex items-center gap-0.5 hover:underline shrink-0"
         >
           View details <ChevronRight className="w-3.5 h-3.5" />
@@ -194,7 +145,7 @@ export const HomeView: React.FC = () => {
                     Flash
                   </span>
                   <SafeImage
-                    src={item?.images[0] || HERO_LOOKS[i].img}
+                    src={item?.images[0] || FALLBACK_IMGS[i]}
                     alt="deal"
                     fallbackSeed={`deal${i}`}
                     className="w-full aspect-square object-cover rounded-md my-1.5"
@@ -226,8 +177,8 @@ export const HomeView: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-2">
             {[
-              { tag: '#StatementGlam', price: 1650, seed: 'trend1', img: HERO_LOOKS[0].img },
-              { tag: '#GirlsNightOut', price: 1400, seed: 'trend2', img: HERO_LOOKS[1].img }
+              { tag: '#StatementGlam', price: 1650, seed: 'trend1', img: FALLBACK_IMGS[0] },
+              { tag: '#GirlsNightOut', price: 1400, seed: 'trend2', img: FALLBACK_IMGS[1] }
             ].map(t => (
               <button
                 key={t.tag}
