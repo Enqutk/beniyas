@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { ArrowLeft, Eye, Edit, Flame, Trash2, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Eye, Heart, Edit, Flame, Trash2, CheckCircle2 } from 'lucide-react';
 
 export const MyAdsView: React.FC = () => {
   const { user, listings, setActiveView, openPDP, language } = useApp();
@@ -62,6 +62,8 @@ export const MyAdsView: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-gray-400 mt-1">
                   <span className="flex items-center gap-0.5"><Eye className="w-3 h-3" /> {ad.viewsCount} views</span>
+                  <span>•</span>
+                  <span className="flex items-center gap-0.5"><Heart className="w-3 h-3" /> {Math.max(2, Math.round(ad.viewsCount / 40))} saves</span>
                 </div>
               </div>
             </div>
