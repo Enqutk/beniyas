@@ -28,6 +28,10 @@ import { SafetyHelpView } from './components/me/SafetyHelpView';
 function AppContent() {
   const { mainTab, activeView } = useApp();
 
+  const hideMobileChromeHeader =
+    ['pdp', 'search', 'chat'].includes(activeView) ||
+    (activeView === 'none' && ['categories', 'trends'].includes(mainTab));
+
   // Render Overlay View if set
   const renderViewOverlay = () => {
     switch (activeView) {
@@ -88,20 +92,20 @@ function AppContent() {
 
   return (
     <DeviceFrame>
-      {/* Header Navigation: Desktop Header on md+ screens, Mobile Header on mobile */}
+      {/* Header Navigation: Desktop Header on md+ screens, Mobile Header on Shop/Me */}
       {!['pdp', 'search', 'chat'].includes(activeView) && (
-        <>
-          <div className="hidden md:block">
-            <Header />
-          </div>
-          <div className="block md:hidden">
-            <MobileHeader />
-          </div>
-        </>
+        <div className="hidden md:block">
+          <Header />
+        </div>
+      )}
+      {!hideMobileChromeHeader && (
+        <div className="block md:hidden">
+          <MobileHeader />
+        </div>
       )}
 
       {/* Main View Area */}
-      <main className="flex-1 overflow-x-hidden">
+      <main className="flex-1 overflow-x-hidden min-h-0">
         {activeView !== 'none' ? renderViewOverlay() : renderMainTab()}
       </main>
 
