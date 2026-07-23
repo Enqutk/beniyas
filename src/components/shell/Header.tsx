@@ -15,20 +15,16 @@ import {
 } from 'lucide-react';
 
 const MEGA_SIDEBAR = [
-  { label: 'Just for You', catId: 'fashion', sub: 'Tops' },
-  { label: 'New In', catId: 'fashion', sub: 'Dresses' },
-  { label: 'Super Deals', catId: 'all', sub: 'Super Deals' },
+  { label: 'Just for You', catId: 'fashion', sub: 'Women Fashion' },
+  { label: 'New In', catId: 'fashion', sub: 'Women Fashion' },
   { label: 'Trends', isTrendsTab: true },
   { label: 'Women Clothing', catId: 'fashion', sub: 'Women Fashion' },
-  { label: 'Beachwear', catId: 'fashion', sub: 'Beachwear' },
-  { label: 'Kids', catId: 'fashion', sub: 'Kids' },
-  { label: 'Curve', catId: 'fashion', sub: 'Curve' },
   { label: 'Men Clothing', catId: 'fashion', sub: 'Men Fashion' },
-  { label: 'Underwear & Sleepwear', catId: 'fashion', sub: 'Underwear' },
   { label: 'Shoes', catId: 'fashion', sub: 'Shoes & Sneakers' },
+  { label: 'Phones', catId: 'phones', sub: 'iPhone' },
+  { label: 'Electronics', catId: 'electronics', sub: 'Laptops & Computers' },
   { label: 'Home & Living', catId: 'home', sub: 'Sofas & Living Room' },
-  { label: 'Jewelry & Accessories', catId: 'fashion', sub: 'Jewelry' },
-  { label: 'Beauty & Health', catId: 'fashion', sub: 'Beauty' }
+  { label: 'Vehicles', catId: 'vehicles', sub: 'Toyota' }
 ];
 
 const PICKS_FOR_YOU = [
