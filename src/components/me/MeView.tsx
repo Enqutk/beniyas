@@ -370,7 +370,7 @@ export const MeView: React.FC = () => {
                         className="hover:text-amber-600 flex items-center gap-1.5"
                       >
                         <Store className="w-3.5 h-3.5 text-amber-500" />
-                        Vendor Directory
+                        Vendor Dashboard
                       </button>
                     </li>
                     <li>
@@ -652,9 +652,9 @@ export const MeView: React.FC = () => {
                 <Store className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-black text-gray-900">Vendor Directory</h3>
+                <h3 className="text-sm font-black text-gray-900">Vendor Dashboard</h3>
                 <p className="text-[11px] text-gray-500 font-medium">
-                  Browse all sellers, ratings & active ads
+                  Post products, manage ads & track store performance
                 </p>
               </div>
               <ChevronRight className="w-5 h-5 text-gray-300 shrink-0" />
