@@ -309,6 +309,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     );
 
     // Auto simulated response from seller after 2s
+    
     setTimeout(() => {
       setChatThreads(prev =>
         prev.map(ct => {
