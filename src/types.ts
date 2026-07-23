@@ -3,11 +3,7 @@ export type CategoryId =
   | 'phones'
   | 'electronics'
   | 'fashion'
-  | 'home'
-  | 'property'
-  | 'services'
-  | 'jobs'
-  | 'pets';
+  | 'home';
 
 export interface Category {
   id: CategoryId;
