@@ -723,6 +723,156 @@ export const MOCK_LISTINGS: Listing[] = [
   }
 ];
 
+/** Extra catalog so every category / subcategory has browseable PLP results */
+const SUBCITY_POOL = ['Bole', 'Kazanchis', 'Piazza', 'CMC', 'Lideta', 'Summit', 'Sarbet', 'Old Airport'];
+const CONDITION_POOL: Listing['condition'][] = [
+  'Brand New',
+  'Like New',
+  'Used - Excellent',
+  'Used - Good',
+  'Refurbished'
+];
+
+const CATEGORY_IMAGES: Record<string, string[]> = {
+  phones: [
+    'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&auto=format&fit=crop&q=80'
+  ],
+  vehicles: [
+    'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80'
+  ],
+  fashion: [
+    'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop&q=80'
+  ],
+  electronics: [
+    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&auto=format&fit=crop&q=80'
+  ],
+  property: [
+    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop&q=80'
+  ],
+  home: [
+    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&auto=format&fit=crop&q=80'
+  ],
+  services: [
+    'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80'
+  ],
+  jobs: [
+    'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&auto=format&fit=crop&q=80'
+  ],
+  pets: [
+    'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&auto=format&fit=crop&q=80'
+  ]
+};
+
+const PRICE_RANGES: Record<string, [number, number]> = {
+  phones: [3500, 185000],
+  vehicles: [180000, 3200000],
+  fashion: [450, 28000],
+  electronics: [2500, 145000],
+  property: [8000, 8500000],
+  home: [1200, 95000],
+  services: [500, 25000],
+  jobs: [8000, 65000],
+  pets: [800, 45000]
+};
+
+function buildCatalogListings(): Listing[] {
+  const generated: Listing[] = [];
+  let n = 100;
+
+  CATEGORIES.forEach(cat => {
+    const imgs = CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES.fashion;
+    const [minP, maxP] = PRICE_RANGES[cat.id] || [1000, 50000];
+
+    cat.subcategories.forEach((sub, subIdx) => {
+      for (let i = 0; i < 4; i++) {
+        const price = Math.round(minP + ((maxP - minP) * ((subIdx * 4 + i) % 9)) / 9);
+        const discount = i % 3 === 0 ? 5 + (i * 4) : undefined;
+        const img = imgs[(subIdx + i) % imgs.length];
+        generated.push({
+          id: `gen_${n++}`,
+          title: `${sub} — Premium Pick #${i + 1} (${cat.name})`,
+          amharicTitle: `${sub} listing in Addis Ababa`,
+          price,
+          originalPrice: discount ? Math.round(price / (1 - discount / 100)) : undefined,
+          discountPercentage: discount,
+          categoryId: cat.id,
+          subcategory: sub,
+          condition: CONDITION_POOL[(subIdx + i) % CONDITION_POOL.length],
+          location: 'Addis Ababa',
+          subcity: SUBCITY_POOL[(subIdx + i) % SUBCITY_POOL.length],
+          datePosted: i === 0 ? 'Just now' : `${i + 1} hours ago`,
+          viewsCount: 120 + subIdx * 40 + i * 25,
+          isNegotiable: i % 2 === 0,
+          isVerifiedSeller: i % 3 !== 2,
+          isBoosted: i === 0,
+          images: [img],
+          attributes: {
+            Category: cat.name,
+            Type: sub,
+            Color: ['Black', 'White', 'Multi', 'Pink', 'Blue', 'Green', 'Brown'][(subIdx + i) % 7]
+          },
+          availableSizes: cat.id === 'fashion' ? ['S', 'M', 'L', 'XL'] : undefined,
+          availableColors: ['Black', 'White', 'Pink', 'Blue', 'Brown'],
+          description: `Quality ${sub.toLowerCase()} available for quick meetup in Addis Ababa. Verified seller, photos match item. Fast local delivery available.`,
+          sellerId: `seller_gen_${(n % 12) + 1}`,
+          sellerName: `${cat.name.split(' ')[0]} Hub Store`,
+          sellerAvatar:
+            'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80',
+          sellerPhone: '+251 91 100 2000',
+          sellerRating: 4.5 + (i % 5) * 0.1,
+          sellerReviewsCount: 8 + i * 3,
+          sellerResponseTime: '< 20 mins',
+          sellerMemberSince: '2023',
+          sellerActiveAdsCount: 6 + i,
+          hashtags: [`#${cat.id}`, '#BoleFinds'],
+          reviews: []
+        });
+      }
+    });
+  });
+
+  return generated;
+}
+
+// Merge handcrafted + generated catalog
+MOCK_LISTINGS.push(...buildCatalogListings());
+
+/** Map mega-menu / home labels → real catalog subcategories for PLP filtering */
+export const SUBCATEGORY_ALIASES: Record<string, string[]> = {
+  Tops: ['Women Fashion', 'Men Fashion'],
+  Dresses: ['Women Fashion', 'Traditional Habesha Kemis'],
+  'Women Fashion': ['Women Fashion', 'Traditional Habesha Kemis'],
+  'Men Fashion': ['Men Fashion'],
+  Beachwear: ['Women Fashion'],
+  Kids: ['Women Fashion', 'Men Fashion'],
+  Curve: ['Women Fashion'],
+  Underwear: ['Women Fashion'],
+  Beauty: ['Jewelry', 'Women Fashion'],
+  Jewelry: ['Jewelry'],
+  Bags: ['Bags & Watches'],
+  'Bags & Watches': ['Bags & Watches'],
+  Shoes: ['Shoes & Sneakers'],
+  'Shoes & Sneakers': ['Shoes & Sneakers'],
+  Sports: ['Men Fashion', 'Women Fashion'],
+  Baby: ['Women Fashion'],
+  Pants: ['Men Fashion', 'Women Fashion'],
+  Furniture: ['Sofas & Living Room', 'Dining Sets', 'Office Furniture'],
+  Bedding: ['Beds & Mattresses'],
+  Home: ['Home Decor', 'Sofas & Living Room'],
+  Laptops: ['Laptops & Computers'],
+  Watches: ['Bags & Watches', 'Smartwatches'],
+  'Super Deals': [],
+  Sale: []
+};
+
 export const MOCK_CHAT_THREADS: ChatThread[] = [
   {
     id: 'chat_1',
