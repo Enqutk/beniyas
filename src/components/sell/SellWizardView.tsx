@@ -463,12 +463,20 @@ export const SellWizardView: React.FC = () => {
               </button>
             </div>
 
-            <button
-              onClick={() => setMainTab('home')}
-              className="w-full py-3 bg-gray-100 text-gray-800 font-bold text-xs rounded-xl"
-            >
-              Return to Home
-            </button>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => setActiveView('vendors')}
+                className="py-3 bg-black text-white font-bold text-xs rounded-xl"
+              >
+                Vendor Dashboard
+              </button>
+              <button
+                onClick={() => setMainTab('home')}
+                className="py-3 bg-gray-100 text-gray-800 font-bold text-xs rounded-xl"
+              >
+                Return Home
+              </button>
+            </div>
           </div>
         )}
       </div>
