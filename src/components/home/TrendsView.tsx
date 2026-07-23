@@ -7,7 +7,8 @@ import {
   ShoppingBag,
   Star,
   ChevronRight,
-  SlidersHorizontal
+  SlidersHorizontal,
+  ArrowLeft
 } from 'lucide-react';
 
 const TREND_COLLECTIONS = [
@@ -123,18 +124,29 @@ export const TrendsView: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-24">
       {/* Top Header */}
-      <div className="bg-zinc-900 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-md">
-        <div className="flex items-center gap-2">
-          <span className="font-serif italic text-2xl font-black tracking-tight text-white flex items-center gap-1">
-            <Sparkles className="w-5 h-5 text-amber-300" />
+      <div className="bg-zinc-900 text-white px-3 md:px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-md">
+        <div className="flex items-center gap-1.5 min-w-0">
+          <button
+            type="button"
+            onClick={() => {
+              setMainTab('home');
+              setActiveView('none');
+            }}
+            className="md:hidden p-1.5 -ml-0.5 rounded-full hover:bg-zinc-800 shrink-0"
+            aria-label="Back to shop"
+          >
+            <ArrowLeft className="w-5 h-5 text-white" />
+          </button>
+          <span className="font-serif italic text-xl md:text-2xl font-black tracking-tight text-white flex items-center gap-1">
+            <Sparkles className="w-5 h-5 text-amber-300 shrink-0" />
             Trends
           </span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3 shrink-0">
           <button
             type="button"
             onClick={() => setActiveView('search')}
-            className="p-1 hover:bg-zinc-800 rounded-full"
+            className="p-1.5 hover:bg-zinc-800 rounded-full"
             aria-label="Search"
           >
             <Search className="w-5 h-5 text-white" />
@@ -142,7 +154,7 @@ export const TrendsView: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveView('saved')}
-            className="p-1 hover:bg-zinc-800 rounded-full"
+            className="p-1.5 hover:bg-zinc-800 rounded-full"
             aria-label="Saved"
           >
             <Heart className="w-5 h-5 text-white" />
