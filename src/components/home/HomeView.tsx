@@ -36,8 +36,8 @@ export const HomeView: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-4 pb-28 max-w-7xl mx-auto w-full bg-white">
-      <div className="md:hidden flex items-center overflow-x-auto scrollbar-none border-b border-gray-200 bg-white px-3 sticky top-12 z-20">
+    <div className="flex flex-col gap-3 md:gap-4 pb-28 max-w-7xl mx-auto w-full bg-white">
+      <div className="md:hidden flex items-center overflow-x-auto scrollbar-none border-b border-gray-200 bg-white px-2">
         {SHEIN_TOP_TABS.map(tab => (
           <button
             key={tab}
