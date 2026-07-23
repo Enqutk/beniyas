@@ -89,7 +89,7 @@ export const DesktopFooter: React.FC = () => {
               </li>
               <li>
                 <button onClick={() => setActiveView('vendors')} className="hover:text-white transition-colors">
-                  Vendor Directory
+                  Vendor Dashboard
                 </button>
               </li>
             </ul>
