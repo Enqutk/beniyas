@@ -64,7 +64,8 @@ const HERO_SLIDES: HeroSlide[] = [
   }
 ];
 
-const AUTO_MS = 4500;
+const AUTO_MS = 2500;
+const SLIDE_MS = 850;
 
 interface HeroBannerSliderProps {
   onCta: () => void;
@@ -75,52 +76,75 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
+  const [dragPx, setDragPx] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const [width, setWidth] = useState(0);
+
+  const viewportRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
-  const touchDelta = useRef(0);
+
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+    const sync = () => setWidth(el.clientWidth);
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const goTo = useCallback(
     (next: number) => {
       setIndex(((next % total) + total) % total);
       setProgressKey(k => k + 1);
+      setDragPx(0);
     },
     [total]
   );
 
-  // Continuous auto-slide
   useEffect(() => {
-    if (paused) return;
+    if (paused || dragging) return;
     const id = window.setInterval(() => {
       setIndex(i => (i + 1) % total);
       setProgressKey(k => k + 1);
     }, AUTO_MS);
     return () => window.clearInterval(id);
-  }, [paused, total]);
+  }, [paused, dragging, total]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
-    touchDelta.current = 0;
+    setDragging(true);
     setPaused(true);
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
     if (touchStartX.current == null) return;
-    touchDelta.current = e.touches[0].clientX - touchStartX.current;
+    setDragPx(e.touches[0].clientX - touchStartX.current);
   };
 
   const onTouchEnd = () => {
-    if (Math.abs(touchDelta.current) > 50) {
-      goTo(index + (touchDelta.current < 0 ? 1 : -1));
-    }
+    const threshold = Math.max(48, width * 0.15);
+    if (dragPx < -threshold) goTo(index + 1);
+    else if (dragPx > threshold) goTo(index - 1);
+    else setDragPx(0);
     touchStartX.current = null;
-    touchDelta.current = 0;
+    setDragging(false);
     setPaused(false);
   };
 
+  // Pixel-based slide so it glides one banner at a time (no sudden swap)
+  const x = width > 0 ? -(index * width) + (dragging ? dragPx : 0) : 0;
+
   return (
     <div
+      ref={viewportRef}
       className="relative rounded-2xl overflow-hidden bg-ink text-paper shadow-lg select-none"
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseLeave={() => {
+        setPaused(false);
+        setDragging(false);
+        setDragPx(0);
+      }}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -128,16 +152,23 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
       aria-roledescription="carousel"
       aria-label="Featured collections"
     >
-      {/* Sliding track */}
       <div
-        className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
-        style={{ transform: `translateX(-${index * 100}%)` }}
+        className="flex"
+        style={{
+          width: width > 0 ? width * total : '100%',
+          transform: `translate3d(${x}px, 0, 0)`,
+          transition: dragging
+            ? 'none'
+            : `transform ${SLIDE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1)`,
+          willChange: 'transform'
+        }}
       >
-        {HERO_SLIDES.map(slide => (
+        {HERO_SLIDES.map((slide, i) => (
           <div
             key={slide.id}
-            className="w-full shrink-0 grid md:grid-cols-2 gap-0 min-h-[240px] md:min-h-[300px]"
-            aria-hidden={HERO_SLIDES[index].id !== slide.id}
+            className="shrink-0 grid md:grid-cols-2 gap-0 min-h-[240px] md:min-h-[300px]"
+            style={{ width: width > 0 ? width : '100%' }}
+            aria-hidden={i !== index}
           >
             <div className="p-5 md:p-8 flex flex-col justify-center space-y-3 relative z-10">
               <div className="flex items-center gap-2 flex-wrap">
@@ -187,11 +218,6 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
         ))}
       </div>
 
-      {/* Soft edge fade */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-ink/40 to-transparent hidden md:block" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-ink/40 to-transparent hidden md:block" />
-
-      {/* Arrows */}
       <button
         type="button"
         aria-label="Previous slide"
@@ -209,7 +235,6 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Dots + progress */}
       <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2 z-20 px-4">
         {HERO_SLIDES.map((s, i) => {
           const active = i === index;
@@ -220,20 +245,20 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
               aria-label={`Go to slide ${i + 1}`}
               aria-current={active}
               onClick={() => goTo(i)}
-              className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-300 ${
+              className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-500 ${
                 active ? 'w-8 bg-paper/25' : 'w-1.5 bg-paper/35 hover:bg-paper/60'
               }`}
             >
-              {active && !paused && (
+              {active && !paused && !dragging && (
                 <span
                   key={progressKey}
-                  className="absolute inset-y-0 left-0 bg-brand rounded-full"
-                  style={{
-                    animation: `heroProgress ${AUTO_MS}ms linear forwards`
-                  }}
+                  className="absolute inset-y-0 left-0 w-full bg-brand rounded-full origin-left"
+                  style={{ animation: `heroProgress ${AUTO_MS}ms linear forwards` }}
                 />
               )}
-              {active && paused && <span className="absolute inset-0 bg-brand rounded-full" />}
+              {active && (paused || dragging) && (
+                <span className="absolute inset-0 bg-brand rounded-full" />
+              )}
             </button>
           );
         })}
@@ -241,8 +266,8 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
 
       <style>{`
         @keyframes heroProgress {
-          from { width: 0%; }
-          to { width: 100%; }
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
         }
       `}</style>
     </div>
