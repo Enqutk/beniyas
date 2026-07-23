@@ -71,6 +71,8 @@ interface AppContextType {
   
   // Listing submission
   addListing: (newListing: Partial<Listing>) => void;
+  removeListing: (listingId: string) => void;
+  toggleBoostListing: (listingId: string) => void;
   
   // Shell Frame toggle (Mobile frame vs full screen)
   isPhoneFrame: boolean;
@@ -310,7 +312,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     );
 
     // Auto simulated response from seller after 2s
-    
+
     setTimeout(() => {
       setChatThreads(prev =>
         prev.map(ct => {
@@ -374,6 +376,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }));
   };
 
+  const removeListing = (listingId: string) => {
+    setListings(prev => prev.filter(l => l.id !== listingId));
+    setUser(prev => ({
+      ...prev,
+      activeAdsCount: Math.max(0, prev.activeAdsCount - 1)
+    }));
+  };
+
+  const toggleBoostListing = (listingId: string) => {
+    setListings(prev =>
+      prev.map(l => (l.id === listingId ? { ...l, isBoosted: !l.isBoosted } : l))
+    );
+  };
+
   const addSearchHistory = (term: string) => {
     if (!term.trim()) return;
     setSearchHistory(prev => [term, ...prev.filter(t => t.toLowerCase() !== term.toLowerCase())].slice(0, 8));
@@ -421,6 +437,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         closeContactModal,
         sendMessage,
         addListing,
+        removeListing,
+        toggleBoostListing,
         isPhoneFrame,
         setIsPhoneFrame,
         searchHistory,
