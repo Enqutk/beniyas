@@ -124,7 +124,7 @@ export const ChatThreadView: React.FC = () => {
               <div
                 className={`max-w-[80%] p-3 rounded-2xl text-xs leading-relaxed shadow-2xs ${
                   isUser
-                    ? 'bg-brand text-white rounded-tr-xs'
+                    ? 'btn-primary rounded-tr-xs'
                     : 'bg-white text-gray-900 border border-gray-200 rounded-tl-xs'
                 }`}
               >
@@ -175,7 +175,7 @@ export const ChatThreadView: React.FC = () => {
         <button
           onClick={() => handleSend(input)}
           disabled={!input.trim()}
-          className="p-2.5 rounded-full bg-brand text-white disabled:opacity-50 active:scale-95 transition-transform"
+          className="p-2.5 rounded-full btn-primary disabled:opacity-50 active:scale-95 transition-transform"
         >
           <Send className="w-4 h-4 fill-current" />
         </button>

@@ -113,7 +113,7 @@ export const BoostPaywallModal: React.FC = () => {
 
             <button
               onClick={() => setPaid(true)}
-              className="w-full py-3.5 bg-brand hover:bg-brand-hover text-white font-black text-sm rounded-xl shadow-lg transition-all"
+              className="w-full py-3.5 btn-primary font-black text-sm rounded-xl shadow-lg transition-all"
             >
               Pay via {paymentMethod === 'telebirr' ? 'Telebirr' : 'CBE Birr'}
             </button>
@@ -129,7 +129,7 @@ export const BoostPaywallModal: React.FC = () => {
             </p>
             <button
               onClick={() => setActiveView('none')}
-              className="px-6 py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md"
+              className="px-6 py-3 btn-primary font-bold text-xs rounded-xl shadow-md"
             >
               Done
             </button>

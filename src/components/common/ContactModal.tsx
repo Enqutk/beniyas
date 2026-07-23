@@ -55,7 +55,7 @@ export const ContactModal: React.FC = () => {
           <div className="grid grid-cols-2 gap-3">
             <a
               href={`tel:${contactModalSeller.phone}`}
-              className="flex items-center justify-center gap-2 py-3 px-4 bg-brand hover:bg-brand-hover text-white font-extrabold text-sm rounded-xl shadow-md transition-all active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 py-3 px-4 btn-primary font-extrabold text-sm rounded-xl shadow-md transition-all active:scale-[0.98]"
             >
               <Phone className="w-4 h-4" />
               Call Now

@@ -103,7 +103,7 @@ export const MobileHeader: React.FC = () => {
           >
             <ShoppingBag className="w-5 h-5 stroke-[2]" />
             {cartCount > 0 && (
-              <span className="absolute top-0 right-0 bg-brand text-white text-[8px] font-bold min-w-[14px] h-[14px] rounded-full flex items-center justify-center">
+              <span className="absolute top-0 right-0 btn-primary text-[8px] font-bold min-w-[14px] h-[14px] rounded-full flex items-center justify-center">
                 {cartCount}
               </span>
             )}
@@ -143,7 +143,7 @@ export const MobileHeader: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}
-                className="shrink-0 m-1.5 w-8 h-8 bg-brand text-white flex items-center justify-center"
+                className="shrink-0 m-1.5 w-8 h-8 btn-primary flex items-center justify-center"
                 aria-label="Close"
               >
                 <X className="w-4 h-4 stroke-[3]" />

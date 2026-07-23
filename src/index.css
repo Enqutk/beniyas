@@ -1,16 +1,76 @@
 @import "tailwindcss";
 
 /*
- * Brand colors — match the Baniyas logo orange (#F59E0B).
- * Change these once; UI accents follow. Logo colors stay fixed in BaniyasLogo.
+ * ============================================================
+ *  BANIYAS DESIGN TOKENS — edit here only
+ * ============================================================
  *
- * Classes: bg-brand, text-brand, border-brand, hover:bg-brand-hover,
- *   bg-brand-soft, bg-brand-muted, border-brand-ring
+ *  Palette: orange shades + black + white (nothing else for brand UI)
+ *
+ *  Change brand / orange tones  →  --color-brand*
+ *  Change buttons only         →  --btn-*  (when you say "btns")
+ *  Change text / surfaces      →  --color-ink* / --color-paper*
+ *  Logo                        →  leave alone (fixed in BaniyasLogo.tsx)
+ *
+ *  Classes:
+ *    bg-brand, text-brand, border-brand, hover:bg-brand-hover
+ *    bg-brand-soft, bg-brand-muted, border-brand-ring
+ *    bg-ink, text-ink, bg-paper, text-paper
+ *    btn-primary   → main CTAs (orange)
+ *    btn-secondary → dark CTAs (black)
+ * ============================================================
  */
+
 @theme {
+  /* --- Orange (matches logo #F59E0B) --- */
   --color-brand: #F59E0B;
   --color-brand-hover: #D97706;
   --color-brand-soft: #FFFBEB;
   --color-brand-muted: #FEF3C7;
   --color-brand-ring: #FCD34D;
+
+  /* --- Black --- */
+  --color-ink: #0F172A;
+  --color-ink-soft: #27272A;
+
+  /* --- White --- */
+  --color-paper: #FFFFFF;
+  --color-paper-soft: #FAFAFA;
+}
+
+:root {
+  /* --- Buttons only (change these when user says "btn" / "btns") --- */
+  --btn-bg: var(--color-brand);
+  --btn-bg-hover: var(--color-brand-hover);
+  --btn-text: var(--color-paper);
+
+  --btn-secondary-bg: var(--color-ink);
+  --btn-secondary-hover: var(--color-ink-soft);
+  --btn-secondary-text: var(--color-paper);
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    transition: background-color 0.15s ease;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--btn-bg-hover);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+  }
+
+  .btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    transition: background-color 0.15s ease;
+  }
+  .btn-secondary:hover:not(:disabled) {
+    background-color: var(--btn-secondary-hover);
+  }
+  .btn-secondary:disabled {
+    opacity: 0.5;
+  }
 }

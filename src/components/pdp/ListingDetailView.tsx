@@ -139,7 +139,7 @@ export const ListingDetailView: React.FC = () => {
               {/* Floating Badges */}
               <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
                 {listing.discountPercentage && (
-                  <span className="bg-brand text-white text-xs font-black px-2 py-0.5 rounded-xs shadow-md">
+                  <span className="btn-primary text-xs font-black px-2 py-0.5 rounded-xs shadow-md">
                     -{listing.discountPercentage}% OFF
                   </span>
                 )}
@@ -290,7 +290,7 @@ export const ListingDetailView: React.FC = () => {
                     onClick={() => setSelectedSize(s)}
                     className={`py-2 text-xs font-black rounded-md border transition-all ${
                       selectedSize === s
-                        ? 'bg-brand text-white border-brand shadow-xs'
+                        ? 'btn-primary border-brand shadow-xs'
                         : 'bg-white text-gray-800 border-gray-300 hover:border-black'
                     }`}
                   >
@@ -324,7 +324,7 @@ export const ListingDetailView: React.FC = () => {
             <div className="space-y-2.5 pt-2">
               <button
                 onClick={handleAddToBag}
-                className="w-full py-3.5 px-4 bg-brand hover:bg-brand-hover text-white font-black text-sm rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform active:scale-98 uppercase tracking-wider"
+                className="w-full py-3.5 px-4 btn-primary font-black text-sm rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform active:scale-98 uppercase tracking-wider"
               >
                 <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
                 Add To Bag
@@ -333,7 +333,7 @@ export const ListingDetailView: React.FC = () => {
               <div className="grid grid-cols-1 gap-2">
                 <button
                   onClick={() => openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar)}
-                  className="py-3 px-3 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95"
+                  className="py-3 px-3 btn-primary font-black text-xs rounded-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95"
                 >
                   <Phone className="w-4 h-4 text-emerald-400" />
                   Call Seller
@@ -499,7 +499,7 @@ export const ListingDetailView: React.FC = () => {
 
             <button
               onClick={() => setShowSizeChart(false)}
-              className="w-full py-2.5 bg-brand text-white text-xs font-black rounded-lg uppercase tracking-wider"
+              className="w-full py-2.5 btn-primary text-xs font-black rounded-lg uppercase tracking-wider"
             >
               Close
             </button>
@@ -518,14 +518,14 @@ export const ListingDetailView: React.FC = () => {
 
         <button
           onClick={handleAddToBag}
-          className="flex-1 py-3 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"
+          className="flex-1 py-3 btn-primary font-black text-xs rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"
         >
           <ShoppingBag className="w-4 h-4" /> Add To Bag
         </button>
 
         <button
           onClick={() => openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar)}
-          className="flex-1 py-3 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5"
+          className="flex-1 py-3 btn-primary font-black text-xs rounded-lg flex items-center justify-center gap-1.5"
         >
           <Phone className="w-4 h-4" /> Call
         </button>

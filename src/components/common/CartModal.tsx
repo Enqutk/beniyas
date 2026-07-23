@@ -64,7 +64,7 @@ export const CartModal: React.FC = () => {
                   setShowCartModal(false);
                   setActiveView('none');
                 }}
-                className="px-5 py-2.5 bg-brand text-white text-xs font-bold rounded-full shadow-md"
+                className="px-5 py-2.5 btn-primary text-xs font-bold rounded-full shadow-md"
               >
                 Start Shopping
               </button>
@@ -178,7 +178,7 @@ export const CartModal: React.FC = () => {
                   openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar);
                 }
               }}
-              className="w-full py-3.5 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-xl shadow-md uppercase tracking-wider flex items-center justify-center gap-2 transition-transform active:scale-98"
+              className="w-full py-3.5 btn-primary font-black text-xs rounded-xl shadow-md uppercase tracking-wider flex items-center justify-center gap-2 transition-transform active:scale-98"
             >
               <span>Contact Seller to Order</span>
               <ArrowRight className="w-4 h-4" />

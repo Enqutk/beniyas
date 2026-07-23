@@ -173,7 +173,7 @@ export const MeView: React.FC = () => {
         {!isLoggedIn && (
           <div className="hidden md:flex bg-gradient-to-r from-brand/20 via-brand/10 to-brand/20 border border-brand-ring rounded-2xl p-4 md:p-6 mb-6 flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center shrink-0 font-black text-xl shadow-md">
+              <div className="w-12 h-12 rounded-full btn-primary flex items-center justify-center shrink-0 font-black text-xl shadow-md">
                 B
               </div>
               <div>
@@ -186,13 +186,13 @@ export const MeView: React.FC = () => {
             <div className="flex items-center gap-3 w-full md:w-auto">
               <button
                 onClick={() => setActiveView('auth')}
-                className="flex-1 md:flex-initial px-6 py-2.5 bg-brand hover:bg-brand-hover text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
+                className="flex-1 md:flex-initial px-6 py-2.5 btn-primary font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
               >
                 Sign In / Login
               </button>
               <button
                 onClick={() => setActiveView('auth')}
-                className="flex-1 md:flex-initial px-6 py-2.5 bg-brand hover:bg-brand-hover text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
+                className="flex-1 md:flex-initial px-6 py-2.5 btn-primary font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
               >
                 Register
               </button>
@@ -240,7 +240,7 @@ export const MeView: React.FC = () => {
                         <User className="w-3.5 h-3.5 text-gray-400" />
                         My Profile
                       </span>
-                      <span className="text-[9px] font-extrabold bg-brand text-white px-1.5 py-0.5 rounded">
+                      <span className="text-[9px] font-extrabold btn-primary px-1.5 py-0.5 rounded">
                         +POINTS
                       </span>
                     </button>
@@ -281,7 +281,7 @@ export const MeView: React.FC = () => {
                         <SettingsIcon className="w-3.5 h-3.5 text-gray-400" />
                         Manage My Account
                       </span>
-                      <span className="text-[9px] font-extrabold bg-brand text-white px-1.5 py-0.5 rounded">
+                      <span className="text-[9px] font-extrabold btn-primary px-1.5 py-0.5 rounded">
                         +POINTS
                       </span>
                     </button>
@@ -522,7 +522,7 @@ export const MeView: React.FC = () => {
                 ) : (
                   <button
                     onClick={() => setActiveView('auth')}
-                    className="w-full py-2 px-3 bg-brand text-white hover:bg-brand-hover font-bold text-xs rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider"
+                    className="w-full py-2 px-3 btn-primary font-bold text-xs rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider"
                   >
                     <User className="w-3.5 h-3.5" />
                     Sign In / Register
@@ -584,7 +584,7 @@ export const MeView: React.FC = () => {
 
                   <button
                     onClick={() => setActiveView('auth')}
-                    className="w-full sm:w-auto px-5 py-2 bg-brand hover:bg-brand-hover text-white font-bold text-xs rounded-xl transition-all shadow-xs"
+                    className="w-full sm:w-auto px-5 py-2 btn-primary font-bold text-xs rounded-xl transition-all shadow-xs"
                   >
                     Sign In / Register
                   </button>
@@ -817,7 +817,7 @@ export const MeView: React.FC = () => {
                         <p className="text-[10px] text-gray-500">Verified Seller • 4.9 Rating</p>
                       </div>
                     </div>
-                    <button className="px-3 py-1.5 bg-brand text-white rounded-lg text-xs font-bold">
+                    <button className="px-3 py-1.5 btn-primary rounded-lg text-xs font-bold">
                       View Store
                     </button>
                   </div>
@@ -930,7 +930,7 @@ export const MeView: React.FC = () => {
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-xs text-gray-900">{addr.name}</span>
                     {addr.isDefault && (
-                      <span className="text-[10px] bg-brand text-white px-1.5 py-0.5 rounded font-black">
+                      <span className="text-[10px] btn-primary px-1.5 py-0.5 rounded font-black">
                         DEFAULT
                       </span>
                     )}
@@ -945,7 +945,7 @@ export const MeView: React.FC = () => {
             {!showAddAddress ? (
               <button
                 onClick={() => setShowAddAddress(true)}
-                className="w-full py-2.5 bg-brand text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 btn-primary font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
               >
                 <PlusCircle className="w-4 h-4" />
                 Add New Delivery Address
@@ -971,7 +971,7 @@ export const MeView: React.FC = () => {
                 <div className="flex gap-2 pt-1">
                   <button
                     type="submit"
-                    className="flex-1 py-2 bg-brand text-white font-bold text-xs rounded-lg"
+                    className="flex-1 py-2 btn-primary font-bold text-xs rounded-lg"
                   >
                     Save Address
                   </button>
@@ -1104,7 +1104,7 @@ export const MeView: React.FC = () => {
                 alert('Measurements saved!');
                 setActiveSubPanel('none');
               }}
-              className="w-full py-2.5 bg-brand text-white font-bold text-xs rounded-xl"
+              className="w-full py-2.5 btn-primary font-bold text-xs rounded-xl"
             >
               Save Measurements
             </button>
@@ -1183,7 +1183,7 @@ export const MeView: React.FC = () => {
 
             <button
               onClick={() => setActiveSubPanel('none')}
-              className="w-full py-2.5 bg-brand text-white font-bold text-xs rounded-xl"
+              className="w-full py-2.5 btn-primary font-bold text-xs rounded-xl"
             >
               Save Preferences
             </button>

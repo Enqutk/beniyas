@@ -200,7 +200,7 @@ export const SellWizardView: React.FC = () => {
                 <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-gray-200">
                   <img src={img} alt="" className="w-full h-full object-cover" />
                   {i === 0 && (
-                    <span className="absolute top-1 left-1 bg-brand text-white text-[9px] font-bold px-1 rounded-xs">
+                    <span className="absolute top-1 left-1 btn-primary text-[9px] font-bold px-1 rounded-xs">
                       COVER
                     </span>
                   )}
@@ -225,7 +225,7 @@ export const SellWizardView: React.FC = () => {
             <button
               onClick={() => setStep(4)}
               disabled={images.length === 0}
-              className="w-full mt-4 py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md disabled:opacity-50"
+              className="w-full mt-4 py-3 btn-primary font-bold text-xs rounded-xl shadow-md disabled:opacity-50"
             >
               Continue to Details
             </button>
@@ -268,7 +268,7 @@ export const SellWizardView: React.FC = () => {
             <button
               onClick={() => setStep(5)}
               disabled={!title.trim() || !description.trim()}
-              className="w-full py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md disabled:opacity-50"
+              className="w-full py-3 btn-primary font-bold text-xs rounded-xl shadow-md disabled:opacity-50"
             >
               Next: Pricing
             </button>
@@ -308,7 +308,7 @@ export const SellWizardView: React.FC = () => {
 
             <button
               onClick={() => setStep(6)}
-              className="w-full py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md"
+              className="w-full py-3 btn-primary font-bold text-xs rounded-xl shadow-md"
             >
               Next: Item Condition
             </button>
@@ -340,7 +340,7 @@ export const SellWizardView: React.FC = () => {
 
             <button
               onClick={() => setStep(7)}
-              className="w-full py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md"
+              className="w-full py-3 btn-primary font-bold text-xs rounded-xl shadow-md"
             >
               Next: Location
             </button>
@@ -373,7 +373,7 @@ export const SellWizardView: React.FC = () => {
 
             <button
               onClick={() => setStep(8)}
-              className="w-full py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md"
+              className="w-full py-3 btn-primary font-bold text-xs rounded-xl shadow-md"
             >
               Next: Review
             </button>
@@ -396,7 +396,7 @@ export const SellWizardView: React.FC = () => {
 
             <button
               onClick={() => setStep(9)}
-              className="w-full py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md"
+              className="w-full py-3 btn-primary font-bold text-xs rounded-xl shadow-md"
             >
               Preview Ad
             </button>
@@ -425,7 +425,7 @@ export const SellWizardView: React.FC = () => {
 
             <button
               onClick={handlePublish}
-              className="w-full py-3 bg-brand hover:bg-brand-hover text-white font-black text-sm rounded-xl shadow-lg transition-all"
+              className="w-full py-3 btn-primary font-black text-sm rounded-xl shadow-lg transition-all"
             >
               Publish Free Ad Now
             </button>
@@ -466,7 +466,7 @@ export const SellWizardView: React.FC = () => {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setActiveView('vendors')}
-                className="py-3 bg-brand text-white font-bold text-xs rounded-xl"
+                className="py-3 btn-primary font-bold text-xs rounded-xl"
               >
                 Vendor Dashboard
               </button>

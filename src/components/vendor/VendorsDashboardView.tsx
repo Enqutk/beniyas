@@ -125,7 +125,7 @@ export const VendorsDashboardView: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveView('auth')}
-            className="w-full max-w-xs mx-auto py-3 bg-brand text-white font-black text-sm rounded-xl"
+            className="w-full max-w-xs mx-auto py-3 btn-primary font-black text-sm rounded-xl"
           >
             Sign in to continue
           </button>
@@ -173,7 +173,7 @@ export const VendorsDashboardView: React.FC = () => {
               <button
                 type="button"
                 onClick={goPostProduct}
-                className="inline-flex items-center gap-1.5 bg-brand hover:bg-brand-hover text-white text-xs font-black px-3.5 py-2.5 rounded-xl shadow-md"
+                className="inline-flex items-center gap-1.5 btn-primary text-xs font-black px-3.5 py-2.5 rounded-xl shadow-md"
               >
                 <Plus className="w-4 h-4 stroke-[3]" />
                 Post product
@@ -243,7 +243,7 @@ export const VendorsDashboardView: React.FC = () => {
               desc: 'Create a listing',
               icon: Plus,
               onClick: goPostProduct,
-              tone: 'bg-brand text-white'
+              tone: 'btn-primary'
             },
             {
               label: 'My ads',
@@ -417,7 +417,7 @@ export const VendorsDashboardView: React.FC = () => {
                         onClick={() => setStatusFilter(id)}
                         className={`px-3 py-2 rounded-xl text-[11px] font-black border ${
                           statusFilter === id
-                            ? 'bg-brand text-white border-brand'
+                            ? 'btn-primary border-brand'
                             : 'bg-white text-gray-600 border-gray-200'
                         }`}
                       >
@@ -435,7 +435,7 @@ export const VendorsDashboardView: React.FC = () => {
                     <button
                       type="button"
                       onClick={goPostProduct}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-brand text-white text-xs font-black rounded-xl"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 btn-primary text-xs font-black rounded-xl"
                     >
                       <Plus className="w-4 h-4" /> Post product
                     </button>
@@ -582,7 +582,7 @@ export const VendorsDashboardView: React.FC = () => {
         <button
           type="button"
           onClick={goPostProduct}
-          className="pointer-events-auto w-full max-w-md mx-auto flex items-center justify-center gap-2 py-3.5 bg-brand text-white font-black text-sm rounded-2xl shadow-xl"
+          className="pointer-events-auto w-full max-w-md mx-auto flex items-center justify-center gap-2 py-3.5 btn-primary font-black text-sm rounded-2xl shadow-xl"
         >
           <Plus className="w-5 h-5 stroke-[3]" />
           Post a new product

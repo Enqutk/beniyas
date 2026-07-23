@@ -49,7 +49,7 @@ export const SavedView: React.FC = () => {
                 setActiveView('none');
                 setMainTab('home');
               }}
-              className="mt-4 px-4 py-2 bg-brand text-white font-bold text-xs rounded-full shadow-md"
+              className="mt-4 px-4 py-2 btn-primary font-bold text-xs rounded-full shadow-md"
             >
               Browse Marketplace
             </button>

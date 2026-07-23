@@ -148,7 +148,7 @@ export const CategoriesView: React.FC = () => {
                 onClick={() => setActiveSidebarTab(tab.id)}
                 className={`w-full py-3.5 px-2 text-left transition-colors ${
                   isSelected
-                    ? 'bg-brand text-white font-black'
+                    ? 'btn-primary font-black'
                     : 'text-gray-800 font-medium active:bg-gray-200'
                 }`}
               >

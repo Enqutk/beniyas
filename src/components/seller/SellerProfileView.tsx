@@ -68,7 +68,7 @@ export const SellerProfileView: React.FC = () => {
                 firstListing.sellerAvatar
               )
             }
-            className="py-2.5 bg-brand hover:bg-brand-hover font-bold text-xs text-white rounded-xl flex items-center justify-center gap-1.5"
+            className="py-2.5 btn-primary font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
           >
             <Phone className="w-3.5 h-3.5 text-emerald-400" /> Call Seller
           </button>

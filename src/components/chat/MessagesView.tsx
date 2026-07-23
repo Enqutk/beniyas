@@ -51,7 +51,7 @@ export const MessagesView: React.FC = () => {
             onClick={() => setFilter('all')}
             className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
               filter === 'all'
-                ? 'bg-brand text-white shadow-2xs'
+                ? 'btn-primary shadow-2xs'
                 : 'bg-white text-gray-600 border border-gray-200'
             }`}
           >
@@ -61,7 +61,7 @@ export const MessagesView: React.FC = () => {
             onClick={() => setFilter('unread')}
             className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
               filter === 'unread'
-                ? 'bg-brand text-white shadow-2xs'
+                ? 'btn-primary shadow-2xs'
                 : 'bg-white text-gray-600 border border-gray-200'
             }`}
           >
@@ -118,7 +118,7 @@ export const MessagesView: React.FC = () => {
               </div>
 
               {ct.unreadCount > 0 ? (
-                <span className="w-5 h-5 rounded-full bg-brand text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                <span className="w-5 h-5 rounded-full btn-primary text-[10px] font-bold flex items-center justify-center shrink-0">
                   {ct.unreadCount}
                 </span>
               ) : (
