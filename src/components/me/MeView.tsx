@@ -116,8 +116,40 @@ export const MeView: React.FC = () => {
 
   return (
     <div className="bg-[#F5F5F5] min-h-screen text-gray-900 pb-24">
-      {/* Top Breadcrumb Navigation Bar */}
-      <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-2.5 text-xs text-gray-500 flex items-center justify-between">
+      {/* Mobile Shein-style Me header */}
+      <div className="md:hidden bg-white px-4 pt-4 pb-3 border-b border-gray-100">
+        <div className="flex items-start justify-between">
+          <button
+            type="button"
+            onClick={() => (isLoggedIn ? setActiveSubPanel('profile') : setActiveView('auth'))}
+            className="text-left"
+          >
+            <div className="flex items-center gap-1.5">
+              <span className="text-base font-black text-black">
+                {isLoggedIn ? user.name.split(' ')[0] : 'Sign in / Register'}
+              </span>
+              <Crown className="w-4 h-4 text-amber-500" />
+              <span className="text-[10px] font-bold bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">
+                S0
+              </span>
+            </div>
+            {!isLoggedIn && (
+              <p className="text-[11px] text-gray-500 mt-0.5">Tap to access orders & wishlist</p>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveSubPanel('preferences')}
+            className="p-1 text-gray-700"
+            aria-label="Settings"
+          >
+            <SettingsIcon className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Desktop breadcrumb */}
+      <div className="hidden md:flex bg-white border-b border-gray-200 px-4 md:px-8 py-2.5 text-xs text-gray-500 items-center justify-between">
         <div className="flex items-center gap-2">
           <button onClick={() => setMainTab('home')} className="hover:text-black font-medium">
             Home
@@ -136,10 +168,10 @@ export const MeView: React.FC = () => {
         )}
       </div>
 
-      <div className="max-w-7xl mx-auto px-3 md:px-6 py-4 md:py-6">
-        {/* If logged out banner prompt */}
+      <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 md:py-6">
+        {/* If logged out banner prompt — desktop only (mobile uses header CTA) */}
         {!isLoggedIn && (
-          <div className="bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-amber-500/20 border border-amber-300 rounded-2xl p-4 md:p-6 mb-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+          <div className="hidden md:flex bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-amber-500/20 border border-amber-300 rounded-2xl p-4 md:p-6 mb-6 flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center shrink-0 font-black text-xl shadow-md">
                 B
@@ -169,9 +201,9 @@ export const MeView: React.FC = () => {
         )}
 
         {/* Main Personal Center Layout: Left Nav + Center Dashboard + Right Column */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* LEFT SIDEBAR: Personal Center Tree (Exact SHEIN layout) */}
-          <div className="lg:col-span-3 bg-white rounded-xl shadow-xs border border-gray-200/80 p-4 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 items-start">
+          {/* LEFT SIDEBAR — desktop only */}
+          <div className="hidden lg:block lg:col-span-3 bg-white rounded-xl shadow-xs border border-gray-200/80 p-4 space-y-4">
             <h2 className="font-black text-base md:text-lg text-black border-b border-gray-100 pb-3 uppercase tracking-wider flex items-center justify-between">
               <span>Personal Center</span>
               {isLoggedIn && (
@@ -485,11 +517,11 @@ export const MeView: React.FC = () => {
           </div>
 
           {/* CENTER PANEL: Main User Banner + Orders Card + Tabs Feed */}
-          <div className="lg:col-span-6 space-y-4">
+          <div className="lg:col-span-6 space-y-3 md:space-y-4">
             {/* Top User Greeting Banner */}
-            <div className="bg-white rounded-xl p-5 shadow-xs border border-gray-200/80 space-y-4">
+            <div className="bg-white rounded-xl p-4 md:p-5 shadow-xs border border-gray-200/80 space-y-3 md:space-y-4">
               {isLoggedIn ? (
-                <div className="flex items-center justify-between">
+                <div className="hidden md:flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-black flex items-center justify-center font-black text-xl shadow-xs">
                       {user.name.charAt(0)}
@@ -519,7 +551,7 @@ export const MeView: React.FC = () => {
                   </button>
                 </div>
               ) : (
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="hidden md:flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center font-black text-xl border border-gray-200">
                       <User className="w-6 h-6 text-gray-500" />
