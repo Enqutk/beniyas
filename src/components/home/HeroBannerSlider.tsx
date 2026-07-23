@@ -64,16 +64,25 @@ const HERO_SLIDES: HeroSlide[] = [
   }
 ];
 
+/** [cloneLast, ...slides, cloneFirst] — seamless forward/back loop */
+const LOOP = [
+  { ...HERO_SLIDES[HERO_SLIDES.length - 1], id: `${HERO_SLIDES[HERO_SLIDES.length - 1].id}-clone-end` },
+  ...HERO_SLIDES,
+  { ...HERO_SLIDES[0], id: `${HERO_SLIDES[0].id}-clone-start` }
+];
+
+const REAL_COUNT = HERO_SLIDES.length;
 const AUTO_MS = 2500;
-const SLIDE_MS = 850;
+const SLIDE_MS = 750;
 
 interface HeroBannerSliderProps {
   onCta: () => void;
 }
 
 export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => {
-  const total = HERO_SLIDES.length;
-  const [index, setIndex] = useState(0);
+  // Start on first real slide (index 1 in LOOP)
+  const [pos, setPos] = useState(1);
+  const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
   const [dragPx, setDragPx] = useState(0);
@@ -82,6 +91,14 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
 
   const viewportRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
+  const jumping = useRef(false);
+
+  // Active real slide for dots (0..REAL_COUNT-1)
+  const realIndex = (() => {
+    if (pos === 0) return REAL_COUNT - 1;
+    if (pos === LOOP.length - 1) return 0;
+    return pos - 1;
+  })();
 
   useEffect(() => {
     const el = viewportRef.current;
@@ -93,23 +110,63 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
     return () => ro.disconnect();
   }, []);
 
-  const goTo = useCallback(
-    (next: number) => {
-      setIndex(((next % total) + total) % total);
-      setProgressKey(k => k + 1);
-      setDragPx(0);
-    },
-    [total]
-  );
+  const goNext = useCallback(() => {
+    if (jumping.current) return;
+    setAnimate(true);
+    setPos(p => p + 1);
+    setProgressKey(k => k + 1);
+    setDragPx(0);
+  }, []);
+
+  const goPrev = useCallback(() => {
+    if (jumping.current) return;
+    setAnimate(true);
+    setPos(p => p - 1);
+    setProgressKey(k => k + 1);
+    setDragPx(0);
+  }, []);
+
+  const goToReal = useCallback((real: number) => {
+    if (jumping.current) return;
+    setAnimate(true);
+    setPos(real + 1);
+    setProgressKey(k => k + 1);
+    setDragPx(0);
+  }, []);
+
+  // After landing on a clone, snap to the real slide with no animation
+  const onTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== 'transform' || jumping.current) return;
+    if (pos === LOOP.length - 1) {
+      // Was on clone of first (after last) → jump to real first
+      jumping.current = true;
+      setAnimate(false);
+      setPos(1);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          jumping.current = false;
+          setAnimate(true);
+        });
+      });
+    } else if (pos === 0) {
+      // Was on clone of last (before first) → jump to real last
+      jumping.current = true;
+      setAnimate(false);
+      setPos(REAL_COUNT);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          jumping.current = false;
+          setAnimate(true);
+        });
+      });
+    }
+  };
 
   useEffect(() => {
     if (paused || dragging) return;
-    const id = window.setInterval(() => {
-      setIndex(i => (i + 1) % total);
-      setProgressKey(k => k + 1);
-    }, AUTO_MS);
+    const id = window.setInterval(goNext, AUTO_MS);
     return () => window.clearInterval(id);
-  }, [paused, dragging, total]);
+  }, [paused, dragging, goNext]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -124,16 +181,15 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
 
   const onTouchEnd = () => {
     const threshold = Math.max(48, width * 0.15);
-    if (dragPx < -threshold) goTo(index + 1);
-    else if (dragPx > threshold) goTo(index - 1);
+    if (dragPx < -threshold) goNext();
+    else if (dragPx > threshold) goPrev();
     else setDragPx(0);
     touchStartX.current = null;
     setDragging(false);
     setPaused(false);
   };
 
-  // Pixel-based slide so it glides one banner at a time (no sudden swap)
-  const x = width > 0 ? -(index * width) + (dragging ? dragPx : 0) : 0;
+  const x = width > 0 ? -(pos * width) + (dragging ? dragPx : 0) : 0;
 
   return (
     <div
@@ -154,21 +210,23 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
     >
       <div
         className="flex"
+        onTransitionEnd={onTransitionEnd}
         style={{
-          width: width > 0 ? width * total : '100%',
+          width: width > 0 ? width * LOOP.length : '100%',
           transform: `translate3d(${x}px, 0, 0)`,
-          transition: dragging
-            ? 'none'
-            : `transform ${SLIDE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1)`,
+          transition:
+            animate && !dragging
+              ? `transform ${SLIDE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1)`
+              : 'none',
           willChange: 'transform'
         }}
       >
-        {HERO_SLIDES.map((slide, i) => (
+        {LOOP.map((slide, i) => (
           <div
-            key={slide.id}
+            key={`${slide.id}-${i}`}
             className="shrink-0 grid md:grid-cols-2 gap-0 min-h-[240px] md:min-h-[300px]"
             style={{ width: width > 0 ? width : '100%' }}
-            aria-hidden={i !== index}
+            aria-hidden={i !== pos}
           >
             <div className="p-5 md:p-8 flex flex-col justify-center space-y-3 relative z-10">
               <div className="flex items-center gap-2 flex-wrap">
@@ -221,7 +279,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
       <button
         type="button"
         aria-label="Previous slide"
-        onClick={() => goTo(index - 1)}
+        onClick={goPrev}
         className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-paper/10 hover:bg-paper/25 text-paper items-center justify-center backdrop-blur-md border border-paper/20 transition-colors"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -229,7 +287,7 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
       <button
         type="button"
         aria-label="Next slide"
-        onClick={() => goTo(index + 1)}
+        onClick={goNext}
         className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-paper/10 hover:bg-paper/25 text-paper items-center justify-center backdrop-blur-md border border-paper/20 transition-colors"
       >
         <ChevronRight className="w-5 h-5" />
@@ -237,14 +295,14 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
 
       <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2 z-20 px-4">
         {HERO_SLIDES.map((s, i) => {
-          const active = i === index;
+          const active = i === realIndex;
           return (
             <button
               key={s.id}
               type="button"
               aria-label={`Go to slide ${i + 1}`}
               aria-current={active}
-              onClick={() => goTo(i)}
+              onClick={() => goToReal(i)}
               className={`relative h-1.5 rounded-full overflow-hidden transition-all duration-500 ${
                 active ? 'w-8 bg-paper/25' : 'w-1.5 bg-paper/35 hover:bg-paper/60'
               }`}
