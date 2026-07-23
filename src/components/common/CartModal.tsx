@@ -64,7 +64,7 @@ export const CartModal: React.FC = () => {
                   setShowCartModal(false);
                   setActiveView('none');
                 }}
-                className="px-5 py-2.5 bg-black text-white text-xs font-bold rounded-full shadow-md"
+                className="px-5 py-2.5 bg-brand text-white text-xs font-bold rounded-full shadow-md"
               >
                 Start Shopping
               </button>

@@ -109,7 +109,7 @@ export const ProductCard: React.FC<{ listing: Listing }> = ({ listing }) => {
                 1
               );
             }}
-            className="w-7 h-7 rounded-full border border-gray-300 bg-white hover:bg-black hover:text-white hover:border-black flex items-center justify-center text-gray-700 transition-colors shrink-0"
+            className="w-7 h-7 rounded-full border border-gray-300 bg-white hover:bg-brand hover:text-white hover:border-brand flex items-center justify-center text-gray-700 transition-colors shrink-0"
             title="Add to bag"
           >
             <ShoppingBag className="w-3.5 h-3.5" />

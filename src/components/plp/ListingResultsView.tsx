@@ -321,7 +321,7 @@ export const ListingResultsView: React.FC = () => {
               <button
                 type="button"
                 onClick={applyCustomPrice}
-                className="shrink-0 px-2.5 py-1.5 bg-black text-white text-[10px] font-black rounded"
+                className="shrink-0 px-2.5 py-1.5 bg-brand text-white text-[10px] font-black rounded"
               >
                 OK
               </button>
@@ -355,7 +355,7 @@ export const ListingResultsView: React.FC = () => {
                 }
                 className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${
                   filters.subcity === sc || (sc === 'All' && !filters.subcity)
-                    ? 'bg-black text-white border-black'
+                    ? 'bg-brand text-white border-brand'
                     : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
                 }`}
               >
@@ -447,7 +447,7 @@ export const ListingResultsView: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowFilterSheet(true)}
-                  className="md:hidden bg-black text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5"
+                  className="md:hidden bg-brand text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5"
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
                   Filter
@@ -482,7 +482,7 @@ export const ListingResultsView: React.FC = () => {
                   onClick={() => setFilters(prev => ({ ...prev, subcategory: undefined }))}
                   className={`shrink-0 px-3 py-1 rounded-full text-[11px] font-bold border ${
                     !filters.subcategory
-                      ? 'bg-black text-white border-black'
+                      ? 'bg-brand text-white border-brand'
                       : 'bg-white text-gray-700 border-gray-200'
                   }`}
                 >
@@ -499,7 +499,7 @@ export const ListingResultsView: React.FC = () => {
                     }
                     className={`shrink-0 px-3 py-1 rounded-full text-[11px] font-bold border ${
                       filters.subcategory === sub
-                        ? 'bg-black text-white border-black'
+                        ? 'bg-brand text-white border-brand'
                         : 'bg-white text-gray-700 border-gray-200'
                     }`}
                   >
@@ -522,7 +522,7 @@ export const ListingResultsView: React.FC = () => {
                 <p className="text-xs text-gray-500 mt-1">Try clearing filters or browse another category.</p>
                 <button
                   onClick={resetFilters}
-                  className="mt-5 px-5 py-2.5 bg-black text-white font-extrabold text-xs rounded-full"
+                  className="mt-5 px-5 py-2.5 bg-brand text-white font-extrabold text-xs rounded-full"
                 >
                   Clear Filters
                 </button>
@@ -564,7 +564,7 @@ export const ListingResultsView: React.FC = () => {
                       }
                       className={`p-2.5 rounded-lg text-xs font-bold border ${
                         filters.sortBy === id
-                          ? 'border-black bg-black text-white'
+                          ? 'border-brand bg-brand text-white'
                           : 'border-gray-200 text-gray-700 bg-gray-50'
                       }`}
                     >
@@ -587,7 +587,7 @@ export const ListingResultsView: React.FC = () => {
               </button>
               <button
                 onClick={() => setShowFilterSheet(false)}
-                className="py-3 bg-black font-bold text-xs text-white rounded-xl"
+                className="py-3 bg-brand font-bold text-xs text-white rounded-xl"
               >
                 Show {filteredListings.length} Results
               </button>

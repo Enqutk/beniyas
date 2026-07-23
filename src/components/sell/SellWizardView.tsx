@@ -466,7 +466,7 @@ export const SellWizardView: React.FC = () => {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setActiveView('vendors')}
-                className="py-3 bg-black text-white font-bold text-xs rounded-xl"
+                className="py-3 bg-brand text-white font-bold text-xs rounded-xl"
               >
                 Vendor Dashboard
               </button>

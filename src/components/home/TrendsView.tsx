@@ -367,7 +367,7 @@ export const TrendsView: React.FC = () => {
                         1
                       );
                     }}
-                    className="p-1.5 bg-gray-100 hover:bg-black hover:text-white text-gray-900 rounded-lg transition-colors"
+                    className="p-1.5 bg-gray-100 hover:bg-brand hover:text-white text-gray-900 rounded-lg transition-colors"
                   >
                     <ShoppingBag className="w-4 h-4" />
                   </button>

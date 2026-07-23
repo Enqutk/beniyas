@@ -186,7 +186,7 @@ export const MeView: React.FC = () => {
             <div className="flex items-center gap-3 w-full md:w-auto">
               <button
                 onClick={() => setActiveView('auth')}
-                className="flex-1 md:flex-initial px-6 py-2.5 bg-black hover:bg-gray-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
+                className="flex-1 md:flex-initial px-6 py-2.5 bg-brand hover:bg-brand-hover text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
               >
                 Sign In / Login
               </button>
@@ -522,7 +522,7 @@ export const MeView: React.FC = () => {
                 ) : (
                   <button
                     onClick={() => setActiveView('auth')}
-                    className="w-full py-2 px-3 bg-black text-white hover:bg-gray-800 font-bold text-xs rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider"
+                    className="w-full py-2 px-3 bg-brand text-white hover:bg-brand-hover font-bold text-xs rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider"
                   >
                     <User className="w-3.5 h-3.5" />
                     Sign In / Register
@@ -584,7 +584,7 @@ export const MeView: React.FC = () => {
 
                   <button
                     onClick={() => setActiveView('auth')}
-                    className="w-full sm:w-auto px-5 py-2 bg-black hover:bg-zinc-800 text-white font-bold text-xs rounded-xl transition-all shadow-xs"
+                    className="w-full sm:w-auto px-5 py-2 bg-brand hover:bg-brand-hover text-white font-bold text-xs rounded-xl transition-all shadow-xs"
                   >
                     Sign In / Register
                   </button>
@@ -817,7 +817,7 @@ export const MeView: React.FC = () => {
                         <p className="text-[10px] text-gray-500">Verified Seller • 4.9 Rating</p>
                       </div>
                     </div>
-                    <button className="px-3 py-1.5 bg-black text-white rounded-lg text-xs font-bold">
+                    <button className="px-3 py-1.5 bg-brand text-white rounded-lg text-xs font-bold">
                       View Store
                     </button>
                   </div>
@@ -945,7 +945,7 @@ export const MeView: React.FC = () => {
             {!showAddAddress ? (
               <button
                 onClick={() => setShowAddAddress(true)}
-                className="w-full py-2.5 bg-black text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 bg-brand text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
               >
                 <PlusCircle className="w-4 h-4" />
                 Add New Delivery Address
@@ -1104,7 +1104,7 @@ export const MeView: React.FC = () => {
                 alert('Measurements saved!');
                 setActiveSubPanel('none');
               }}
-              className="w-full py-2.5 bg-black text-white font-bold text-xs rounded-xl"
+              className="w-full py-2.5 bg-brand text-white font-bold text-xs rounded-xl"
             >
               Save Measurements
             </button>
@@ -1183,7 +1183,7 @@ export const MeView: React.FC = () => {
 
             <button
               onClick={() => setActiveSubPanel('none')}
-              className="w-full py-2.5 bg-black text-white font-bold text-xs rounded-xl"
+              className="w-full py-2.5 bg-brand text-white font-bold text-xs rounded-xl"
             >
               Save Preferences
             </button>

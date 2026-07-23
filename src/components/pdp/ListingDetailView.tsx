@@ -154,14 +154,14 @@ export const ListingDetailView: React.FC = () => {
               <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
                 <button
                   onClick={handleShare}
-                  className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-gray-800 flex items-center justify-center hover:bg-black hover:text-white transition-colors shadow-sm"
+                  className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors shadow-sm"
                   title="Share"
                 >
                   {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
                 </button>
                 <button
                   onClick={() => toggleFavorite(listing.id)}
-                  className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-gray-800 flex items-center justify-center hover:bg-black hover:text-white transition-colors shadow-sm"
+                  className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition-colors shadow-sm"
                   title="Favorite"
                 >
                   <Heart className={`w-5 h-5 ${saved ? 'fill-red-600 text-red-600' : ''}`} />
@@ -290,7 +290,7 @@ export const ListingDetailView: React.FC = () => {
                     onClick={() => setSelectedSize(s)}
                     className={`py-2 text-xs font-black rounded-md border transition-all ${
                       selectedSize === s
-                        ? 'bg-black text-white border-black shadow-xs'
+                        ? 'bg-brand text-white border-brand shadow-xs'
                         : 'bg-white text-gray-800 border-gray-300 hover:border-black'
                     }`}
                   >
@@ -333,7 +333,7 @@ export const ListingDetailView: React.FC = () => {
               <div className="grid grid-cols-1 gap-2">
                 <button
                   onClick={() => openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar)}
-                  className="py-3 px-3 bg-black hover:bg-zinc-800 text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95"
+                  className="py-3 px-3 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5 transition-transform active:scale-95"
                 >
                   <Phone className="w-4 h-4 text-emerald-400" />
                   Call Seller
@@ -499,7 +499,7 @@ export const ListingDetailView: React.FC = () => {
 
             <button
               onClick={() => setShowSizeChart(false)}
-              className="w-full py-2.5 bg-black text-white text-xs font-black rounded-lg uppercase tracking-wider"
+              className="w-full py-2.5 bg-brand text-white text-xs font-black rounded-lg uppercase tracking-wider"
             >
               Close
             </button>
@@ -525,7 +525,7 @@ export const ListingDetailView: React.FC = () => {
 
         <button
           onClick={() => openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar)}
-          className="flex-1 py-3 bg-black hover:bg-zinc-800 text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5"
+          className="flex-1 py-3 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-lg flex items-center justify-center gap-1.5"
         >
           <Phone className="w-4 h-4" /> Call
         </button>

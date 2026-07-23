@@ -320,7 +320,7 @@ export const AuthModal: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3 bg-black hover:bg-gray-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all mt-2"
+                className="w-full py-3 bg-brand hover:bg-brand-hover text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all mt-2"
               >
                 {loginMethod === 'otp' && !otpSent ? 'Send SMS Code' : 'Sign In'}
               </button>

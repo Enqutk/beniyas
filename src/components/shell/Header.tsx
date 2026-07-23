@@ -160,7 +160,7 @@ export const Header: React.FC = () => {
 
           <button
             type="submit"
-            className="bg-black hover:bg-zinc-800 text-white px-5 py-2 flex items-center justify-center transition-colors shrink-0"
+            className="bg-brand hover:bg-brand-hover text-white px-5 py-2 flex items-center justify-center transition-colors shrink-0"
           >
             <Search className="w-4 h-4 stroke-[3]" />
           </button>
@@ -214,7 +214,7 @@ export const Header: React.FC = () => {
           ) : (
             <button
               onClick={() => setActiveView('auth')}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-black hover:bg-zinc-800 text-white font-bold text-xs rounded-lg transition-colors shadow-2xs"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-brand hover:bg-brand-hover text-white font-bold text-xs rounded-lg transition-colors shadow-2xs"
             >
               <User className="w-3.5 h-3.5" />
               <span>Sign In / Register</span>
@@ -227,7 +227,7 @@ export const Header: React.FC = () => {
               setMainTab('sell');
               setActiveView('none');
             }}
-            className="bg-black hover:bg-zinc-800 text-white font-black text-xs px-4 py-2 rounded-xs flex items-center gap-1 shadow-sm transition-transform active:scale-95"
+            className="bg-brand hover:bg-brand-hover text-white font-black text-xs px-4 py-2 rounded-xs flex items-center gap-1 shadow-sm transition-transform active:scale-95"
           >
             <Plus className="w-4 h-4 stroke-[3]" />
             <span>POST AD</span>

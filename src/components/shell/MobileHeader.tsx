@@ -143,7 +143,7 @@ export const MobileHeader: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}
-                className="shrink-0 m-1.5 w-8 h-8 bg-black text-white flex items-center justify-center"
+                className="shrink-0 m-1.5 w-8 h-8 bg-brand text-white flex items-center justify-center"
                 aria-label="Close"
               >
                 <X className="w-4 h-4 stroke-[3]" />
