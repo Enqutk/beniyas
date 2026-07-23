@@ -4,7 +4,7 @@ import { useApp } from '../../context/AppContext';
 import { Heart, ShieldCheck, MapPin, ShoppingBag } from 'lucide-react';
 
 export const ProductCard: React.FC<{ listing: Listing }> = ({ listing }) => {
-  const { openPDP, toggleFavorite, isFavorite, setActiveView } = useApp();
+  const { openPDP, toggleFavorite, isFavorite, addToCart } = useApp();
   const saved = isFavorite(listing.id);
 
   return (
@@ -102,10 +102,15 @@ export const ProductCard: React.FC<{ listing: Listing }> = ({ listing }) => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setActiveView('chat');
+              addToCart(
+                listing,
+                listing.availableSizes?.[0] || 'M',
+                listing.availableColors?.[0] || listing.attributes?.Color || 'Black',
+                1
+              );
             }}
             className="w-7 h-7 rounded-full border border-gray-300 bg-white hover:bg-black hover:text-white hover:border-black flex items-center justify-center text-gray-700 transition-colors shrink-0"
-            title="Inquire / Purchase"
+            title="Add to bag"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
           </button>
