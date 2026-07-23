@@ -8,7 +8,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Smartphone',
     count: 1420,
     imageUrl: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['iPhone', 'Samsung', 'iPad & Tablets', 'Xiaomi & Redmi', 'Smartwatches', 'Phone Accessories']
+    subcategories: ['iPhone', 'Samsung', 'iPad & Tablets', 'Phone Accessories']
   },
   {
     id: 'vehicles',
@@ -17,7 +17,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Car',
     count: 890,
     imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Toyota', 'Hyundai', 'Suzuki', 'Commercial Trucks', 'Motorcycles & Bajaj', 'Spare Parts']
+    subcategories: ['Toyota', 'Hyundai', 'Suzuki', 'Spare Parts']
   },
   {
     id: 'fashion',
@@ -26,7 +26,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Shirt',
     count: 2350,
     imageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Traditional Habesha Kemis', 'Women Fashion', 'Men Fashion', 'Shoes & Sneakers', 'Bags & Watches', 'Jewelry']
+    subcategories: ['Women Fashion', 'Men Fashion', 'Shoes & Sneakers', 'Bags & Watches', 'Jewelry']
   },
   {
     id: 'electronics',
@@ -35,16 +35,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Tv',
     count: 1120,
     imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Laptops & Computers', 'TVs & Audio', 'Gaming & Consoles', 'Cameras', 'Kitchen Appliances']
-  },
-  {
-    id: 'property',
-    name: 'Real Estate & Property',
-    amharicName: 'Real Estate & Property',
-    iconName: 'Home',
-    count: 670,
-    imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Apartments for Rent', 'Houses for Sale', 'Commercial Space', 'Land & Plots', 'Short Stay Rentals']
+    subcategories: ['Laptops & Computers', 'TVs & Audio', 'Gaming & Consoles', 'Kitchen Appliances']
   },
   {
     id: 'home',
@@ -53,34 +44,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Armchair',
     count: 980,
     imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Sofas & Living Room', 'Beds & Mattresses', 'Dining Sets', 'Office Furniture', 'Home Decor']
-  },
-  {
-    id: 'services',
-    name: 'Services',
-    amharicName: 'Services',
-    iconName: 'Wrench',
-    count: 450,
-    imageUrl: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Car Rentals', 'Events & Catering', 'Home Repair', 'Tech Support', 'Freight & Moving']
-  },
-  {
-    id: 'jobs',
-    name: 'Jobs & Hiring',
-    amharicName: 'Jobs & Hiring',
-    iconName: 'Briefcase',
-    count: 310,
-    imageUrl: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Software & Tech', 'Sales & Marketing', 'Hotel & Driver', 'Accounting', 'Part-time']
-  },
-  {
-    id: 'pets',
-    name: 'Pets & Animals',
-    amharicName: 'Pets & Animals',
-    iconName: 'Dog',
-    count: 240,
-    imageUrl: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300&auto=format&fit=crop&q=80',
-    subcategories: ['Dogs & Puppies', 'Cats', 'Poultry', 'Pet Food & Care']
+    subcategories: ['Sofas & Living Room', 'Beds & Mattresses', 'Dining Sets', 'Home Decor']
   }
 ];
 
@@ -214,7 +178,7 @@ export const MOCK_LISTINGS: Listing[] = [
     originalPrice: 22000,
     discountPercentage: 15,
     categoryId: 'fashion',
-    subcategory: 'Traditional Habesha Kemis',
+    subcategory: 'Women Fashion',
     condition: 'Brand New',
     location: 'Addis Ababa',
     subcity: 'Piazza',
@@ -301,8 +265,8 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Luxury 2 Bedroom Apartment for Rent in Bole Atlas (Furnished)',
     amharicTitle: '2 Bedroom Luxury Apartment Rental Bole Atlas',
     price: 65000, // Monthly in ETB
-    categoryId: 'property',
-    subcategory: 'Apartments for Rent',
+    categoryId: 'home',
+    subcategory: 'Sofas & Living Room',
     condition: 'Brand New',
     location: 'Addis Ababa',
     subcity: 'Bole',
@@ -454,8 +418,8 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Purebred German Shepherd Puppy (3 Months, Vaccinated with Booklet)',
     amharicTitle: 'German Shepherd Puppy - Fully Vaccinated',
     price: 32000,
-    categoryId: 'pets',
-    subcategory: 'Dogs & Puppies',
+    categoryId: 'home',
+    subcategory: 'Home Decor',
     condition: 'Brand New',
     location: 'Addis Ababa',
     subcity: 'Summit',
@@ -580,8 +544,8 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Professional Graphic Design & Web Development Services',
     amharicTitle: 'Graphics Design & Website Development Service',
     price: 15000, // starting
-    categoryId: 'services',
-    subcategory: 'Tech Support',
+    categoryId: 'electronics',
+    subcategory: 'Laptops & Computers',
     condition: 'Brand New',
     location: 'Addis Ababa',
     subcity: 'Kazanchis',
@@ -752,22 +716,9 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
     'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80',
     'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&auto=format&fit=crop&q=80'
   ],
-  property: [
-    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop&q=80'
-  ],
   home: [
     'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop&q=80',
     'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&auto=format&fit=crop&q=80'
-  ],
-  services: [
-    'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80'
-  ],
-  jobs: [
-    'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&auto=format&fit=crop&q=80'
-  ],
-  pets: [
-    'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&auto=format&fit=crop&q=80'
   ]
 };
 
@@ -776,11 +727,7 @@ const PRICE_RANGES: Record<string, [number, number]> = {
   vehicles: [180000, 3200000],
   fashion: [450, 28000],
   electronics: [2500, 145000],
-  property: [8000, 8500000],
-  home: [1200, 95000],
-  services: [500, 25000],
-  jobs: [8000, 65000],
-  pets: [800, 45000]
+  home: [1200, 95000]
 };
 
 function buildCatalogListings(): Listing[] {
@@ -848,8 +795,8 @@ MOCK_LISTINGS.push(...buildCatalogListings());
 /** Map mega-menu / home labels → real catalog subcategories for PLP filtering */
 export const SUBCATEGORY_ALIASES: Record<string, string[]> = {
   Tops: ['Women Fashion', 'Men Fashion'],
-  Dresses: ['Women Fashion', 'Traditional Habesha Kemis'],
-  'Women Fashion': ['Women Fashion', 'Traditional Habesha Kemis'],
+  Dresses: ['Women Fashion'],
+  'Women Fashion': ['Women Fashion'],
   'Men Fashion': ['Men Fashion'],
   Beachwear: ['Women Fashion'],
   Kids: ['Women Fashion', 'Men Fashion'],
