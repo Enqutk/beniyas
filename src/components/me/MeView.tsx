@@ -398,7 +398,6 @@ export const MeView: React.FC = () => {
                 {expandedSections.customerService && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-600 font-medium border-l-2 border-gray-100 ml-1">
                     <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600">My Message & Support</button></li>
-                    <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600 font-bold text-amber-600">Live Chat Assistant</button></li>
                     <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600">FAQ & Buyer Protection</button></li>
                   </ul>
                 )}
@@ -1176,7 +1175,7 @@ export const MeView: React.FC = () => {
               </label>
 
               <label className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
-                <span>In-App Seller Chat Notifications</span>
+                <span>In-App Seller Alerts</span>
                 <input type="checkbox" defaultChecked className="rounded text-amber-500" />
               </label>
             </div>
