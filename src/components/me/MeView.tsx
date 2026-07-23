@@ -652,9 +652,9 @@ export const MeView: React.FC = () => {
                 <Store className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-black text-gray-900">Vendor Dashboard</h3>
+                <h3 className="text-sm font-black text-gray-900">Seller Hub</h3>
                 <p className="text-[11px] text-gray-500 font-medium">
-                  Post products, manage ads & track store performance
+                  Add products & talk to buyers
                 </p>
               </div>
               <ChevronRight className="w-5 h-5 text-gray-300 shrink-0" />
