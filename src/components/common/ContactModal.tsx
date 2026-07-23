@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { Phone, MessageSquare, ShieldAlert, X, Copy, Check } from 'lucide-react';
+import { Phone, ShieldAlert, X, Copy, Check } from 'lucide-react';
 
 export const ContactModal: React.FC = () => {
   const { showContactModal, contactModalSeller, closeContactModal, language } = useApp();
