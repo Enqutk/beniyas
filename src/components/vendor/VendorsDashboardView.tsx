@@ -17,7 +17,9 @@ import {
   Settings,
   Search,
   Sparkles,
-  Heart
+  Heart,
+  Share2,
+  Check
 } from 'lucide-react';
 
 type DashTab = 'overview' | 'listings' | 'insights';
@@ -38,6 +40,18 @@ export const VendorsDashboardView: React.FC = () => {
   const [tab, setTab] = useState<DashTab>('overview');
   const [query, setQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'boosted'>('all');
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const shareVendorLink = async () => {
+    const link = `${window.location.origin}/?view=vendors`;
+    try {
+      await navigator.clipboard.writeText(link);
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000);
+    } catch {
+      window.prompt('Copy this vendor dashboard link:', link);
+    }
+  };
 
   // Vendor's own products (plus a few seed demos so the dashboard never looks empty)
   const myListings = useMemo(() => {
@@ -147,14 +161,24 @@ export const VendorsDashboardView: React.FC = () => {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={goPostProduct}
-              className="shrink-0 inline-flex items-center gap-1.5 bg-[#FF3F6C] hover:bg-[#e0345b] text-white text-xs font-black px-3.5 py-2.5 rounded-xl shadow-md"
-            >
-              <Plus className="w-4 h-4 stroke-[3]" />
-              Post product
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={shareVendorLink}
+                className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/15 text-white text-xs font-black px-3 py-2.5 rounded-xl border border-white/20"
+              >
+                {linkCopied ? <Check className="w-4 h-4 text-emerald-300" /> : <Share2 className="w-4 h-4" />}
+                {linkCopied ? 'Copied!' : 'Share'}
+              </button>
+              <button
+                type="button"
+                onClick={goPostProduct}
+                className="inline-flex items-center gap-1.5 bg-[#FF3F6C] hover:bg-[#e0345b] text-white text-xs font-black px-3.5 py-2.5 rounded-xl shadow-md"
+              >
+                <Plus className="w-4 h-4 stroke-[3]" />
+                Post product
+              </button>
+            </div>
           </div>
 
           {/* Store strip */}

@@ -111,11 +111,23 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mainTab, setMainTab] = useState<MainTab>('home');
-  const [activeView, setActiveView] = useState<ViewType>('none');
+  const initialParams =
+    typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const initialViewParam = initialParams?.get('view');
+
+  const [mainTab, setMainTab] = useState<MainTab>(
+    initialViewParam === 'vendors' ? 'me' : 'home'
+  );
+  const [activeView, setActiveView] = useState<ViewType>(() => {
+    if (initialViewParam === 'vendors') return 'vendors';
+    if (initialViewParam === 'seller') return 'sellerProfile';
+    return 'none';
+  });
   const [selectedListingId, setSelectedListingId] = useState<string | null>(null);
   const [selectedChatThreadId, setSelectedChatThreadId] = useState<string | null>(null);
-  const [selectedSellerId, setSelectedSellerId] = useState<string | null>(null);
+  const [selectedSellerId, setSelectedSellerId] = useState<string | null>(() =>
+    initialViewParam === 'seller' ? initialParams?.get('id') || 'user_me' : null
+  );
 
   const [listings, setListings] = useState<Listing[]>(MOCK_LISTINGS);
   const [categories] = useState<Category[]>(CATEGORIES);
@@ -144,7 +156,28 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [language, setLanguage] = useState<'EN' | 'AM'>('EN');
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Auto sign-in when opening shared vendor dashboard link
+  const [isLoggedIn, setIsLoggedIn] = useState(initialViewParam === 'vendors');
+
+  // Keep shareable URL in sync for vendor / seller pages
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (activeView === 'vendors') {
+      url.searchParams.set('view', 'vendors');
+      url.searchParams.delete('id');
+      window.history.replaceState({}, '', url.toString());
+    } else if (activeView === 'sellerProfile' && selectedSellerId) {
+      url.searchParams.set('view', 'seller');
+      url.searchParams.set('id', selectedSellerId);
+      window.history.replaceState({}, '', url.toString());
+    } else if (url.searchParams.has('view')) {
+      url.searchParams.delete('view');
+      url.searchParams.delete('id');
+      const clean =
+        url.pathname + (url.searchParams.toString() ? `?${url.searchParams}` : '') + url.hash;
+      window.history.replaceState({}, '', clean);
+    }
+  }, [activeView, selectedSellerId]);
 
   // Shopping Cart State
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
