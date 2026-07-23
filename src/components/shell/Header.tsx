@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { BaniyasLogo } from '../common/BaniyasLogo';
 import {
@@ -81,6 +81,23 @@ export const Header: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showCategoryMenu, setShowCategoryMenu] = useState(false);
   const [hoveredCatIndex, setHoveredCatIndex] = useState(0);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openCategoryMenu = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setShowCategoryMenu(true);
+  };
+
+  const scheduleCloseCategoryMenu = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => {
+      setShowCategoryMenu(false);
+      closeTimerRef.current = null;
+    }, 160);
+  };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,7 +116,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-2xs">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-2xs">
       {/* Black Top Announcement Bar */}
       <div className="bg-black text-white text-[11px] font-bold py-1.5 px-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -222,35 +239,63 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Secondary Horizontal Category Navigation Row (SHEIN Screenshot 6) */}
+      {/* Secondary Horizontal Category Navigation Row */}
       <div className="bg-white border-t border-gray-200 relative">
-        <div className="max-w-7xl mx-auto px-4 flex items-center gap-6 overflow-x-auto scrollbar-none py-2 text-xs font-black text-gray-800">
-          
-          {/* Categories Mega Dropdown Trigger Container */}
-          <div
-            className="relative shrink-0"
-            onMouseEnter={() => setShowCategoryMenu(true)}
-            onMouseLeave={() => setShowCategoryMenu(false)}
-          >
-            <button
-              onClick={() => {
-                setMainTab('categories');
-                setActiveView('none');
-              }}
-              className={`flex items-center gap-1 font-black py-1 border-r border-gray-300 pr-4 uppercase tracking-wider transition-colors ${
-                showCategoryMenu ? 'text-[#FF3F6C]' : 'text-black hover:text-[#FF3F6C]'
-              }`}
-            >
-              <span>Categories</span>
-              <ChevronDown className={`w-4 h-4 stroke-[3] transition-transform duration-200 ${showCategoryMenu ? 'rotate-180' : ''}`} />
-            </button>
+        {/* Dim overlay outside the hover zone so leaving the panel collapses the menu */}
+        {showCategoryMenu && (
+          <button
+            type="button"
+            className="fixed inset-0 z-40 bg-black/15 cursor-default border-0"
+            onClick={() => setShowCategoryMenu(false)}
+            aria-label="Close categories menu"
+          />
+        )}
 
-            {/* Mega Menu Popover Window */}
-            {showCategoryMenu && (
-              <div className="absolute top-full left-0 mt-0.5 w-[960px] max-w-[85vw] bg-white border border-gray-200 shadow-2xl rounded-b-xl flex overflow-hidden z-50 text-left border-t-2 border-t-black animate-in fade-in duration-150">
-                
+        <div
+          className="relative z-50"
+          onMouseLeave={scheduleCloseCategoryMenu}
+        >
+          <div className="max-w-7xl mx-auto px-4 flex items-center gap-6 overflow-x-auto scrollbar-none py-2 text-xs font-black text-gray-800">
+            {/* Categories trigger — hover opens mega menu (Shein-style) */}
+            <div className="relative shrink-0" onMouseEnter={openCategoryMenu}>
+              <button
+                type="button"
+                aria-expanded={showCategoryMenu}
+                aria-haspopup="true"
+                className={`flex items-center gap-1 font-black py-1 border-r border-gray-300 pr-4 uppercase tracking-wider transition-colors ${
+                  showCategoryMenu ? 'text-[#FF3F6C]' : 'text-black hover:text-[#FF3F6C]'
+                }`}
+              >
+                <span>Categories</span>
+                <ChevronDown
+                  className={`w-4 h-4 stroke-[3] transition-transform duration-200 ${
+                    showCategoryMenu ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* List of categories in horizontal row */}
+            {MEGA_SIDEBAR.map((cat, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleCategoryClick(cat)}
+                className="hover:text-[#FF3F6C] shrink-0 transition-colors whitespace-nowrap text-gray-800 hover:underline tracking-tight font-black"
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Full-width mega menu — opens on hover, collapses on leave */}
+          {showCategoryMenu && (
+            <div
+              className="absolute top-full left-0 right-0 border-t border-gray-200 shadow-2xl"
+              onMouseEnter={openCategoryMenu}
+            >
+              <div className="max-w-7xl mx-auto bg-white flex overflow-hidden max-h-[min(70vh,640px)] text-left border-x border-b border-gray-200">
                 {/* Left Sidebar Category List */}
-                <div className="w-56 shrink-0 bg-gray-50 border-r border-gray-200 py-3 overflow-y-auto max-h-[70vh]">
+                <div className="w-56 shrink-0 bg-[#F8F8F8] border-r border-gray-200 py-2 overflow-y-auto">
                   {MEGA_SIDEBAR.map((cat, idx) => {
                     const isHovered = hoveredCatIndex === idx;
                     return (
@@ -260,7 +305,7 @@ export const Header: React.FC = () => {
                         onClick={() => handleCategoryClick(cat)}
                         className={`w-full text-left px-4 py-2.5 text-xs flex items-center justify-between transition-colors ${
                           isHovered
-                            ? 'bg-white text-black font-extrabold border-l-4 border-black pl-3 shadow-2xs'
+                            ? 'bg-white text-black font-extrabold border-l-4 border-black pl-3'
                             : 'text-gray-700 font-semibold hover:bg-gray-100/80'
                         }`}
                       >
@@ -271,14 +316,13 @@ export const Header: React.FC = () => {
                   })}
                 </div>
 
-                {/* Right Interactive Subcategories Content Area */}
-                <div className="flex-1 p-5 overflow-y-auto max-h-[70vh] bg-white space-y-6">
-                  {/* PICKS FOR YOU SECTION */}
+                {/* Right panel */}
+                <div className="flex-1 p-5 overflow-y-auto bg-white space-y-6">
                   <div className="space-y-3">
                     <div className="flex items-center gap-1.5 border-b border-gray-100 pb-2">
                       <Grid className="w-4 h-4 text-[#FF3F6C]" />
                       <h4 className="text-xs font-black uppercase text-gray-900 tracking-wider">
-                        PICKS FOR YOU ({MEGA_SIDEBAR[hoveredCatIndex]?.label || 'Recommended'})
+                        Picks for You — {MEGA_SIDEBAR[hoveredCatIndex]?.label || 'Recommended'}
                       </h4>
                     </div>
 
@@ -292,7 +336,7 @@ export const Header: React.FC = () => {
                           }}
                           className="group flex flex-col items-center text-center space-y-1.5 p-1 rounded-lg hover:bg-gray-50 transition-all cursor-pointer"
                         >
-                          <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200 group-hover:scale-105 group-hover:border-black transition-all shadow-2xs">
+                          <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200 group-hover:scale-105 group-hover:border-black transition-all">
                             <img
                               src={item.image}
                               alt={item.label}
@@ -307,12 +351,11 @@ export const Header: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* YOU MAY ALSO LIKE SECTION */}
                   <div className="space-y-3 pt-2">
                     <div className="flex items-center gap-1.5 border-b border-gray-100 pb-2">
                       <Sparkles className="w-4 h-4 text-amber-500" />
                       <h4 className="text-xs font-black uppercase text-gray-900 tracking-wider">
-                        YOU MAY ALSO LIKE
+                        You May Also Like
                       </h4>
                     </div>
 
@@ -326,7 +369,7 @@ export const Header: React.FC = () => {
                           }}
                           className="group flex flex-col items-center text-center space-y-1 p-1 rounded-lg hover:bg-gray-50 transition-all cursor-pointer"
                         >
-                          <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-100 border border-gray-200 group-hover:scale-105 group-hover:border-black transition-all shadow-2xs">
+                          <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-100 border border-gray-200 group-hover:scale-105 group-hover:border-black transition-all">
                             <img
                               src={item.image}
                               alt={item.label}
@@ -341,21 +384,9 @@ export const Header: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
-            )}
-          </div>
-
-          {/* List of categories in horizontal row */}
-          {MEGA_SIDEBAR.map((cat, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleCategoryClick(cat)}
-              className="hover:text-[#FF3F6C] shrink-0 transition-colors whitespace-nowrap text-gray-800 hover:underline tracking-tight font-black"
-            >
-              {cat.label}
-            </button>
-          ))}
+            </div>
+          )}
         </div>
       </div>
     </header>
