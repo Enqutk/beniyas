@@ -60,18 +60,12 @@ export const HomeView: React.FC = () => {
         ))}
       </div>
 
-      {/* 2. Hero Fashion Banner with Purple Gradient & Floating White Cards (SHEIN Screenshot 2) */}
+      {/* 2. Hero Fashion Banner with Purple Gradient & Floating White Cards */}
       <div className="px-2 md:px-4">
-        <div
-          onClick={() => {
-            setMainTab('trends');
-            setActiveView('none');
-          }}
-          className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-950 text-white p-4 md:p-8 shadow-md cursor-pointer hover:opacity-98 transition-opacity"
-        >
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-950 text-white p-4 md:p-8 shadow-md">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Left Content */}
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className="bg-[#8B5CF6] text-white text-xs font-black px-2.5 py-0.5 rounded-sm uppercase tracking-wider inline-flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5" />
@@ -85,12 +79,27 @@ export const HomeView: React.FC = () => {
               <p className="text-xs md:text-sm text-purple-200 opacity-90 max-w-md">
                 Unveil the season's most sought-after silhouettes and elevated essentials.
               </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setMainTab('trends');
+                  setActiveView('none');
+                }}
+                className="mt-1 inline-flex items-center gap-1 bg-white text-purple-950 text-xs font-black px-4 py-2 rounded-full hover:bg-purple-100 transition-colors"
+              >
+                View details
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
 
-            {/* Right Mini Floating Product Cards (SHEIN screenshot 2 style) */}
+            {/* Right Mini Floating Product Cards */}
             <div className="flex items-center gap-2.5 overflow-x-auto scrollbar-none pt-2 md:pt-0">
-              <div
-                onClick={() => openPDP(listings[0]?.id || '1')}
+              <button
+                type="button"
+                onClick={() => {
+                  setMainTab('trends');
+                  setActiveView('none');
+                }}
                 className="bg-white text-gray-900 rounded-xl p-1.5 shadow-xl text-center w-20 shrink-0 cursor-pointer hover:scale-105 transition-transform"
               >
                 <img
@@ -99,10 +108,14 @@ export const HomeView: React.FC = () => {
                   className="w-full aspect-3/4 object-cover rounded-lg mb-1"
                 />
                 <span className="text-xs font-black text-[#FF3F6C] block">1,850 ETB</span>
-              </div>
+              </button>
 
-              <div
-                onClick={() => openPDP(listings[1]?.id || '2')}
+              <button
+                type="button"
+                onClick={() => {
+                  setMainTab('trends');
+                  setActiveView('none');
+                }}
                 className="bg-white text-gray-900 rounded-xl p-1.5 shadow-xl text-center w-20 shrink-0 cursor-pointer hover:scale-105 transition-transform"
               >
                 <img
@@ -111,10 +124,14 @@ export const HomeView: React.FC = () => {
                   className="w-full aspect-3/4 object-cover rounded-lg mb-1"
                 />
                 <span className="text-xs font-black text-[#FF3F6C] block">2,400 ETB</span>
-              </div>
+              </button>
 
-              <div
-                onClick={() => openPDP(listings[2]?.id || '3')}
+              <button
+                type="button"
+                onClick={() => {
+                  setMainTab('trends');
+                  setActiveView('none');
+                }}
                 className="bg-white text-gray-900 rounded-xl p-1.5 shadow-xl text-center w-20 shrink-0 cursor-pointer hover:scale-105 transition-transform"
               >
                 <img
@@ -123,7 +140,7 @@ export const HomeView: React.FC = () => {
                   className="w-full aspect-3/4 object-cover rounded-lg mb-1"
                 />
                 <span className="text-xs font-black text-[#FF3F6C] block">1,950 ETB</span>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -137,10 +154,13 @@ export const HomeView: React.FC = () => {
           <span className="text-gray-400 font-normal hidden sm:inline">| Express Local Delivery across Ethiopia</span>
         </div>
         <button
-          onClick={() => setMainTab('trends')}
+          onClick={() => {
+            setMainTab('trends');
+            setActiveView('none');
+          }}
           className="text-[11px] font-black text-black flex items-center gap-0.5 hover:underline"
         >
-          View all deals <ChevronRight className="w-3.5 h-3.5" />
+          View details <ChevronRight className="w-3.5 h-3.5" />
         </button>
       </div>
 
@@ -168,22 +188,22 @@ export const HomeView: React.FC = () => {
           ))}
         </div>
 
-        {/* Mobile View: Horizontal Scrollable List */}
-        <div className="md:hidden flex items-start gap-3.5 overflow-x-auto scrollbar-none pb-2">
-          {CIRCULAR_CATEGORIES.map((cat) => (
+        {/* Mobile View: 5-column dense Shein category grid */}
+        <div className="md:hidden grid grid-cols-5 gap-x-1.5 gap-y-3 py-1">
+          {CIRCULAR_CATEGORIES.slice(0, 15).map((cat) => (
             <button
               key={cat.id}
               onClick={() => openPLP(cat.catId as any, cat.sub)}
-              className="flex flex-col items-center shrink-0 w-16 group text-center"
+              className="flex flex-col items-center text-center active:opacity-80"
             >
-              <div className="w-14 h-14 rounded-full bg-gray-100 border border-gray-200 overflow-hidden mb-1 shadow-2xs group-active:scale-95 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 border border-gray-200 overflow-hidden mb-1">
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <span className="text-[10px] font-bold text-gray-800 leading-tight group-hover:text-black line-clamp-2">
+              <span className="text-[9px] font-bold text-gray-800 leading-tight line-clamp-2 px-0.5">
                 {cat.name}
               </span>
             </button>
@@ -258,22 +278,30 @@ export const HomeView: React.FC = () => {
 
         {/* Trends Teaser Card */}
         <div className="bg-[#FAF5FF] border border-purple-200/80 rounded-xl p-3 space-y-2.5">
-          <div
-            onClick={() => {
-              setMainTab('trends');
-              setActiveView('none');
-            }}
-            className="flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity"
-          >
+          <div className="flex items-center justify-between gap-2">
             <h3 className="text-sm font-black text-purple-900 italic font-serif flex items-center gap-1">
               Trends
             </h3>
-            <ChevronRight className="w-4 h-4 text-purple-400" />
+            <button
+              type="button"
+              onClick={() => {
+                setMainTab('trends');
+                setActiveView('none');
+              }}
+              className="text-[11px] font-black text-purple-800 flex items-center gap-0.5 hover:underline"
+            >
+              View details
+              <ChevronRight className="w-4 h-4 text-purple-400" />
+            </button>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <div
-              onClick={() => openPDP(listings[3]?.id || '4')}
+            <button
+              type="button"
+              onClick={() => {
+                setMainTab('trends');
+                setActiveView('none');
+              }}
               className="bg-white rounded-lg p-2 border border-gray-100 text-left shadow-2xs cursor-pointer hover:border-black transition-all"
             >
               <span className="bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
@@ -286,10 +314,14 @@ export const HomeView: React.FC = () => {
               />
               <span className="text-xs font-black text-black block">1,650 ETB</span>
               <span className="text-[10px] text-purple-700 font-bold block truncate">#StatementGlam</span>
-            </div>
+            </button>
 
-            <div
-              onClick={() => openPDP(listings[4]?.id || '5')}
+            <button
+              type="button"
+              onClick={() => {
+                setMainTab('trends');
+                setActiveView('none');
+              }}
               className="bg-white rounded-lg p-2 border border-gray-100 text-left shadow-2xs cursor-pointer hover:border-black transition-all"
             >
               <span className="bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
@@ -302,7 +334,7 @@ export const HomeView: React.FC = () => {
               />
               <span className="text-xs font-black text-black block">1,400 ETB</span>
               <span className="text-[10px] text-purple-700 font-bold block truncate">#GirlsNightOut</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -317,9 +349,9 @@ export const HomeView: React.FC = () => {
           <span className="h-0.5 w-12 bg-gray-200" />
         </div>
 
-        {/* 2-Column on mobile, 4-5 columns on desktop matching SHEIN screenshot 2 */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {listings.map(listing => (
+        {/* 2-Column on mobile, 4-5 columns on desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
+          {listings.slice(0, 40).map(listing => (
             <ProductCard key={listing.id} listing={listing} />
           ))}
         </div>
@@ -327,7 +359,7 @@ export const HomeView: React.FC = () => {
 
       {/* 7. Bottom Floating Discount Promo Banner */}
       {showPromoBar && (
-        <div className="fixed bottom-12 md:bottom-4 left-0 right-0 z-30 bg-black text-white px-4 py-2.5 flex items-center justify-between shadow-2xl border-t border-zinc-800 max-w-md mx-auto rounded-xl">
+        <div className="fixed bottom-[3.75rem] md:bottom-4 left-2 right-2 z-30 bg-black text-white px-3 py-2.5 flex items-center justify-between shadow-2xl border border-zinc-800 max-w-md mx-auto rounded-xl md:left-0 md:right-0">
           <div className="flex items-center gap-2">
             <span className="bg-red-600 text-white text-xs font-black p-1.5 rounded-md">
               <Percent className="w-4 h-4" />
