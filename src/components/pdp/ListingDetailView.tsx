@@ -93,10 +93,10 @@ export const ListingDetailView: React.FC = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
-              onClick={() => setActiveView('none')}
+              onClick={() => setActiveView('plp')}
               className="text-gray-800 font-bold hover:underline flex items-center gap-1"
             >
-              <ArrowLeft className="w-3.5 h-3.5" /> Home
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to results
             </button>
             <span>/</span>
             <span className="capitalize">{listing.categoryId}</span>
