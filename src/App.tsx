@@ -56,13 +56,23 @@ function AppContent() {
     }
   };
 
-  // Render Main Tab
+  // Render Main Tab — desktop uses hover mega-menu for categories (Shein-style);
+  // CategoriesView stays for mobile tab navigation only.
   const renderMainTab = () => {
     switch (mainTab) {
       case 'home':
         return <HomeView />;
       case 'categories':
-        return <CategoriesView />;
+        return (
+          <>
+            <div className="md:hidden">
+              <CategoriesView />
+            </div>
+            <div className="hidden md:block">
+              <HomeView />
+            </div>
+          </>
+        );
       case 'trends':
         return <TrendsView />;
       case 'sell':
