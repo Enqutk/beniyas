@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   Plus,
   Eye,
-  MessageCircle,
   Flame,
   Trash2,
   MoreHorizontal,
@@ -16,7 +15,6 @@ export const VendorsDashboardView: React.FC = () => {
   const {
     user,
     listings,
-    chatThreads,
     isLoggedIn,
     setActiveView,
     setMainTab,
@@ -34,19 +32,11 @@ export const VendorsDashboardView: React.FC = () => {
   }, [listings, user.id]);
 
   const views = myListings.reduce((s, l) => s + l.viewsCount, 0);
-  const chats = Math.max(
-    chatThreads.filter(t => myListings.some(l => l.id === t.listingId)).length,
-    myListings.length
-  );
+  const boosted = myListings.filter(l => l.isBoosted).length;
 
   const goPost = () => {
     setActiveView('none');
     setMainTab('sell');
-  };
-
-  const goChats = () => {
-    setActiveView('none');
-    setMainTab('messages');
   };
 
   if (!isLoggedIn) {
@@ -69,7 +59,7 @@ export const VendorsDashboardView: React.FC = () => {
           </div>
           <h1 className="text-2xl font-black text-gray-900 tracking-tight">Sell on Baniyas</h1>
           <p className="text-sm text-gray-500 mt-2 max-w-xs leading-relaxed">
-            Sign in once, then post products and talk to buyers from one simple place.
+            Sign in once, then post products and manage your store from one simple place.
           </p>
           <button
             type="button"
@@ -131,54 +121,35 @@ export const VendorsDashboardView: React.FC = () => {
         {/* 3 simple numbers */}
         <div className="grid grid-cols-3 gap-2">
           {[
-            { label: 'Products', value: myListings.length, onClick: undefined as (() => void) | undefined },
-            { label: 'Views', value: views > 999 ? `${(views / 1000).toFixed(1)}k` : views, onClick: undefined },
-            { label: 'Chats', value: chats, onClick: goChats }
+            { label: 'Products', value: myListings.length },
+            { label: 'Views', value: views > 999 ? `${(views / 1000).toFixed(1)}k` : views },
+            { label: 'Boosted', value: boosted }
           ].map(stat => (
-            <button
+            <div
               key={stat.label}
-              type="button"
-              onClick={stat.onClick}
-              disabled={!stat.onClick}
-              className={`bg-white rounded-2xl border border-gray-100 p-3 text-center ${
-                stat.onClick ? 'active:bg-gray-50' : ''
-              }`}
+              className="bg-white rounded-2xl border border-gray-100 p-3 text-center"
             >
               <p className="text-xl font-black text-gray-900 tabular-nums">{stat.value}</p>
               <p className="text-[11px] font-bold text-gray-400 mt-0.5">{stat.label}</p>
-            </button>
+            </div>
           ))}
         </div>
 
-        {/* Quick links — only 2 */}
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            type="button"
-            onClick={goChats}
-            className="bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-3 text-left active:bg-gray-50"
-          >
-            <span className="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
-              <MessageCircle className="w-5 h-5" />
-            </span>
-            <span>
-              <span className="block text-sm font-black text-gray-900">Messages</span>
-              <span className="block text-[11px] font-medium text-gray-400">Talk to buyers</span>
-            </span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveView('boost')}
-            className="bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-3 text-left active:bg-gray-50"
-          >
-            <span className="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
-              <Flame className="w-5 h-5" />
-            </span>
-            <span>
-              <span className="block text-sm font-black text-gray-900">Boost</span>
-              <span className="block text-[11px] font-medium text-gray-400">Get more views</span>
-            </span>
-          </button>
-        </div>
+        {/* Boost shortcut */}
+        <button
+          type="button"
+          onClick={() => setActiveView('boost')}
+          className="w-full bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-3 text-left active:bg-gray-50"
+        >
+          <span className="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+            <Flame className="w-5 h-5" />
+          </span>
+          <span className="flex-1">
+            <span className="block text-sm font-black text-gray-900">Boost a product</span>
+            <span className="block text-[11px] font-medium text-gray-400">Get more views on your listings</span>
+          </span>
+          <ChevronRight className="w-5 h-5 text-gray-300 shrink-0" />
+        </button>
 
         {/* Products list */}
         <section>
