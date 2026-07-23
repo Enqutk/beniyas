@@ -246,8 +246,8 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
             aria-hidden={i !== pos}
           >
             {/* Copy */}
-            <div className="px-3.5 pt-3.5 pb-2 md:p-8 flex flex-col justify-center gap-1.5 md:gap-3 relative z-10">
-              <div className="flex items-center gap-2 flex-wrap">
+            <div className="px-3 pt-3 pb-1.5 md:p-8 flex flex-col justify-center gap-1 md:gap-3 relative z-10">
+              <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
                 <span className="btn-primary text-[10px] md:text-xs font-black px-2 py-0.5 rounded-sm uppercase tracking-wider inline-flex items-center gap-1">
                   <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5" />
                   {slide.badge}
@@ -255,17 +255,17 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
                 <span className="text-brand-ring text-[10px] md:text-xs font-semibold">{slide.tag}</span>
               </div>
 
-              <h2 className="text-[1.15rem] leading-snug md:text-4xl md:leading-tight font-black text-paper italic tracking-tight font-serif line-clamp-2">
+              <h2 className="text-[1.05rem] leading-snug md:text-4xl md:leading-tight font-black text-paper italic tracking-tight font-serif line-clamp-2">
                 {slide.title}
               </h2>
-              <p className="hidden sm:block text-xs md:text-sm text-brand-muted max-w-md leading-relaxed line-clamp-2 md:line-clamp-none">
+              <p className="hidden md:block text-sm text-brand-muted max-w-md leading-relaxed">
                 {slide.subtitle}
               </p>
 
               <button
                 type="button"
                 onClick={onCta}
-                className="mt-0.5 md:mt-1 inline-flex items-center gap-1 bg-paper text-ink text-[11px] md:text-xs font-black px-3.5 py-2 md:px-4 md:py-2.5 rounded-full w-fit hover:bg-brand-soft transition-colors active:scale-[0.98]"
+                className="mt-0.5 md:mt-1 inline-flex items-center gap-1 bg-paper text-ink text-[11px] md:text-xs font-black px-3 py-1.5 md:px-4 md:py-2.5 rounded-full w-fit hover:bg-brand-soft transition-colors active:scale-[0.98]"
               >
                 View details
                 <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
@@ -273,19 +273,19 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
             </div>
 
             {/* Looks */}
-            <div className="grid grid-cols-3 gap-1.5 px-3 pb-8 md:flex md:items-stretch md:gap-2 md:p-5 md:pl-2 md:pb-5">
+            <div className="grid grid-cols-3 gap-1.5 px-2.5 pb-7 md:flex md:items-stretch md:gap-2 md:p-5 md:pl-2 md:pb-5">
               {slide.looks.map(look => (
                 <button
                   key={look.seed}
                   type="button"
                   onClick={onCta}
-                  className="bg-paper text-ink rounded-lg md:rounded-xl p-1 md:p-1.5 shadow-lg text-center min-w-0 cursor-pointer active:scale-[0.98] md:hover:scale-[1.03] transition-transform duration-300"
+                  className="bg-paper text-ink rounded-lg md:rounded-xl p-1 md:p-1.5 shadow-md md:shadow-lg text-center min-w-0 cursor-pointer active:scale-[0.98] md:hover:scale-[1.03] transition-transform duration-300"
                 >
                   <SafeImage
                     src={look.img}
                     alt=""
                     fallbackSeed={look.seed}
-                    className="w-full aspect-[3/4] object-cover rounded-md md:rounded-lg mb-1"
+                    className="w-full aspect-square md:aspect-[3/4] object-cover rounded-md md:rounded-lg mb-1"
                   />
                   <span className="text-[10px] md:text-xs font-black text-brand block truncate px-0.5">
                     {look.price} ETB
