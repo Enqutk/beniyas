@@ -78,13 +78,18 @@ export const DesktopFooter: React.FC = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => openPLP('property')} className="hover:text-white transition-colors">
-                  Apartments & Houses for Rent
+                <button onClick={() => openPLP('home')} className="hover:text-white transition-colors">
+                  Home & Furniture
                 </button>
               </li>
               <li>
                 <button onClick={() => openPLP('fashion')} className="hover:text-white transition-colors">
-                  Habesha Clothing & Fashion
+                  Fashion & Clothing
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setActiveView('vendors')} className="hover:text-white transition-colors">
+                  Vendor Directory
                 </button>
               </li>
             </ul>
