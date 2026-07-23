@@ -28,7 +28,8 @@ export type ViewType =
   | 'boost'
   | 'auth'
   | 'help'
-  | 'settings';
+  | 'settings'
+  | 'vendors';
 
 export type MainTab = 'home' | 'categories' | 'trends' | 'sell' | 'messages' | 'me';
 
