@@ -1,0 +1,6 @@
+{
+  "name": "Baniyas Store",
+  "description": "BANIYAS STORE fashion & marketplace. Sell faster. Buy smarter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
