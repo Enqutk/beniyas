@@ -1,148 +1,270 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { BaniyasLogo } from '../common/BaniyasLogo';
-import { Search, Heart, ShoppingBag, Menu, Camera, X, Globe } from 'lucide-react';
+import {
+  Search,
+  Heart,
+  ShoppingBag,
+  Menu,
+  Camera,
+  X,
+  Globe,
+  ChevronRight,
+  Home,
+  Headset,
+  User,
+  DollarSign
+} from 'lucide-react';
+
+const TOP_TABS = ['All', 'Women', 'Curve', 'Kids', 'Men', 'Home'];
+
+const DRAWER_CATEGORIES = [
+  { name: 'Just for You', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Tops' },
+  { name: 'New In', image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Dresses' },
+  { name: 'Sale', image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Sale' },
+  { name: 'Women Clothing', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Women Fashion' },
+  { name: 'Beachwear', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Beachwear' },
+  { name: 'Kids', image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Kids' },
+  { name: 'Curve', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Curve' },
+  { name: 'Men Clothing', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Men Fashion' },
+  { name: 'Underwear & Sleepwear', image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Underwear' },
+  { name: 'Shoes', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Shoes' },
+  { name: 'Home & Living', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=120&auto=format&fit=crop&q=80', catId: 'home', sub: 'Sofas & Living Room' },
+  { name: 'Jewelry & Accessories', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Jewelry' },
+  { name: 'Beauty & Health', image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Beauty' },
+  { name: 'Cell Phones & Accessories', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=120&auto=format&fit=crop&q=80', catId: 'phones', sub: 'iPhone' },
+  { name: 'Automotive', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=120&auto=format&fit=crop&q=80', catId: 'vehicles', sub: 'Toyota' }
+];
 
 export const MobileHeader: React.FC = () => {
   const {
     setActiveView,
     setMainTab,
-    unreadMessagesCount,
     savedCount,
     cartCount,
     setShowCartModal,
+    openPLP,
     language,
     toggleLanguage
   } = useApp();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const categoriesList = [
-    { name: 'Just for You', count: '100+' },
-    { name: 'New In', count: '50+' },
-    { name: 'Sale', count: '80+' },
-    { name: 'Women Clothing', count: '200+' },
-    { name: 'Beachwear', count: '30+' },
-    { name: 'Kids', count: '90+' },
-    { name: 'Curve', count: '40+' },
-    { name: 'Men Clothing', count: '120+' },
-    { name: 'Underwear & Sleepwear', count: '70+' },
-    { name: 'Shoes', count: '150+' },
-    { name: 'Home & Living', count: '110+' },
-    { name: 'Jewelry & Accessories', count: '160+' },
-    { name: 'Beauty & Health', count: '90+' },
-    { name: 'Baby & Maternity', count: '40+' },
-    { name: 'Sports & Outdoors', count: '60+' },
-    { name: 'Bags & Luggage', count: '85+' },
-    { name: 'Home Textiles', count: '45+' },
-    { name: 'Cell Phones & Accessories', count: '130+' },
-    { name: 'Automotive', count: '25+' }
-  ];
+  const [activeTopTab, setActiveTopTab] = useState('All');
+  const [infoOpen, setInfoOpen] = useState(true);
 
   return (
     <>
-      <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-2xs">
-        {/* Main Top Bar */}
-        <div className="px-3 py-2 flex items-center justify-between gap-2">
-          {/* Menu Drawer Toggle */}
+      <header className="sticky top-0 z-30 bg-white border-b border-gray-200">
+        <div className="px-2.5 py-2 flex items-center gap-1.5">
           <button
+            type="button"
             onClick={() => setDrawerOpen(true)}
-            className="p-1 hover:bg-gray-100 rounded-lg text-black shrink-0"
+            className="p-1.5 text-black shrink-0"
+            aria-label="Open menu"
           >
             <Menu className="w-5 h-5 stroke-[2.5]" />
           </button>
 
-          {/* BANIYAS Brand Logo */}
           <button
+            type="button"
             onClick={() => {
               setMainTab('home');
               setActiveView('none');
             }}
-            className="shrink-0 text-center hover:opacity-90 transition-opacity"
+            className="shrink-0"
           >
             <BaniyasLogo variant="light" size="sm" />
           </button>
 
-          {/* Search Pill */}
           <button
+            type="button"
             onClick={() => setActiveView('search')}
-            className="flex-1 bg-gray-100 hover:bg-gray-150 transition-colors rounded-full py-1.5 px-3 flex items-center justify-between text-xs text-gray-400 mx-1 border border-transparent"
+            className="flex-1 min-w-0 bg-gray-100 rounded-full py-1.5 px-2.5 flex items-center justify-between text-xs text-gray-400"
           >
-            <span className="truncate text-gray-500 font-medium">Shoes For Women</span>
-            <div className="flex items-center gap-1.5 shrink-0 text-gray-400">
-              <Camera className="w-4 h-4" />
+            <span className="truncate text-gray-500 font-medium pl-0.5">Shoes For Women</span>
+            <div className="flex items-center gap-1.5 shrink-0 text-gray-500">
+              <Camera className="w-3.5 h-3.5" />
               <Search className="w-4 h-4 text-black" />
             </div>
           </button>
 
-          {/* Right Icons: Heart & Cart */}
-          <div className="flex items-center gap-1.5 shrink-0">
-            {/* Heart / Wishlist */}
-            <button
-              onClick={() => setActiveView('saved')}
-              className="p-1 relative text-gray-900 hover:text-black"
-            >
-              <Heart className="w-5 h-5 stroke-[2]" />
-              {savedCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-black text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                  {savedCount}
-                </span>
-              )}
-            </button>
+          <button
+            type="button"
+            onClick={() => setActiveView('saved')}
+            className="p-1.5 relative text-gray-900 shrink-0"
+            aria-label="Wishlist"
+          >
+            <Heart className="w-5 h-5 stroke-[2]" />
+            {savedCount > 0 && (
+              <span className="absolute top-0 right-0 bg-black text-white text-[8px] font-bold min-w-[14px] h-[14px] rounded-full flex items-center justify-center">
+                {savedCount}
+              </span>
+            )}
+          </button>
 
-            {/* Shopping Cart with Badge */}
-            <button
-              onClick={() => setShowCartModal(true)}
-              className="p-1 relative text-gray-900 hover:text-black cursor-pointer"
-            >
-              <ShoppingBag className="w-5 h-5 stroke-[2]" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#FF3F6C] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-2xs">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setShowCartModal(true)}
+            className="p-1.5 relative text-gray-900 shrink-0"
+            aria-label="Cart"
+          >
+            <ShoppingBag className="w-5 h-5 stroke-[2]" />
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 bg-[#FF3F6C] text-white text-[8px] font-bold min-w-[14px] h-[14px] rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
       </header>
 
-      {/* Slide-out Category Drawer (SHEIN screenshot 4 & 5) */}
       {drawerOpen && (
-        <div className="fixed inset-0 z-50 flex">
-          {/* Backdrop */}
-          <div
+        <div className="fixed inset-0 z-50 flex md:hidden">
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/50 border-0"
+            aria-label="Close menu"
             onClick={() => setDrawerOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-2xs transition-opacity"
           />
 
-          {/* Drawer Menu Panel */}
-          <div className="relative w-4/5 max-w-xs bg-white h-full shadow-2xl flex flex-col z-10">
-            <div className="p-3 bg-black text-white flex items-center justify-between">
-              <span className="font-sans font-black text-sm tracking-wider uppercase">Baniyas Store</span>
-              <button onClick={() => setDrawerOpen(false)} className="p-1 text-white hover:opacity-80">
-                <X className="w-5 h-5" />
+          <div className="relative w-[86%] max-w-sm bg-white h-full shadow-2xl flex flex-col z-10">
+            {/* Top tabs + close */}
+            <div className="flex items-center border-b border-gray-200 pr-1">
+              <div className="flex-1 flex items-center overflow-x-auto scrollbar-none px-1">
+                {TOP_TABS.map(tab => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTopTab(tab)}
+                    className={`relative shrink-0 py-3 px-3 text-xs ${
+                      activeTopTab === tab ? 'font-black text-black' : 'font-semibold text-gray-500'
+                    }`}
+                  >
+                    {tab}
+                    {activeTopTab === tab && (
+                      <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-black rounded-full" />
+                    )}
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => setDrawerOpen(false)}
+                className="shrink-0 m-1.5 w-8 h-8 bg-black text-white flex items-center justify-center"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4 stroke-[3]" />
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setDrawerOpen(false);
+                  setShowCartModal(true);
+                }}
+                className="shrink-0 p-2 text-black"
+              >
+                <ShoppingBag className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="p-2 border-b border-gray-100 flex items-center justify-between text-xs bg-gray-50">
-              <span className="font-bold text-gray-700 flex items-center gap-1">
-                <Globe className="w-3.5 h-3.5 text-gray-500" />
-                Language: English
-              </span>
-            </div>
-
-            <div className="flex-1 overflow-y-auto divide-y divide-gray-100 p-2">
-              {categoriesList.map((cat, idx) => (
+            <div className="flex-1 overflow-y-auto">
+              {DRAWER_CATEGORIES.map(cat => (
                 <button
-                  key={idx}
+                  key={cat.name}
+                  type="button"
                   onClick={() => {
                     setDrawerOpen(false);
-                    setMainTab('categories');
+                    openPLP(cat.catId as any, cat.sub);
                   }}
-                  className="w-full py-3 px-2 text-left flex items-center justify-between hover:bg-gray-50 text-xs font-bold text-gray-800"
+                  className="w-full py-3 px-3 flex items-center gap-3 border-b border-gray-100 text-left active:bg-gray-50"
                 >
-                  <span>{cat.name}</span>
-                  <span className="text-[10px] text-gray-400 font-normal">&gt;</span>
+                  <img
+                    src={cat.image}
+                    alt=""
+                    className="w-10 h-10 rounded-full object-cover bg-gray-100 shrink-0"
+                  />
+                  <span className="flex-1 text-xs font-bold text-gray-900">{cat.name}</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300 shrink-0" />
+                </button>
+              ))}
+
+              <div className="border-t border-gray-200 mt-1">
+                <button
+                  type="button"
+                  onClick={toggleLanguage}
+                  className="w-full py-3.5 px-3 flex items-center gap-3 border-b border-gray-100"
+                >
+                  <span className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                    <DollarSign className="w-4 h-4" />
+                  </span>
+                  <span className="flex-1 text-xs font-bold text-left">Change Currency</span>
+                  <span className="text-xs text-gray-500 font-semibold">ETB</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={toggleLanguage}
+                  className="w-full py-3.5 px-3 flex items-center gap-3 border-b border-gray-100"
+                >
+                  <span className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                    <Globe className="w-4 h-4" />
+                  </span>
+                  <span className="flex-1 text-xs font-bold text-left">Change Language</span>
+                  <span className="text-xs text-gray-500 font-semibold">
+                    {language === 'EN' ? 'English' : 'Amharic'}
+                  </span>
+                </button>
+              </div>
+
+              <div className="px-3 py-3 border-b border-gray-100">
+                <button
+                  type="button"
+                  onClick={() => setInfoOpen(v => !v)}
+                  className="w-full flex items-center justify-between text-xs font-black uppercase tracking-wide"
+                >
+                  Baniyas Info
+                  <ChevronRight className={`w-4 h-4 transition-transform ${infoOpen ? 'rotate-90' : ''}`} />
+                </button>
+                {infoOpen && (
+                  <ul className="mt-2 space-y-2.5 text-xs font-semibold text-gray-600">
+                    {['Shipping Info', 'Return Policy', 'How to Pay', 'Privacy Policy', 'Terms & Conditions'].map(
+                      item => (
+                        <li key={item}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setDrawerOpen(false);
+                              setActiveView('help');
+                            }}
+                            className="hover:text-black"
+                          >
+                            {item}
+                          </button>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200 grid grid-cols-4 py-2 bg-white">
+              {[
+                { icon: Home, label: 'Home', action: () => { setMainTab('home'); setActiveView('none'); } },
+                { icon: Heart, label: 'Wishlist', action: () => setActiveView('saved') },
+                { icon: Headset, label: 'Help', action: () => setActiveView('help') },
+                { icon: User, label: 'Me', action: () => { setMainTab('me'); setActiveView('none'); } }
+              ].map(({ icon: Icon, label, action }) => (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => {
+                    setDrawerOpen(false);
+                    action();
+                  }}
+                  className="flex flex-col items-center gap-0.5 text-gray-700 py-1"
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="text-[9px] font-bold">{label}</span>
                 </button>
               ))}
             </div>
