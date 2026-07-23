@@ -7,32 +7,16 @@ const SHEIN_TOP_TABS = ['All', 'Women', 'Men', 'Kids', 'Curve', 'Home'];
 
 // Complete circular categories matching SHEIN desktop screenshot 2
 const CIRCULAR_CATEGORIES = [
-  // Row 1
   { id: 'cat_1', name: 'Women', image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Women Fashion' },
-  { id: 'cat_2', name: 'Curve', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Curve' },
-  { id: 'cat_3', name: 'Kids', image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Kids' },
-  { id: 'cat_4', name: 'Men', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Men Fashion' },
-  { id: 'cat_5', name: 'Sports & Outdoor', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Sports' },
-  { id: 'cat_6', name: 'Cell Phones & Accessories', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&auto=format&fit=crop&q=80', catId: 'phones', sub: 'iPhone' },
-  { id: 'cat_7', name: 'Automotive', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300&auto=format&fit=crop&q=80', catId: 'vehicles', sub: 'Toyota' },
-
-  // Row 2
-  { id: 'cat_8', name: 'Jewelry & Accessories', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Jewelry' },
-  { id: 'cat_9', name: 'Beauty & Health', image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Beauty' },
-  { id: 'cat_10', name: 'Home & Living', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=300&auto=format&fit=crop&q=80', catId: 'home', sub: 'Furniture' },
-  { id: 'cat_11', name: 'Tops', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Tops' },
-  { id: 'cat_12', name: 'Bottoms', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Pants' },
-  { id: 'cat_13', name: 'Bags & Luggage', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Bags & Watches' },
-  { id: 'cat_14', name: 'Pet Supplies', image: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=300&auto=format&fit=crop&q=80', catId: 'home', sub: 'Pets' },
-
-  // Row 3
-  { id: 'cat_15', name: 'Baby & Maternity', image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Baby' },
-  { id: 'cat_16', name: 'Underwear & Sleepwear', image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Underwear' },
-  { id: 'cat_17', name: 'Shoes', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Shoes' },
-  { id: 'cat_18', name: 'Dresses', image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Dresses' },
-  { id: 'cat_19', name: 'Co-ords', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Co-ords' },
-  { id: 'cat_20', name: 'Beachwear', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Beachwear' },
-  { id: 'cat_21', name: 'Office & School', image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=300&auto=format&fit=crop&q=80', catId: 'home', sub: 'Office' }
+  { id: 'cat_2', name: 'Men', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Men Fashion' },
+  { id: 'cat_3', name: 'Shoes', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Shoes & Sneakers' },
+  { id: 'cat_4', name: 'Jewelry', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Jewelry' },
+  { id: 'cat_5', name: 'Phones', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&auto=format&fit=crop&q=80', catId: 'phones', sub: 'iPhone' },
+  { id: 'cat_6', name: 'Electronics', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&auto=format&fit=crop&q=80', catId: 'electronics', sub: 'Laptops & Computers' },
+  { id: 'cat_7', name: 'Home', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&auto=format&fit=crop&q=80', catId: 'home', sub: 'Sofas & Living Room' },
+  { id: 'cat_8', name: 'Vehicles', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300&auto=format&fit=crop&q=80', catId: 'vehicles', sub: 'Toyota' },
+  { id: 'cat_9', name: 'Bags', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Bags & Watches' },
+  { id: 'cat_10', name: 'Gaming', image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=300&auto=format&fit=crop&q=80', catId: 'electronics', sub: 'Gaming & Consoles' }
 ];
 
 export const HomeView: React.FC = () => {
@@ -167,7 +151,7 @@ export const HomeView: React.FC = () => {
       {/* 4. Circular Category Grid (Matches SHEIN Screenshot 2 multi-row layout) */}
       <div className="px-2 md:px-4">
         {/* Desktop: 7 columns x 3 rows grid. Mobile: Horizontal smooth scroll */}
-        <div className="hidden md:grid md:grid-cols-7 gap-y-5 gap-x-3 py-2 border-b border-gray-100">
+        <div className="hidden md:grid md:grid-cols-5 gap-y-5 gap-x-3 py-2 border-b border-gray-100">
           {CIRCULAR_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
@@ -190,7 +174,7 @@ export const HomeView: React.FC = () => {
 
         {/* Mobile View: 5-column dense Shein category grid */}
         <div className="md:hidden grid grid-cols-5 gap-x-1.5 gap-y-3 py-1">
-          {CIRCULAR_CATEGORIES.slice(0, 15).map((cat) => (
+          {CIRCULAR_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => openPLP(cat.catId as any, cat.sub)}
