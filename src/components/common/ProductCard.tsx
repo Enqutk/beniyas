@@ -72,7 +72,7 @@ export const ProductCard: React.FC<{ listing: Listing }> = ({ listing }) => {
         <div className="mt-1 flex items-end justify-between">
           <div>
             <div className="flex items-baseline gap-1.5 flex-wrap">
-              <span className="text-sm font-black text-[#FF3F6C] tracking-tight">
+              <span className="text-sm font-black text-brand tracking-tight">
                 {listing.price.toLocaleString()} <span className="text-[10px] font-bold text-gray-500">ETB</span>
               </span>
 

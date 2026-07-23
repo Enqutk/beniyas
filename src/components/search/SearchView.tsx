@@ -44,8 +44,8 @@ export const SearchView: React.FC = () => {
           <ArrowLeft className="w-5 h-5" />
         </button>
 
-        <div className="flex-1 bg-gray-100 rounded-full py-1.5 px-3 flex items-center gap-2 border border-pink-200">
-          <Search className="w-4 h-4 text-[#FF3F6C] shrink-0" />
+        <div className="flex-1 bg-gray-100 rounded-full py-1.5 px-3 flex items-center gap-2 border border-brand-muted">
+          <Search className="w-4 h-4 text-brand shrink-0" />
           <input
             type="text"
             value={query}
@@ -66,7 +66,7 @@ export const SearchView: React.FC = () => {
 
         <button
           onClick={() => handleSearchSubmit(query)}
-          className="text-xs font-bold text-[#FF3F6C] px-2 py-1"
+          className="text-xs font-bold text-brand px-2 py-1"
         >
           Search
         </button>
@@ -78,7 +78,7 @@ export const SearchView: React.FC = () => {
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-xs font-black uppercase text-gray-900 tracking-wider flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#FF3F6C]" />
+                <Sparkles className="w-3.5 h-3.5 text-brand" />
                 Results for "{query}"
               </h3>
               <span className="text-[10px] text-gray-400">{filtered.length} found</span>
@@ -118,7 +118,7 @@ export const SearchView: React.FC = () => {
                     <button
                       key={idx}
                       onClick={() => handleSearchSubmit(term)}
-                      className="bg-gray-100 hover:bg-pink-50 text-gray-700 hover:text-[#FF3F6C] text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200/80 transition-colors"
+                      className="bg-gray-100 hover:bg-brand-soft text-gray-700 hover:text-brand text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200/80 transition-colors"
                     >
                       {term}
                     </button>
@@ -130,7 +130,7 @@ export const SearchView: React.FC = () => {
             {/* Trending Searches in Addis */}
             <div>
               <h3 className="text-xs font-black uppercase text-gray-900 tracking-wider mb-2.5 flex items-center gap-1">
-                <TrendingUp className="w-3.5 h-3.5 text-[#FF3F6C]" />
+                <TrendingUp className="w-3.5 h-3.5 text-brand" />
                 Trending Searches in Addis
               </h3>
 
@@ -139,9 +139,9 @@ export const SearchView: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => handleSearchSubmit(term)}
-                    className="bg-white hover:bg-pink-50 text-gray-800 hover:text-[#FF3F6C] text-xs font-bold px-3 py-1.5 rounded-full border border-gray-200 shadow-2xs transition-colors flex items-center gap-1"
+                    className="bg-white hover:bg-brand-soft text-gray-800 hover:text-brand text-xs font-bold px-3 py-1.5 rounded-full border border-gray-200 shadow-2xs transition-colors flex items-center gap-1"
                   >
-                    <span className="text-[10px] text-pink-500 font-mono">#{idx + 1}</span>
+                    <span className="text-[10px] text-brand font-mono">#{idx + 1}</span>
                     {term}
                   </button>
                 ))}

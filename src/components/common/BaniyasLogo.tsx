@@ -46,10 +46,10 @@ export const BaniyasLogo: React.FC<BaniyasLogoProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Top yellow/gold loop of B */}
+        {/* Top brand loop of B */}
         <path
           d="M 22 8 L 54 8 C 74 8 86 18 86 32 C 86 44 76 52 58 52 L 22 52 Z"
-          fill="#F59E0B"
+          fill="var(--color-brand)"
         />
         {/* Shopping bag silhouette inside top loop of B */}
         <path
@@ -64,7 +64,7 @@ export const BaniyasLogo: React.FC<BaniyasLogoProps> = ({
       </svg>
 
       {/* Vertical Line Separator */}
-      <div className="h-[75%] w-[1.5px] bg-amber-500/80 shrink-0" />
+      <div className="h-[75%] w-[1.5px] bg-brand/80 shrink-0" />
 
       {/* Text Mark */}
       <div className="flex flex-col justify-center leading-none">
@@ -73,11 +73,11 @@ export const BaniyasLogo: React.FC<BaniyasLogoProps> = ({
         </span>
         {showSubtitle && (
           <div className="flex items-center gap-1 mt-0.5">
-            <div className="h-[1px] w-2.5 bg-amber-500 shrink-0" />
-            <span className={`font-bold ${subTextSize} text-amber-500 uppercase font-sans`}>
+            <div className="h-[1px] w-2.5 bg-brand shrink-0" />
+            <span className={`font-bold ${subTextSize} text-brand uppercase font-sans`}>
               STORE
             </span>
-            <div className="h-[1px] w-2.5 bg-amber-500 shrink-0" />
+            <div className="h-[1px] w-2.5 bg-brand shrink-0" />
           </div>
         )}
       </div>

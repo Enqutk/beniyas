@@ -103,7 +103,7 @@ export const MobileHeader: React.FC = () => {
           >
             <ShoppingBag className="w-5 h-5 stroke-[2]" />
             {cartCount > 0 && (
-              <span className="absolute top-0 right-0 bg-[#FF3F6C] text-white text-[8px] font-bold min-w-[14px] h-[14px] rounded-full flex items-center justify-center">
+              <span className="absolute top-0 right-0 bg-brand text-white text-[8px] font-bold min-w-[14px] h-[14px] rounded-full flex items-center justify-center">
                 {cartCount}
               </span>
             )}

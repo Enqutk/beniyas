@@ -26,7 +26,7 @@ export const BoostPaywallModal: React.FC = () => {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h2 className="text-base font-black text-gray-900 tracking-tight flex items-center gap-1.5">
-            <Flame className="w-5 h-5 text-[#FF3F6C] fill-current" />
+            <Flame className="w-5 h-5 text-brand fill-current" />
             Baniyas Ad Boost
           </h2>
         </div>
@@ -36,7 +36,7 @@ export const BoostPaywallModal: React.FC = () => {
         {!paid ? (
           <>
             <div className="text-center py-2 space-y-1">
-              <span className="bg-pink-100 text-[#FF3F6C] text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase">
+              <span className="bg-brand-muted text-brand text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase">
                 Addis Ababa Marketplace Visibility
               </span>
               <h3 className="text-lg font-black text-gray-900">Choose Boost Package</h3>
@@ -53,13 +53,13 @@ export const BoostPaywallModal: React.FC = () => {
                   onClick={() => setSelectedPlan(p.id as any)}
                   className={`p-4 rounded-2xl border-2 transition-all cursor-pointer relative ${
                     selectedPlan === p.id
-                      ? 'border-[#FF3F6C] bg-pink-50/50 shadow-md'
-                      : 'border-gray-200 bg-white hover:border-pink-200'
+                      ? 'border-brand bg-brand-soft/50 shadow-md'
+                      : 'border-gray-200 bg-white hover:border-brand-muted'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] font-black text-pink-600 uppercase tracking-wider block">
+                      <span className="text-[10px] font-black text-brand uppercase tracking-wider block">
                         {p.badge}
                       </span>
                       <h4 className="font-extrabold text-sm text-gray-900">{p.name}</h4>
@@ -71,7 +71,7 @@ export const BoostPaywallModal: React.FC = () => {
                         {p.price} <span className="text-xs">ETB</span>
                       </span>
                       <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ml-auto ${
-                        selectedPlan === p.id ? 'border-[#FF3F6C] bg-[#FF3F6C]' : 'border-gray-300'
+                        selectedPlan === p.id ? 'border-brand bg-brand' : 'border-gray-300'
                       }`}>
                         {selectedPlan === p.id && <Check className="w-3 h-3 text-white" />}
                       </div>
@@ -113,7 +113,7 @@ export const BoostPaywallModal: React.FC = () => {
 
             <button
               onClick={() => setPaid(true)}
-              className="w-full py-3.5 bg-[#FF3F6C] hover:bg-[#e0345b] text-white font-black text-sm rounded-xl shadow-lg transition-all"
+              className="w-full py-3.5 bg-brand hover:bg-brand-hover text-white font-black text-sm rounded-xl shadow-lg transition-all"
             >
               Pay via {paymentMethod === 'telebirr' ? 'Telebirr' : 'CBE Birr'}
             </button>
@@ -129,7 +129,7 @@ export const BoostPaywallModal: React.FC = () => {
             </p>
             <button
               onClick={() => setActiveView('none')}
-              className="px-6 py-3 bg-[#FF3F6C] text-white font-bold text-xs rounded-xl shadow-md"
+              className="px-6 py-3 bg-brand text-white font-bold text-xs rounded-xl shadow-md"
             >
               Done
             </button>

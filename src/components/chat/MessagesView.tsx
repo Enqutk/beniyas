@@ -25,7 +25,7 @@ export const MessagesView: React.FC = () => {
       {/* Header */}
       <div className="p-3 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white z-10">
         <h2 className="text-base font-black text-gray-900 tracking-tight flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-[#FF3F6C]" />
+          <MessageSquare className="w-5 h-5 text-brand" />
           Chat Inbox
         </h2>
         <span className="text-xs font-bold text-gray-400">
@@ -51,7 +51,7 @@ export const MessagesView: React.FC = () => {
             onClick={() => setFilter('all')}
             className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
               filter === 'all'
-                ? 'bg-[#FF3F6C] text-white shadow-2xs'
+                ? 'bg-brand text-white shadow-2xs'
                 : 'bg-white text-gray-600 border border-gray-200'
             }`}
           >
@@ -61,7 +61,7 @@ export const MessagesView: React.FC = () => {
             onClick={() => setFilter('unread')}
             className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
               filter === 'unread'
-                ? 'bg-[#FF3F6C] text-white shadow-2xs'
+                ? 'bg-brand text-white shadow-2xs'
                 : 'bg-white text-gray-600 border border-gray-200'
             }`}
           >
@@ -87,7 +87,7 @@ export const MessagesView: React.FC = () => {
                   <img
                     src={ct.sellerAvatar}
                     alt=""
-                    className="w-11 h-11 rounded-full object-cover border border-pink-100"
+                    className="w-11 h-11 rounded-full object-cover border border-brand-muted"
                   />
                   <img
                     src={ct.listingImage}
@@ -107,7 +107,7 @@ export const MessagesView: React.FC = () => {
                     </span>
                   </div>
 
-                  <p className="text-[11px] font-semibold text-pink-600 truncate">
+                  <p className="text-[11px] font-semibold text-brand truncate">
                     {ct.listingTitle}
                   </p>
 
@@ -118,7 +118,7 @@ export const MessagesView: React.FC = () => {
               </div>
 
               {ct.unreadCount > 0 ? (
-                <span className="w-5 h-5 rounded-full bg-[#FF3F6C] text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                <span className="w-5 h-5 rounded-full bg-brand text-white text-[10px] font-bold flex items-center justify-center shrink-0">
                   {ct.unreadCount}
                 </span>
               ) : (

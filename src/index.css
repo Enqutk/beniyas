@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+/*
+ * Brand colors — change these once; the whole app follows.
+ * Tailwind classes: bg-brand, text-brand, border-brand,
+ *   hover:bg-brand-hover, bg-brand-soft, bg-brand-muted, border-brand-ring
+ */
+@theme {
+  --color-brand: #F97316;
+  --color-brand-hover: #EA580C;
+  --color-brand-soft: #FFF7ED;
+  --color-brand-muted: #FFEDD5;
+  --color-brand-ring: #FDBA74;
+}

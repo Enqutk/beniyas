@@ -189,7 +189,7 @@ export const Header: React.FC = () => {
           >
             <ShoppingBag className="w-6 h-6 stroke-[1.8] group-hover:scale-110 transition-transform" />
             {cartCount > 0 && (
-              <span className="absolute -top-1.5 -right-3 bg-[#FF3F6C] text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-2xs">
+              <span className="absolute -top-1.5 -right-3 bg-brand text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-2xs">
                 {cartCount}
               </span>
             )}
@@ -259,7 +259,7 @@ export const Header: React.FC = () => {
                 aria-expanded={showCategoryMenu}
                 aria-haspopup="true"
                 className={`flex items-center gap-1 font-black py-1 border-r border-gray-300 pr-4 uppercase tracking-wider transition-colors ${
-                  showCategoryMenu ? 'text-[#FF3F6C]' : 'text-black hover:text-[#FF3F6C]'
+                  showCategoryMenu ? 'text-brand' : 'text-black hover:text-brand'
                 }`}
               >
                 <span>Categories</span>
@@ -276,7 +276,7 @@ export const Header: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => handleCategoryClick(cat)}
-                className="hover:text-[#FF3F6C] shrink-0 transition-colors whitespace-nowrap text-gray-800 hover:underline tracking-tight font-black"
+                className="hover:text-brand shrink-0 transition-colors whitespace-nowrap text-gray-800 hover:underline tracking-tight font-black"
               >
                 {cat.label}
               </button>
@@ -316,7 +316,7 @@ export const Header: React.FC = () => {
                 <div className="flex-1 p-5 overflow-y-auto bg-white space-y-6">
                   <div className="space-y-3">
                     <div className="flex items-center gap-1.5 border-b border-gray-100 pb-2">
-                      <Grid className="w-4 h-4 text-[#FF3F6C]" />
+                      <Grid className="w-4 h-4 text-brand" />
                       <h4 className="text-xs font-black uppercase text-gray-900 tracking-wider">
                         Picks for You — {MEGA_SIDEBAR[hoveredCatIndex]?.label || 'Recommended'}
                       </h4>

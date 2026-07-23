@@ -33,15 +33,15 @@ export const SafetyHelpView: React.FC = () => {
           <h3 className="font-black text-sm uppercase text-gray-900">Safe Meeting Locations in Addis</h3>
           <ul className="space-y-1.5">
             <li className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
-              <MapPin className="w-4 h-4 text-[#FF3F6C]" />
+              <MapPin className="w-4 h-4 text-brand" />
               <span>Bole Medhanialem & Atlas Commercial Centers</span>
             </li>
             <li className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
-              <MapPin className="w-4 h-4 text-[#FF3F6C]" />
+              <MapPin className="w-4 h-4 text-brand" />
               <span>Kazanchis International Bank Area</span>
             </li>
             <li className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
-              <MapPin className="w-4 h-4 text-[#FF3F6C]" />
+              <MapPin className="w-4 h-4 text-brand" />
               <span>Piazza & Mexico Public Square</span>
             </li>
           </ul>

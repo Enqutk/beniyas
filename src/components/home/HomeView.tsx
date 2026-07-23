@@ -90,7 +90,7 @@ export const HomeView: React.FC = () => {
                   alt="item"
                   className="w-full aspect-3/4 object-cover rounded-lg mb-1"
                 />
-                <span className="text-xs font-black text-[#FF3F6C] block">1,850 ETB</span>
+                <span className="text-xs font-black text-brand block">1,850 ETB</span>
               </button>
 
               <button
@@ -106,7 +106,7 @@ export const HomeView: React.FC = () => {
                   alt="item"
                   className="w-full aspect-3/4 object-cover rounded-lg mb-1"
                 />
-                <span className="text-xs font-black text-[#FF3F6C] block">2,400 ETB</span>
+                <span className="text-xs font-black text-brand block">2,400 ETB</span>
               </button>
 
               <button
@@ -122,7 +122,7 @@ export const HomeView: React.FC = () => {
                   alt="item"
                   className="w-full aspect-3/4 object-cover rounded-lg mb-1"
                 />
-                <span className="text-xs font-black text-[#FF3F6C] block">1,950 ETB</span>
+                <span className="text-xs font-black text-brand block">1,950 ETB</span>
               </button>
             </div>
           </div>
@@ -229,7 +229,7 @@ export const HomeView: React.FC = () => {
               onClick={() => openPDP(listings[1]?.id || '2')}
               className="bg-white rounded-lg p-2 border border-gray-100 text-left shadow-2xs cursor-pointer hover:border-black transition-all"
             >
-              <span className="bg-pink-100 text-pink-700 text-[9px] font-black px-1 rounded-xs uppercase">
+              <span className="bg-brand-muted text-brand text-[9px] font-black px-1 rounded-xs uppercase">
                 7% OFF
               </span>
               <img
@@ -245,7 +245,7 @@ export const HomeView: React.FC = () => {
               onClick={() => openPDP(listings[2]?.id || '3')}
               className="bg-white rounded-lg p-2 border border-gray-100 text-left shadow-2xs cursor-pointer hover:border-black transition-all"
             >
-              <span className="bg-pink-100 text-pink-700 text-[9px] font-black px-1 rounded-xs uppercase">
+              <span className="bg-brand-muted text-brand text-[9px] font-black px-1 rounded-xs uppercase">
                 3% OFF
               </span>
               <img
@@ -253,7 +253,7 @@ export const HomeView: React.FC = () => {
                 alt="deal"
                 className="w-full aspect-square object-cover rounded-md my-1.5"
               />
-              <span className="text-xs font-black text-red-[#FF3F6C] block">450 ETB</span>
+              <span className="text-xs font-black text-brand block">450 ETB</span>
               <span className="text-[9px] font-bold text-gray-400 block line-through">480 ETB</span>
             </div>
           </div>

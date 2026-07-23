@@ -139,7 +139,7 @@ export const ListingDetailView: React.FC = () => {
               {/* Floating Badges */}
               <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
                 {listing.discountPercentage && (
-                  <span className="bg-[#FF3F6C] text-white text-xs font-black px-2 py-0.5 rounded-xs shadow-md">
+                  <span className="bg-brand text-white text-xs font-black px-2 py-0.5 rounded-xs shadow-md">
                     -{listing.discountPercentage}% OFF
                   </span>
                 )}
@@ -228,7 +228,7 @@ export const ListingDetailView: React.FC = () => {
             {/* Price Box */}
             <div className="bg-[#FFF8EE] border border-amber-200 p-3.5 rounded-xl space-y-1">
               <div className="flex items-baseline gap-2.5 flex-wrap">
-                <span className="text-3xl font-black text-[#FF3F6C] tracking-tight">
+                <span className="text-3xl font-black text-brand tracking-tight">
                   {listing.price.toLocaleString()} <span className="text-sm font-bold text-gray-600">ETB</span>
                 </span>
                 {listing.originalPrice && (
@@ -324,7 +324,7 @@ export const ListingDetailView: React.FC = () => {
             <div className="space-y-2.5 pt-2">
               <button
                 onClick={handleAddToBag}
-                className="w-full py-3.5 px-4 bg-[#FF3F6C] hover:bg-[#e0345b] text-white font-black text-sm rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform active:scale-98 uppercase tracking-wider"
+                className="w-full py-3.5 px-4 bg-brand hover:bg-brand-hover text-white font-black text-sm rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform active:scale-98 uppercase tracking-wider"
               >
                 <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
                 Add To Bag
@@ -518,7 +518,7 @@ export const ListingDetailView: React.FC = () => {
 
         <button
           onClick={handleAddToBag}
-          className="flex-1 py-3 bg-[#FF3F6C] hover:bg-[#e0345b] text-white font-black text-xs rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"
+          className="flex-1 py-3 bg-brand hover:bg-brand-hover text-white font-black text-xs rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"
         >
           <ShoppingBag className="w-4 h-4" /> Add To Bag
         </button>

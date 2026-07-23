@@ -128,7 +128,7 @@ export const MeView: React.FC = () => {
               <span className="text-base font-black text-black">
                 {isLoggedIn ? user.name.split(' ')[0] : 'Sign in / Register'}
               </span>
-              <Crown className="w-4 h-4 text-amber-500" />
+              <Crown className="w-4 h-4 text-brand" />
               <span className="text-[10px] font-bold bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">
                 S0
               </span>
@@ -160,7 +160,7 @@ export const MeView: React.FC = () => {
         {!isLoggedIn && (
           <button
             onClick={() => setActiveView('auth')}
-            className="text-xs font-black text-amber-600 hover:underline flex items-center gap-1"
+            className="text-xs font-black text-brand hover:underline flex items-center gap-1"
           >
             <span>Sign In / Register</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -171,9 +171,9 @@ export const MeView: React.FC = () => {
       <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 md:py-6">
         {/* If logged out banner prompt — desktop only (mobile uses header CTA) */}
         {!isLoggedIn && (
-          <div className="hidden md:flex bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-amber-500/20 border border-amber-300 rounded-2xl p-4 md:p-6 mb-6 flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+          <div className="hidden md:flex bg-gradient-to-r from-brand/20 via-brand/10 to-brand/20 border border-brand-ring rounded-2xl p-4 md:p-6 mb-6 flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center shrink-0 font-black text-xl shadow-md">
+              <div className="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center shrink-0 font-black text-xl shadow-md">
                 B
               </div>
               <div>
@@ -192,7 +192,7 @@ export const MeView: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveView('auth')}
-                className="flex-1 md:flex-initial px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
+                className="flex-1 md:flex-initial px-6 py-2.5 bg-brand hover:bg-brand-hover text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-all"
               >
                 Register
               </button>
@@ -225,22 +225,22 @@ export const MeView: React.FC = () => {
                   <li>
                     <button
                       onClick={() => setActiveSubPanel('profile')}
-                      className="hover:text-amber-600 flex items-center gap-1.5 w-full text-left"
+                      className="hover:text-brand flex items-center gap-1.5 w-full text-left"
                     >
-                      <Crown className="w-3.5 h-3.5 text-amber-500" />
+                      <Crown className="w-3.5 h-3.5 text-brand" />
                       <span>Baniyas VIP</span>
                     </button>
                   </li>
                   <li>
                     <button
                       onClick={() => setActiveSubPanel('profile')}
-                      className="hover:text-amber-600 flex items-center justify-between w-full text-left"
+                      className="hover:text-brand flex items-center justify-between w-full text-left"
                     >
                       <span className="flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5 text-gray-400" />
                         My Profile
                       </span>
-                      <span className="text-[9px] font-extrabold bg-amber-500 text-black px-1.5 py-0.5 rounded">
+                      <span className="text-[9px] font-extrabold bg-brand text-white px-1.5 py-0.5 rounded">
                         +POINTS
                       </span>
                     </button>
@@ -248,7 +248,7 @@ export const MeView: React.FC = () => {
                   <li>
                     <button
                       onClick={() => setActiveSubPanel('address')}
-                      className="hover:text-amber-600 flex items-center gap-1.5 w-full text-left"
+                      className="hover:text-brand flex items-center gap-1.5 w-full text-left"
                     >
                       <MapPin className="w-3.5 h-3.5 text-gray-400" />
                       <span>Address Book</span>
@@ -257,7 +257,7 @@ export const MeView: React.FC = () => {
                   <li>
                     <button
                       onClick={() => setActiveSubPanel('payment')}
-                      className="hover:text-amber-600 flex items-center gap-1.5 w-full text-left"
+                      className="hover:text-brand flex items-center gap-1.5 w-full text-left"
                     >
                       <CreditCard className="w-3.5 h-3.5 text-gray-400" />
                       <span>My Payment Options</span>
@@ -266,7 +266,7 @@ export const MeView: React.FC = () => {
                   <li>
                     <button
                       onClick={() => setActiveSubPanel('measurements')}
-                      className="hover:text-amber-600 flex items-center gap-1.5 w-full text-left"
+                      className="hover:text-brand flex items-center gap-1.5 w-full text-left"
                     >
                       <Ruler className="w-3.5 h-3.5 text-gray-400" />
                       <span>My Measurements</span>
@@ -275,13 +275,13 @@ export const MeView: React.FC = () => {
                   <li>
                     <button
                       onClick={() => setActiveSubPanel('profile')}
-                      className="hover:text-amber-600 flex items-center justify-between w-full text-left"
+                      className="hover:text-brand flex items-center justify-between w-full text-left"
                     >
                       <span className="flex items-center gap-1.5">
                         <SettingsIcon className="w-3.5 h-3.5 text-gray-400" />
                         Manage My Account
                       </span>
-                      <span className="text-[9px] font-extrabold bg-amber-500 text-black px-1.5 py-0.5 rounded">
+                      <span className="text-[9px] font-extrabold bg-brand text-white px-1.5 py-0.5 rounded">
                         +POINTS
                       </span>
                     </button>
@@ -293,7 +293,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('assets')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>My Assets</span>
                   {expandedSections.assets ? (
@@ -324,7 +324,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('orders')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>My Orders</span>
                   {expandedSections.orders ? (
@@ -335,11 +335,11 @@ export const MeView: React.FC = () => {
                 </button>
                 {expandedSections.orders && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-600 font-medium border-l-2 border-gray-100 ml-1">
-                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-amber-600">All Orders</button></li>
-                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-amber-600">Unpaid Orders</button></li>
-                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-amber-600">Processing</button></li>
-                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-amber-600">Shipped</button></li>
-                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-amber-600">Returns & Refunds</button></li>
+                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-brand">All Orders</button></li>
+                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-brand">Unpaid Orders</button></li>
+                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-brand">Processing</button></li>
+                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-brand">Shipped</button></li>
+                    <li><button onClick={() => setActiveView('myAds')} className="hover:text-brand">Returns & Refunds</button></li>
                   </ul>
                 )}
               </div>
@@ -348,7 +348,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('favorites')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>My Favorites</span>
                   {expandedSections.favorites ? (
@@ -360,21 +360,21 @@ export const MeView: React.FC = () => {
                 {expandedSections.favorites && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-600 font-medium border-l-2 border-gray-100 ml-1">
                     <li>
-                      <button onClick={() => setActiveTab('wishlist')} className="hover:text-amber-600">
+                      <button onClick={() => setActiveTab('wishlist')} className="hover:text-brand">
                         Saved Wishlist ({user.savedListingIds.length})
                       </button>
                     </li>
                     <li>
                       <button
                         onClick={() => setActiveView('vendors')}
-                        className="hover:text-amber-600 flex items-center gap-1.5"
+                        className="hover:text-brand flex items-center gap-1.5"
                       >
-                        <Store className="w-3.5 h-3.5 text-amber-500" />
+                        <Store className="w-3.5 h-3.5 text-brand" />
                         Vendor Dashboard
                       </button>
                     </li>
                     <li>
-                      <button onClick={() => setActiveTab('recent')} className="hover:text-amber-600">
+                      <button onClick={() => setActiveTab('recent')} className="hover:text-brand">
                         Recently Viewed
                       </button>
                     </li>
@@ -386,7 +386,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('customerService')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>Customer Service</span>
                   {expandedSections.customerService ? (
@@ -397,9 +397,9 @@ export const MeView: React.FC = () => {
                 </button>
                 {expandedSections.customerService && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-600 font-medium border-l-2 border-gray-100 ml-1">
-                    <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600">My Message & Support</button></li>
-                    <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600 font-bold text-amber-600">Support Assistant</button></li>
-                    <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600">FAQ & Buyer Protection</button></li>
+                    <li><button onClick={() => setActiveView('help')} className="hover:text-brand">My Message & Support</button></li>
+                    <li><button onClick={() => setActiveView('help')} className="hover:text-brand font-bold text-brand">Support Assistant</button></li>
+                    <li><button onClick={() => setActiveView('help')} className="hover:text-brand">FAQ & Buyer Protection</button></li>
                   </ul>
                 )}
               </div>
@@ -408,7 +408,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('otherServices')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>Other Services</span>
                   {expandedSections.otherServices ? (
@@ -422,7 +422,7 @@ export const MeView: React.FC = () => {
                     <li>
                       <button
                         onClick={() => setActiveSubPanel('preferences')}
-                        className="hover:text-amber-600 flex items-center gap-1"
+                        className="hover:text-brand flex items-center gap-1"
                       >
                         <Bell className="w-3 h-3 text-gray-400" />
                         Contact Preferences
@@ -436,7 +436,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('policy')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>Policy</span>
                   {expandedSections.policy ? (
@@ -468,7 +468,7 @@ export const MeView: React.FC = () => {
                             setPolicyModalTitle(item);
                             setActiveSubPanel('policy');
                           }}
-                          className="hover:text-amber-600 text-left block w-full text-[11px]"
+                          className="hover:text-brand text-left block w-full text-[11px]"
                         >
                           {item}
                         </button>
@@ -482,7 +482,7 @@ export const MeView: React.FC = () => {
               <div className="pt-2 border-t border-gray-100">
                 <button
                   onClick={() => toggleSection('accessibility')}
-                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-amber-600"
+                  className="w-full font-black text-gray-900 flex items-center justify-between hover:text-brand"
                 >
                   <span>Accessibility</span>
                   {expandedSections.accessibility ? (
@@ -496,7 +496,7 @@ export const MeView: React.FC = () => {
                     <li>
                       <button
                         onClick={() => setActiveSubPanel('preferences')}
-                        className="hover:text-amber-600 flex items-center gap-1"
+                        className="hover:text-brand flex items-center gap-1"
                       >
                         <Accessibility className="w-3 h-3 text-gray-400" />
                         Pop-up & Message Control
@@ -539,7 +539,7 @@ export const MeView: React.FC = () => {
               {isLoggedIn ? (
                 <div className="hidden md:flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-black flex items-center justify-center font-black text-xl shadow-xs">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-brand to-brand-ring text-black flex items-center justify-center font-black text-xl shadow-xs">
                       {user.name.charAt(0)}
                     </div>
                     <div>
@@ -547,8 +547,8 @@ export const MeView: React.FC = () => {
                         <h2 className="text-base md:text-lg font-black text-black">
                           Hi, {user.name}
                         </h2>
-                        <span className="text-[10px] font-black text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300 flex items-center gap-1">
-                          <Crown className="w-3 h-3 text-amber-600 fill-amber-500" />
+                        <span className="text-[10px] font-black text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full border border-brand-ring flex items-center gap-1">
+                          <Crown className="w-3 h-3 text-brand fill-brand" />
                           S0 VIP
                         </span>
                       </div>
@@ -560,7 +560,7 @@ export const MeView: React.FC = () => {
 
                   <button
                     onClick={() => setActiveSubPanel('profile')}
-                    className="text-xs font-bold text-gray-700 hover:text-amber-600 flex items-center gap-1 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200"
+                    className="text-xs font-bold text-gray-700 hover:text-brand flex items-center gap-1 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200"
                   >
                     <span>My Profile</span>
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -597,28 +597,28 @@ export const MeView: React.FC = () => {
                   onClick={() => toggleSection('assets')}
                   className="flex flex-col items-center hover:opacity-80 group"
                 >
-                  <span className="text-lg font-black text-black group-hover:text-amber-600">3</span>
+                  <span className="text-lg font-black text-black group-hover:text-brand">3</span>
                   <span className="text-[11px] font-bold text-gray-600">Coupons</span>
                 </button>
                 <button
                   onClick={() => toggleSection('assets')}
                   className="flex flex-col items-center hover:opacity-80 group"
                 >
-                  <span className="text-lg font-black text-black group-hover:text-amber-600">250</span>
+                  <span className="text-lg font-black text-black group-hover:text-brand">250</span>
                   <span className="text-[11px] font-bold text-gray-600">Points</span>
                 </button>
                 <button
                   onClick={() => toggleSection('assets')}
                   className="flex flex-col items-center hover:opacity-80 group"
                 >
-                  <span className="text-lg font-black text-black group-hover:text-amber-600">0.00 ETB</span>
+                  <span className="text-lg font-black text-black group-hover:text-brand">0.00 ETB</span>
                   <span className="text-[11px] font-bold text-gray-600">Wallet</span>
                 </button>
                 <button
                   onClick={() => toggleSection('assets')}
                   className="flex flex-col items-center hover:opacity-80 group justify-center"
                 >
-                  <Gift className="w-5 h-5 text-black group-hover:text-amber-600 mb-0.5" />
+                  <Gift className="w-5 h-5 text-black group-hover:text-brand mb-0.5" />
                   <span className="text-[11px] font-bold text-gray-600">Gift Card</span>
                 </button>
               </div>
@@ -626,9 +626,9 @@ export const MeView: React.FC = () => {
 
             {/* Expiring Coupons Notice Banner (Screenshot replica) */}
             {showBanner && (
-              <div className="bg-amber-500/15 border border-amber-300/80 rounded-xl px-4 py-3 text-xs text-gray-800 flex items-center justify-between shadow-2xs">
+              <div className="bg-brand/15 border border-brand-ring/80 rounded-xl px-4 py-3 text-xs text-gray-800 flex items-center justify-between shadow-2xs">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+                  <Sparkles className="w-4 h-4 text-brand shrink-0" />
                   <span>
                     You have <strong className="text-red-600 font-extrabold">3 coupon(s)</strong> that will expire soon!
                   </span>
@@ -664,12 +664,12 @@ export const MeView: React.FC = () => {
             <div className="bg-white rounded-xl p-5 shadow-xs border border-gray-200/80 space-y-4">
               <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                 <h3 className="font-black text-sm text-black uppercase tracking-wider flex items-center gap-2">
-                  <Package className="w-4 h-4 text-amber-500" />
+                  <Package className="w-4 h-4 text-brand" />
                   My Orders
                 </h3>
                 <button
                   onClick={() => setActiveView('myAds')}
-                  className="text-xs font-bold text-gray-600 hover:text-amber-600 flex items-center gap-0.5"
+                  className="text-xs font-bold text-gray-600 hover:text-brand flex items-center gap-0.5"
                 >
                   View All <ChevronRight className="w-3.5 h-3.5" />
                 </button>
@@ -681,8 +681,8 @@ export const MeView: React.FC = () => {
                   onClick={() => setActiveView('myAds')}
                   className="flex flex-col items-center group"
                 >
-                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-amber-500/10 group-hover:scale-105 transition-all mb-1.5">
-                    <CreditCard className="w-5 h-5 text-gray-800 group-hover:text-amber-600" />
+                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-brand/10 group-hover:scale-105 transition-all mb-1.5">
+                    <CreditCard className="w-5 h-5 text-gray-800 group-hover:text-brand" />
                   </div>
                   <span className="text-[11px] font-bold text-gray-700">Unpaid</span>
                 </button>
@@ -691,8 +691,8 @@ export const MeView: React.FC = () => {
                   onClick={() => setActiveView('myAds')}
                   className="flex flex-col items-center group"
                 >
-                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-amber-500/10 group-hover:scale-105 transition-all mb-1.5">
-                    <Package className="w-5 h-5 text-gray-800 group-hover:text-amber-600" />
+                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-brand/10 group-hover:scale-105 transition-all mb-1.5">
+                    <Package className="w-5 h-5 text-gray-800 group-hover:text-brand" />
                   </div>
                   <span className="text-[11px] font-bold text-gray-700">Processing</span>
                 </button>
@@ -701,8 +701,8 @@ export const MeView: React.FC = () => {
                   onClick={() => setActiveView('myAds')}
                   className="flex flex-col items-center group"
                 >
-                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-amber-500/10 group-hover:scale-105 transition-all mb-1.5">
-                    <Truck className="w-5 h-5 text-gray-800 group-hover:text-amber-600" />
+                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-brand/10 group-hover:scale-105 transition-all mb-1.5">
+                    <Truck className="w-5 h-5 text-gray-800 group-hover:text-brand" />
                   </div>
                   <span className="text-[11px] font-bold text-gray-700">Shipped</span>
                 </button>
@@ -711,8 +711,8 @@ export const MeView: React.FC = () => {
                   onClick={() => setActiveView('myAds')}
                   className="flex flex-col items-center group"
                 >
-                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-amber-500/10 group-hover:scale-105 transition-all mb-1.5">
-                    <MessageSquare className="w-5 h-5 text-gray-800 group-hover:text-amber-600" />
+                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-brand/10 group-hover:scale-105 transition-all mb-1.5">
+                    <MessageSquare className="w-5 h-5 text-gray-800 group-hover:text-brand" />
                   </div>
                   <span className="text-[11px] font-bold text-gray-700">Review</span>
                 </button>
@@ -721,8 +721,8 @@ export const MeView: React.FC = () => {
                   onClick={() => setActiveView('myAds')}
                   className="flex flex-col items-center group"
                 >
-                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-amber-500/10 group-hover:scale-105 transition-all mb-1.5">
-                    <RotateCcw className="w-5 h-5 text-gray-800 group-hover:text-amber-600" />
+                  <div className="p-3 rounded-2xl bg-gray-50 group-hover:bg-brand/10 group-hover:scale-105 transition-all mb-1.5">
+                    <RotateCcw className="w-5 h-5 text-gray-800 group-hover:text-brand" />
                   </div>
                   <span className="text-[11px] font-bold text-gray-700">Returns</span>
                 </button>
@@ -736,7 +736,7 @@ export const MeView: React.FC = () => {
                 <p className="text-xs font-bold text-gray-500">It is empty here :-(</p>
                 <button
                   onClick={() => setMainTab('home')}
-                  className="text-xs font-black text-amber-600 hover:underline"
+                  className="text-xs font-black text-brand hover:underline"
                 >
                   Explore Trending Items in Addis
                 </button>
@@ -798,7 +798,7 @@ export const MeView: React.FC = () => {
                       <p className="text-xs font-bold">Your wishlist is currently empty</p>
                       <button
                         onClick={() => setMainTab('home')}
-                        className="text-xs font-black text-amber-600 hover:underline"
+                        className="text-xs font-black text-brand hover:underline"
                       >
                         Start Saving Products
                       </button>
@@ -849,7 +849,7 @@ export const MeView: React.FC = () => {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xs text-gray-900 group-hover:text-amber-600">My Message</h4>
+                  <h4 className="font-bold text-xs text-gray-900 group-hover:text-brand">My Message</h4>
                   <p className="text-[10px] text-gray-500">System alerts & seller support</p>
                 </div>
               </button>
@@ -917,7 +917,7 @@ export const MeView: React.FC = () => {
             </button>
 
             <h3 className="font-black text-base text-gray-900 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-amber-500" />
+              <MapPin className="w-5 h-5 text-brand" />
               Address Book
             </h3>
 
@@ -930,7 +930,7 @@ export const MeView: React.FC = () => {
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-xs text-gray-900">{addr.name}</span>
                     {addr.isDefault && (
-                      <span className="text-[10px] bg-amber-500 text-black px-1.5 py-0.5 rounded font-black">
+                      <span className="text-[10px] bg-brand text-white px-1.5 py-0.5 rounded font-black">
                         DEFAULT
                       </span>
                     )}
@@ -971,7 +971,7 @@ export const MeView: React.FC = () => {
                 <div className="flex gap-2 pt-1">
                   <button
                     type="submit"
-                    className="flex-1 py-2 bg-amber-500 text-black font-bold text-xs rounded-lg"
+                    className="flex-1 py-2 bg-brand text-white font-bold text-xs rounded-lg"
                   >
                     Save Address
                   </button>
@@ -1001,7 +1001,7 @@ export const MeView: React.FC = () => {
             </button>
 
             <h3 className="font-black text-base text-gray-900 flex items-center gap-2">
-              <CreditCard className="w-5 h-5 text-amber-500" />
+              <CreditCard className="w-5 h-5 text-brand" />
               My Payment Options
             </h3>
 
@@ -1052,7 +1052,7 @@ export const MeView: React.FC = () => {
             </button>
 
             <h3 className="font-black text-base text-gray-900 flex items-center gap-2">
-              <Ruler className="w-5 h-5 text-amber-500" />
+              <Ruler className="w-5 h-5 text-brand" />
               My Measurements
             </h3>
 
@@ -1124,7 +1124,7 @@ export const MeView: React.FC = () => {
             </button>
 
             <h3 className="font-black text-base text-gray-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-amber-500" />
+              <FileText className="w-5 h-5 text-brand" />
               {policyModalTitle}
             </h3>
 
@@ -1160,24 +1160,24 @@ export const MeView: React.FC = () => {
             </button>
 
             <h3 className="font-black text-base text-gray-900 flex items-center gap-2">
-              <Bell className="w-5 h-5 text-amber-500" />
+              <Bell className="w-5 h-5 text-brand" />
               Contact & Notification Preferences
             </h3>
 
             <div className="space-y-3 text-xs">
               <label className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
                 <span>SMS Order Status Alerts</span>
-                <input type="checkbox" defaultChecked className="rounded text-amber-500" />
+                <input type="checkbox" defaultChecked className="rounded text-brand" />
               </label>
 
               <label className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
                 <span>Email Voucher & Discount Alerts</span>
-                <input type="checkbox" defaultChecked className="rounded text-amber-500" />
+                <input type="checkbox" defaultChecked className="rounded text-brand" />
               </label>
 
               <label className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
                 <span>In-App Seller Notifications</span>
-                <input type="checkbox" defaultChecked className="rounded text-amber-500" />
+                <input type="checkbox" defaultChecked className="rounded text-brand" />
               </label>
             </div>
 

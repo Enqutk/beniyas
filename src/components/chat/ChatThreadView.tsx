@@ -56,7 +56,7 @@ export const ChatThreadView: React.FC = () => {
           <img
             src={thread.sellerAvatar}
             alt=""
-            className="w-9 h-9 rounded-full object-cover border border-pink-100"
+            className="w-9 h-9 rounded-full object-cover border border-brand-muted"
           />
 
           <div>
@@ -74,7 +74,7 @@ export const ChatThreadView: React.FC = () => {
           onClick={() =>
             openContactModal(thread.sellerName, thread.sellerPhone, thread.sellerAvatar)
           }
-          className="p-2 rounded-full bg-pink-50 text-[#FF3F6C] font-bold text-xs flex items-center gap-1 hover:bg-pink-100 border border-pink-200"
+          className="p-2 rounded-full bg-brand-soft text-brand font-bold text-xs flex items-center gap-1 hover:bg-brand-muted border border-brand-muted"
         >
           <Phone className="w-3.5 h-3.5" />
           Call
@@ -96,7 +96,7 @@ export const ChatThreadView: React.FC = () => {
             <h4 className="text-xs font-bold text-gray-800 line-clamp-1">
               {thread.listingTitle}
             </h4>
-            <span className="text-xs font-black text-[#FF3F6C]">
+            <span className="text-xs font-black text-brand">
               {thread.listingPrice.toLocaleString()} ETB
             </span>
           </div>
@@ -124,7 +124,7 @@ export const ChatThreadView: React.FC = () => {
               <div
                 className={`max-w-[80%] p-3 rounded-2xl text-xs leading-relaxed shadow-2xs ${
                   isUser
-                    ? 'bg-[#FF3F6C] text-white rounded-tr-xs'
+                    ? 'bg-brand text-white rounded-tr-xs'
                     : 'bg-white text-gray-900 border border-gray-200 rounded-tl-xs'
                 }`}
               >
@@ -132,7 +132,7 @@ export const ChatThreadView: React.FC = () => {
               </div>
               <div className="flex items-center gap-1 text-[9px] text-gray-400 mt-1 px-1">
                 <span>{msg.timestamp}</span>
-                {isUser && <CheckCheck className="w-3 h-3 text-pink-500" />}
+                {isUser && <CheckCheck className="w-3 h-3 text-brand" />}
               </div>
             </div>
           );
@@ -145,7 +145,7 @@ export const ChatThreadView: React.FC = () => {
           <button
             key={i}
             onClick={() => handleSend(chip)}
-            className="shrink-0 bg-gray-100 hover:bg-pink-50 text-gray-700 hover:text-[#FF3F6C] text-[11px] font-semibold px-2.5 py-1 rounded-full border border-gray-200 transition-colors"
+            className="shrink-0 bg-gray-100 hover:bg-brand-soft text-gray-700 hover:text-brand text-[11px] font-semibold px-2.5 py-1 rounded-full border border-gray-200 transition-colors"
           >
             {chip}
           </button>
@@ -169,13 +169,13 @@ export const ChatThreadView: React.FC = () => {
             if (e.key === 'Enter') handleSend(input);
           }}
           placeholder="Type your message..."
-          className="flex-1 bg-gray-100 rounded-full py-2 px-3 text-xs text-gray-900 focus:outline-none border border-transparent focus:border-pink-300"
+          className="flex-1 bg-gray-100 rounded-full py-2 px-3 text-xs text-gray-900 focus:outline-none border border-transparent focus:border-brand-ring"
         />
 
         <button
           onClick={() => handleSend(input)}
           disabled={!input.trim()}
-          className="p-2.5 rounded-full bg-[#FF3F6C] text-white disabled:opacity-50 active:scale-95 transition-transform"
+          className="p-2.5 rounded-full bg-brand text-white disabled:opacity-50 active:scale-95 transition-transform"
         >
           <Send className="w-4 h-4 fill-current" />
         </button>

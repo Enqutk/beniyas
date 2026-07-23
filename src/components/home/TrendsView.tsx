@@ -347,10 +347,10 @@ export const TrendsView: React.FC = () => {
                 <div className="flex items-center justify-between pt-1">
                   <div>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-sm font-black text-[#FF3F6C]">
+                      <span className="text-sm font-black text-brand">
                         {listing.price.toLocaleString()} ETB
                       </span>
-                      <span className="text-[10px] font-bold text-[#FF3F6C] bg-pink-50 px-1 rounded-xs">
+                      <span className="text-[10px] font-bold text-brand bg-brand-soft px-1 rounded-xs">
                         -{discount}%
                       </span>
                     </div>

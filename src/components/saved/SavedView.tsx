@@ -20,7 +20,7 @@ export const SavedView: React.FC = () => {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h2 className="text-base font-black text-gray-900 tracking-tight flex items-center gap-2">
-            <Heart className="w-5 h-5 text-[#FF3F6C] fill-current" />
+            <Heart className="w-5 h-5 text-brand fill-current" />
             Saved Wishlist
           </h2>
         </div>
@@ -39,7 +39,7 @@ export const SavedView: React.FC = () => {
           </div>
         ) : (
           <div className="text-center py-16 px-4">
-            <Heart className="w-12 h-12 text-pink-300 mx-auto mb-2" />
+            <Heart className="w-12 h-12 text-brand/40 mx-auto mb-2" />
             <h3 className="text-sm font-bold text-gray-800">No saved items yet</h3>
             <p className="text-xs text-gray-400 mt-1">
               Tap the heart icon on any ad to save it here for quick access.
@@ -49,7 +49,7 @@ export const SavedView: React.FC = () => {
                 setActiveView('none');
                 setMainTab('home');
               }}
-              className="mt-4 px-4 py-2 bg-[#FF3F6C] text-white font-bold text-xs rounded-full shadow-md"
+              className="mt-4 px-4 py-2 bg-brand text-white font-bold text-xs rounded-full shadow-md"
             >
               Browse Marketplace
             </button>

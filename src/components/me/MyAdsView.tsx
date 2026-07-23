@@ -31,7 +31,7 @@ export const MyAdsView: React.FC = () => {
           onClick={() => setTab('active')}
           className={`flex-1 py-3 text-xs font-bold text-center border-b-2 transition-all ${
             tab === 'active'
-              ? 'border-[#FF3F6C] text-[#FF3F6C] bg-white'
+              ? 'border-brand text-brand bg-white'
               : 'border-transparent text-gray-500'
           }`}
         >
@@ -41,7 +41,7 @@ export const MyAdsView: React.FC = () => {
           onClick={() => setTab('sold')}
           className={`flex-1 py-3 text-xs font-bold text-center border-b-2 transition-all ${
             tab === 'sold'
-              ? 'border-[#FF3F6C] text-[#FF3F6C] bg-white'
+              ? 'border-brand text-brand bg-white'
               : 'border-transparent text-gray-500'
           }`}
         >
@@ -57,7 +57,7 @@ export const MyAdsView: React.FC = () => {
               <img src={ad.images[0]} alt="" className="w-16 h-16 rounded-lg object-cover" />
               <div className="flex-1 min-w-0">
                 <h4 className="font-bold text-xs text-gray-900 truncate">{ad.title}</h4>
-                <div className="text-sm font-black text-[#FF3F6C] mt-0.5">
+                <div className="text-sm font-black text-brand mt-0.5">
                   {ad.price.toLocaleString()} ETB
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-gray-400 mt-1">
@@ -78,7 +78,7 @@ export const MyAdsView: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveView('boost')}
-                className="flex-1 py-1.5 bg-pink-50 font-bold text-xs text-[#FF3F6C] rounded-lg border border-pink-200 flex items-center justify-center gap-1"
+                className="flex-1 py-1.5 bg-brand-soft font-bold text-xs text-brand rounded-lg border border-brand-muted flex items-center justify-center gap-1"
               >
                 <Flame className="w-3.5 h-3.5" /> Boost
               </button>
