@@ -359,9 +359,25 @@ export const MeView: React.FC = () => {
                 </button>
                 {expandedSections.favorites && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-600 font-medium border-l-2 border-gray-100 ml-1">
-                    <li><button onClick={() => setActiveTab('wishlist')} className="hover:text-amber-600">Saved Wishlist ({user.savedListingIds.length})</button></li>
-                    <li><button onClick={() => setActiveTab('following')} className="hover:text-amber-600">Followed Stores (1)</button></li>
-                    <li><button onClick={() => setActiveTab('recent')} className="hover:text-amber-600">Recently Viewed</button></li>
+                    <li>
+                      <button onClick={() => setActiveTab('wishlist')} className="hover:text-amber-600">
+                        Saved Wishlist ({user.savedListingIds.length})
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => setActiveView('vendors')}
+                        className="hover:text-amber-600 flex items-center gap-1.5"
+                      >
+                        <Store className="w-3.5 h-3.5 text-amber-500" />
+                        Vendor Directory
+                      </button>
+                    </li>
+                    <li>
+                      <button onClick={() => setActiveTab('recent')} className="hover:text-amber-600">
+                        Recently Viewed
+                      </button>
+                    </li>
                   </ul>
                 )}
               </div>
@@ -625,6 +641,24 @@ export const MeView: React.FC = () => {
                 </button>
               </div>
             )}
+
+            {/* Vendor Directory shortcut */}
+            <button
+              type="button"
+              onClick={() => setActiveView('vendors')}
+              className="w-full bg-white rounded-xl p-4 shadow-xs border border-gray-200/80 flex items-center gap-3 hover:border-black transition-colors text-left"
+            >
+              <div className="w-11 h-11 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                <Store className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-black text-gray-900">Vendor Directory</h3>
+                <p className="text-[11px] text-gray-500 font-medium">
+                  Browse all sellers, ratings & active ads
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-gray-300 shrink-0" />
+            </button>
 
             {/* MY ORDERS CARD (Exact SHEIN layout from screenshot) */}
             <div className="bg-white rounded-xl p-5 shadow-xs border border-gray-200/80 space-y-4">
