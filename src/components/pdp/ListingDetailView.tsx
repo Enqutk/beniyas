@@ -339,7 +339,6 @@ export const ListingDetailView: React.FC = () => {
                   Call Seller
                 </button>
               </div>
-              </div>
             </div>
 
             {/* Express Delivery & Guarantee Banner */}
