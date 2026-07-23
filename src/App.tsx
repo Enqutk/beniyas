@@ -14,8 +14,6 @@ import { CategoriesView } from './components/categories/CategoriesView';
 import { SearchView } from './components/search/SearchView';
 import { ListingResultsView } from './components/plp/ListingResultsView';
 import { ListingDetailView } from './components/pdp/ListingDetailView';
-import { ChatThreadView } from './components/chat/ChatThreadView';
-import { MessagesView } from './components/chat/MessagesView';
 import { SellWizardView } from './components/sell/SellWizardView';
 import { SellerProfileView } from './components/seller/SellerProfileView';
 import { SavedView } from './components/saved/SavedView';
@@ -30,7 +28,7 @@ function AppContent() {
   const { mainTab, activeView } = useApp();
 
   const hideMobileChromeHeader =
-    ['pdp', 'search', 'chat'].includes(activeView) ||
+    ['pdp', 'search'].includes(activeView) ||
     (activeView === 'none' && ['categories', 'trends'].includes(mainTab));
 
   // Render Overlay View if set
@@ -40,8 +38,6 @@ function AppContent() {
         return <ListingResultsView />;
       case 'pdp':
         return <ListingDetailView />;
-      case 'chat':
-        return <ChatThreadView />;
       case 'search':
         return <SearchView />;
       case 'sellerProfile':
@@ -58,6 +54,9 @@ function AppContent() {
         return <SafetyHelpView />;
       case 'vendors':
         return <VendorsDashboardView />;
+      // Chat deferred to next phase — ignore if somehow set
+      case 'chat':
+        return null;
       default:
         return null;
     }
@@ -84,8 +83,9 @@ function AppContent() {
         return <TrendsView />;
       case 'sell':
         return <SellWizardView />;
+      // Chat deferred — fall back to Me
       case 'messages':
-        return <MessagesView />;
+        return <MeView />;
       case 'me':
         return <MeView />;
       default:
@@ -96,7 +96,7 @@ function AppContent() {
   return (
     <DeviceFrame>
       {/* Header Navigation: Desktop Header on md+ screens, Mobile Header on Shop/Me */}
-      {!['pdp', 'search', 'chat'].includes(activeView) && (
+      {!['pdp', 'search'].includes(activeView) && (
         <div className="hidden md:block">
           <Header />
         </div>
@@ -109,10 +109,10 @@ function AppContent() {
 
       {/* Main View Area */}
       <main className="flex-1 overflow-x-hidden min-h-0">
-        {activeView !== 'none' ? renderViewOverlay() : renderMainTab()}
+        {activeView !== 'none' && activeView !== 'chat' ? renderViewOverlay() : renderMainTab()}
       </main>
 
-      {/* Persistent 5-Tab Bar */}
+      {/* Persistent Tab Bar */}
       <MobileTabBar />
 
       {/* Phone Contact Modal */}
