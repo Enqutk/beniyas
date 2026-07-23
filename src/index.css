@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 /*
- * Brand colors — change these once; the whole app follows.
- * Tailwind classes: bg-brand, text-brand, border-brand,
- *   hover:bg-brand-hover, bg-brand-soft, bg-brand-muted, border-brand-ring
+ * Brand colors — match the Baniyas logo orange (#F59E0B).
+ * Change these once; UI accents follow. Logo colors stay fixed in BaniyasLogo.
+ *
+ * Classes: bg-brand, text-brand, border-brand, hover:bg-brand-hover,
+ *   bg-brand-soft, bg-brand-muted, border-brand-ring
  */
 @theme {
-  --color-brand: #F97316;
-  --color-brand-hover: #EA580C;
-  --color-brand-soft: #FFF7ED;
-  --color-brand-muted: #FFEDD5;
-  --color-brand-ring: #FDBA74;
+  --color-brand: #F59E0B;
+  --color-brand-hover: #D97706;
+  --color-brand-soft: #FFFBEB;
+  --color-brand-muted: #FEF3C7;
+  --color-brand-ring: #FCD34D;
 }
