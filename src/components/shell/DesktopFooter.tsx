@@ -14,7 +14,7 @@ export const DesktopFooter: React.FC = () => {
           <div className="space-y-3">
             <BaniyasLogo variant="dark" size="md" />
             <p className="text-xs text-gray-400 leading-relaxed pt-1">
-              Baniyas Store is your premier verified marketplace. Discover and shop trendy fashion, electronics, vehicles, property, and services with fast local delivery.
+              Baniyas Store is your local marketplace for fashion, electronics, vehicles, and more. We don’t deliver — vendors arrange meetup or their own delivery across Addis Ababa.
             </p>
             <div className="flex items-center gap-2 text-xs text-emerald-400 font-semibold pt-1">
               <ShieldCheck className="w-4 h-4 text-emerald-500" />

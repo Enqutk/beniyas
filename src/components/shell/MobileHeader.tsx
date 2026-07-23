@@ -219,7 +219,7 @@ export const MobileHeader: React.FC = () => {
                 </button>
                 {infoOpen && (
                   <ul className="mt-2 space-y-2.5 text-xs font-semibold text-gray-600">
-                    {['Shipping Info', 'Return Policy', 'How to Pay', 'Privacy Policy', 'Terms & Conditions'].map(
+                    {['Meetup & Seller Delivery', 'Return & Inspect', 'How to Pay', 'Privacy Policy', 'Terms & Conditions'].map(
                       item => (
                         <li key={item}>
                           <button

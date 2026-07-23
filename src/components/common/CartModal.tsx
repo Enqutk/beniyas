@@ -156,8 +156,8 @@ export const CartModal: React.FC = () => {
                 <span className="font-bold text-gray-900">{totalETB.toLocaleString()} ETB</span>
               </div>
               <div className="flex justify-between text-gray-500">
-                <span>Local Express Shipping</span>
-                <span className="font-bold text-emerald-600">FREE (Addis)</span>
+                <span>Meetup / seller handoff</span>
+                <span className="font-bold text-emerald-600">No platform fee</span>
               </div>
               <div className="flex justify-between text-sm font-black text-gray-900 border-t border-gray-100 pt-2">
                 <span>Total</span>
@@ -165,9 +165,9 @@ export const CartModal: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-2.5 flex items-center gap-2 text-[11px] text-emerald-800">
-              <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Doorstep delivery & quality check before payment</span>
+            <div className="bg-brand-soft border border-brand-muted rounded-lg p-2.5 flex items-center gap-2 text-[11px] text-ink">
+              <Truck className="w-4 h-4 text-brand shrink-0" />
+              <span>Baniyas doesn’t deliver — meet the seller or use the vendor’s own delivery</span>
             </div>
 
             <button

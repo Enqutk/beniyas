@@ -50,7 +50,7 @@ export const MeView: React.FC = () => {
   >('none');
 
   // Policy Modal Title
-  const [policyModalTitle, setPolicyModalTitle] = useState('Shipping Info');
+  const [policyModalTitle, setPolicyModalTitle] = useState('Meetup & Seller Delivery');
 
   // Expandable left sidebar sections
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -251,7 +251,7 @@ export const MeView: React.FC = () => {
                       className="hover:text-brand flex items-center gap-1.5 w-full text-left"
                     >
                       <MapPin className="w-3.5 h-3.5 text-gray-400" />
-                      <span>Address Book</span>
+                      <span>Meetup Areas</span>
                     </button>
                   </li>
                   <li>
@@ -448,8 +448,8 @@ export const MeView: React.FC = () => {
                 {expandedSections.policy && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-500 font-medium border-l-2 border-gray-100 ml-1">
                     {[
-                      'Shipping Info',
-                      'Return Policy',
+                      'Meetup & Seller Delivery',
+                      'Return & Inspect Policy',
                       'Privacy & Cookie Policy',
                       'Refund Policy',
                       'Payment Method',
@@ -459,8 +459,8 @@ export const MeView: React.FC = () => {
                       'Baniyas VIP Terms & Conditions',
                       'Review Guidance',
                       'Giftcard Guidelines',
-                      'How To Track My Order',
-                      'How To Order Page',
+                      'How Deals Work',
+                      'How To Buy on Baniyas',
                     ].map(item => (
                       <li key={item}>
                         <button
@@ -918,7 +918,7 @@ export const MeView: React.FC = () => {
 
             <h3 className="font-black text-base text-gray-900 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-brand" />
-              Address Book
+              Meetup Areas
             </h3>
 
             <div className="space-y-3 max-h-60 overflow-y-auto pr-1">
@@ -948,7 +948,7 @@ export const MeView: React.FC = () => {
                 className="w-full py-2.5 btn-primary font-bold text-xs rounded-xl flex items-center justify-center gap-1.5"
               >
                 <PlusCircle className="w-4 h-4" />
-                Add New Delivery Address
+                Add Preferred Meetup Area
               </button>
             ) : (
               <form onSubmit={handleAddAddress} className="space-y-2.5 pt-2 border-t border-gray-200">
@@ -1028,8 +1028,8 @@ export const MeView: React.FC = () => {
 
               <div className="p-3 border border-gray-200 bg-gray-50/50 rounded-xl flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-xs text-gray-900">Cash on Delivery (COD)</h4>
-                  <p className="text-[10px] text-gray-500">Pay courier upon receiving item</p>
+                  <h4 className="font-bold text-xs text-gray-900">Cash on Meetup / Handoff</h4>
+                  <p className="text-[10px] text-gray-500">Pay the seller after you inspect the item</p>
                 </div>
                 <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
                   ACTIVE
@@ -1130,15 +1130,17 @@ export const MeView: React.FC = () => {
 
             <div className="text-xs text-gray-600 space-y-2.5 leading-relaxed pt-2 border-t border-gray-100">
               <p>
-                Welcome to the official <strong>{policyModalTitle}</strong> documentation for Baniyas Store.
+                Welcome to the official <strong>{policyModalTitle}</strong> guide for Baniyas Store.
               </p>
               <p>
-                All orders placed on Baniyas Store benefit from buyer protection and express delivery guarantees across Addis Ababa subcities (Bole, Kazanchis, Piazza, CMC, Ayat, etc.).
+                <strong>Baniyas does not deliver packages.</strong> We connect buyers and sellers in Addis Ababa.
+                The <strong>vendor</strong> arranges how you get the item — usually a safe public meetup, or the seller’s own delivery if they offer it.
               </p>
               <ul className="list-disc pl-4 space-y-1 text-gray-700">
-                <li>Same-day or 24-hour dispatch for verified local sellers.</li>
-                <li>Free inspection upon delivery with Cash on Delivery options.</li>
-                <li>Hassle-free 7-day returns for defective or misdescribed items.</li>
+                <li>Agree meetup place & time with the seller (Bole, Kazanchis, Piazza, CMC, etc.).</li>
+                <li>If the vendor offers delivery, they handle it — not Baniyas logistics.</li>
+                <li>Inspect the item in person before paying. Prefer cash or confirmed transfer after check.</li>
+                <li>Report fake ads or unsafe sellers via Customer Service.</li>
               </ul>
               <p className="text-[11px] text-gray-400 pt-2">
                 Last updated: July 2026. For questions, contact Customer Service.
@@ -1166,7 +1168,7 @@ export const MeView: React.FC = () => {
 
             <div className="space-y-3 text-xs">
               <label className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
-                <span>SMS Order Status Alerts</span>
+                <span>SMS Deal & Meetup Alerts</span>
                 <input type="checkbox" defaultChecked className="rounded text-brand" />
               </label>
 

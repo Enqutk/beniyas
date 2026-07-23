@@ -25,7 +25,7 @@ export const SafetyHelpView: React.FC = () => {
         <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
           <h3 className="font-bold text-amber-950 text-sm">#1 Rule: No Advance Payments</h3>
           <p className="text-amber-900">
-            Never send money via Telebirr or bank transfer to hold an item before inspecting it in person.
+          Never send money via Telebirr or bank transfer to hold an item before inspecting it in person. Baniyas does not deliver — the vendor arranges meetup or their own delivery.
           </p>
         </div>
 

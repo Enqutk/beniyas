@@ -121,7 +121,7 @@ export const Header: React.FC = () => {
             BANIYAS STORE
           </span>
           <span className="text-gray-400">|</span>
-          <span className="text-gray-300">Fast Express Local Delivery & Free Posting</span>
+          <span className="text-gray-300">Local marketplace · Seller meetup or vendor delivery</span>
         </div>
 
         <div className="flex items-center gap-4 text-xs font-bold">

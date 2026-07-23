@@ -243,7 +243,7 @@ export const ListingDetailView: React.FC = () => {
                 )}
               </div>
               <p className="text-[11px] text-amber-900 font-medium">
-                ⚡ Express Local Delivery available in Bole, Kazanchis & CMC
+                ⚡ Meetup with seller — or ask if they offer their own delivery
               </p>
             </div>
 
@@ -341,21 +341,23 @@ export const ListingDetailView: React.FC = () => {
               </div>
             </div>
 
-            {/* Express Delivery & Guarantee Banner */}
+            {/* Handoff & safety */}
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 space-y-2.5 text-xs">
               <div className="flex items-start gap-2.5">
                 <Truck className="w-4 h-4 text-brand shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-extrabold text-gray-900">Fast Express Local Delivery</p>
-                  <p className="text-[11px] text-gray-500">Addis Ababa doorstep delivery within 24-48 hours.</p>
+                  <p className="font-extrabold text-gray-900">Vendor handoff (not Baniyas delivery)</p>
+                  <p className="text-[11px] text-gray-500">
+                    Meet in Addis or use the seller’s own delivery if they offer it. Baniyas does not ship.
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-2.5 border-t border-gray-200 pt-2">
                 <RotateCcw className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-extrabold text-gray-900">Quality Inspection on Delivery</p>
-                  <p className="text-[11px] text-gray-500">Inspect product quality before paying the vendor.</p>
+                  <p className="font-extrabold text-gray-900">Inspect before you pay</p>
+                  <p className="text-[11px] text-gray-500">Check the item with the vendor before completing payment.</p>
                 </div>
               </div>
             </div>

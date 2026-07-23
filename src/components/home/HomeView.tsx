@@ -134,7 +134,7 @@ export const HomeView: React.FC = () => {
         <div className="flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-500 fill-amber-500" />
           <span className="font-extrabold text-black">Flash Sale</span>
-          <span className="text-gray-400 font-normal hidden sm:inline">| Express Local Delivery across Ethiopia</span>
+          <span className="text-gray-400 font-normal hidden sm:inline">| Meetup with sellers across Addis · vendor delivery if offered</span>
         </div>
         <button
           onClick={() => {
