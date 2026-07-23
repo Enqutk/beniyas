@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ProductCard } from '../common/ProductCard';
-import { ChevronRight, Zap, Percent, Sparkles } from 'lucide-react';
+import { ChevronRight, Zap, Sparkles } from 'lucide-react';
 
 const SHEIN_TOP_TABS = ['All', 'Women', 'Men', 'Kids', 'Curve', 'Home'];
 
@@ -22,7 +22,6 @@ const CIRCULAR_CATEGORIES = [
 export const HomeView: React.FC = () => {
   const { listings, openPDP, openPLP, setMainTab, setActiveView } = useApp();
   const [selectedTopTab, setSelectedTopTab] = useState('All');
-  const [showPromoBar, setShowPromoBar] = useState(true);
 
   return (
     <div className="flex flex-col space-y-4 pb-28 max-w-7xl mx-auto w-full bg-white">
@@ -340,30 +339,6 @@ export const HomeView: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* 7. Bottom Floating Discount Promo Banner */}
-      {showPromoBar && (
-        <div className="fixed bottom-[3.75rem] md:bottom-4 left-2 right-2 z-30 bg-black text-white px-3 py-2.5 flex items-center justify-between shadow-2xl border border-zinc-800 max-w-md mx-auto rounded-xl md:left-0 md:right-0">
-          <div className="flex items-center gap-2">
-            <span className="bg-red-600 text-white text-xs font-black p-1.5 rounded-md">
-              <Percent className="w-4 h-4" />
-            </span>
-            <div>
-              <p className="text-xs font-black text-white leading-none">
-                Enjoy 20% OFF on your first order!
-              </p>
-              <span className="text-[9px] text-gray-400">Exclusive Baniyas Store voucher code</span>
-            </div>
-          </div>
-
-          <button
-            onClick={() => setActiveView('auth')}
-            className="bg-[#FF3F6C] hover:bg-[#e0345b] text-white text-xs font-black px-3.5 py-1.5 rounded-md transition-transform active:scale-95 shrink-0"
-          >
-            Sign in
-          </button>
-        </div>
-      )}
     </div>
   );
 };
