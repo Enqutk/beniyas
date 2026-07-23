@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp, MainTab } from '../../context/AppContext';
-import { Home, Grid, Sparkles, MessageSquare, User, Plus } from 'lucide-react';
+import { Home, LayoutGrid, Sparkles, MessageSquare, User } from 'lucide-react';
 
 export const MobileTabBar: React.FC = () => {
   const {
@@ -11,91 +11,97 @@ export const MobileTabBar: React.FC = () => {
     unreadMessagesCount
   } = useApp();
 
-  // Hide tab bar on search, chat thread, or sell wizard views
   if (['search', 'chat', 'pdp'].includes(activeView)) {
     return null;
   }
 
   const handleTabClick = (tab: MainTab) => {
     setMainTab(tab);
-    setActiveView('none'); // Reset active overlay view back to main tab view
+    setActiveView('none');
   };
 
+  const tabClass = (active: boolean) =>
+    `flex flex-1 flex-col items-center justify-center py-1.5 min-w-0 transition-colors ${
+      active ? 'text-black' : 'text-gray-500'
+    }`;
+
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg px-1 pb-safe pt-1">
-      <div className="flex items-center justify-between relative max-w-md mx-auto px-1">
-        {/* Tab 1: Shop */}
+    <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-gray-200 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex items-stretch justify-between max-w-lg mx-auto h-14">
         <button
+          type="button"
           onClick={() => handleTabClick('home')}
-          className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-            mainTab === 'home' && activeView === 'none'
-              ? 'text-black font-black'
-              : 'text-gray-500 hover:text-gray-900'
-          }`}
+          className={tabClass(mainTab === 'home' && activeView === 'none')}
         >
-          <Home className="w-5 h-5 mb-0.5" />
-          <span className="text-[10px] tracking-tight">Shop</span>
+          <Home className={`w-5 h-5 mb-0.5 ${mainTab === 'home' && activeView === 'none' ? 'stroke-[2.5]' : ''}`} />
+          <span className={`text-[10px] tracking-tight ${mainTab === 'home' && activeView === 'none' ? 'font-black' : 'font-medium'}`}>
+            Shop
+          </span>
         </button>
 
-        {/* Tab 2: Category */}
         <button
+          type="button"
           onClick={() => handleTabClick('categories')}
-          className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-            mainTab === 'categories' && activeView === 'none'
-              ? 'text-black font-black'
-              : 'text-gray-500 hover:text-gray-900'
-          }`}
+          className={tabClass(mainTab === 'categories' && activeView === 'none')}
         >
-          <Grid className="w-5 h-5 mb-0.5" />
-          <span className="text-[10px] tracking-tight">Category</span>
+          <LayoutGrid className={`w-5 h-5 mb-0.5 ${mainTab === 'categories' && activeView === 'none' ? 'stroke-[2.5]' : ''}`} />
+          <span className={`text-[10px] tracking-tight ${mainTab === 'categories' && activeView === 'none' ? 'font-black' : 'font-medium'}`}>
+            Category
+          </span>
         </button>
 
-        {/* Tab 3: Trends (SHEIN Sparkles/Trends) */}
         <button
+          type="button"
           onClick={() => handleTabClick('trends')}
-          className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-            mainTab === 'trends' && activeView === 'none'
-              ? 'text-black font-black'
-              : 'text-gray-500 hover:text-gray-900'
-          }`}
+          className={tabClass(mainTab === 'trends' && activeView === 'none')}
         >
-          <Sparkles className="w-5 h-5 mb-0.5 text-black fill-black/10" />
-          <span className="text-[10px] tracking-tight">Trends</span>
+          <Sparkles
+            className={`w-5 h-5 mb-0.5 ${
+              mainTab === 'trends' && activeView === 'none' ? 'fill-black/15 stroke-[2.5]' : ''
+            }`}
+          />
+          <span className={`text-[10px] tracking-tight ${mainTab === 'trends' && activeView === 'none' ? 'font-black' : 'font-medium'}`}>
+            Trends
+          </span>
         </button>
 
-        {/* Tab 4: Messages / Cart */}
         <button
+          type="button"
           onClick={() => handleTabClick('messages')}
-          className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors relative ${
-            mainTab === 'messages' && activeView === 'none'
-              ? 'text-black font-black'
-              : 'text-gray-500 hover:text-gray-900'
-          }`}
+          className={tabClass(mainTab === 'messages' && activeView === 'none')}
         >
           <div className="relative">
-            <MessageSquare className="w-5 h-5 mb-0.5" />
-            <span className="absolute -top-1 -right-2 bg-[#FF3F6C] text-white text-[8px] font-black px-1 rounded-full shadow-xs">
-              {unreadMessagesCount > 0 ? unreadMessagesCount : '-$0.22'}
-            </span>
+            <MessageSquare
+              className={`w-5 h-5 mb-0.5 ${
+                mainTab === 'messages' && activeView === 'none' ? 'stroke-[2.5]' : ''
+              }`}
+            />
+            {unreadMessagesCount > 0 && (
+              <span className="absolute -top-1.5 -right-2.5 min-w-[14px] h-[14px] px-0.5 bg-[#FF3F6C] text-white text-[8px] font-black rounded-full flex items-center justify-center">
+                {unreadMessagesCount}
+              </span>
+            )}
           </div>
-          <span className="text-[10px] tracking-tight">Cart</span>
+          <span
+            className={`text-[10px] tracking-tight ${
+              mainTab === 'messages' && activeView === 'none' ? 'font-black' : 'font-medium'
+            }`}
+          >
+            Chat
+          </span>
         </button>
 
-        {/* Tab 5: Me (Account) */}
         <button
+          type="button"
           onClick={() => handleTabClick('me')}
-          className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-            mainTab === 'me' && activeView === 'none'
-              ? 'text-black font-black'
-              : 'text-gray-500 hover:text-gray-900'
-          }`}
+          className={tabClass(mainTab === 'me' && activeView === 'none')}
         >
-          <User className="w-5 h-5 mb-0.5" />
-          <span className="text-[10px] tracking-tight">Me</span>
+          <User className={`w-5 h-5 mb-0.5 ${mainTab === 'me' && activeView === 'none' ? 'stroke-[2.5]' : ''}`} />
+          <span className={`text-[10px] tracking-tight ${mainTab === 'me' && activeView === 'none' ? 'font-black' : 'font-medium'}`}>
+            Me
+          </span>
         </button>
       </div>
     </nav>
   );
 };
-
-
