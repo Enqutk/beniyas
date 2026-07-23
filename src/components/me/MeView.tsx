@@ -398,6 +398,7 @@ export const MeView: React.FC = () => {
                 {expandedSections.customerService && (
                   <ul className="pl-3 mt-1.5 space-y-1.5 text-gray-600 font-medium border-l-2 border-gray-100 ml-1">
                     <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600">My Message & Support</button></li>
+                    <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600 font-bold text-amber-600">Support Assistant</button></li>
                     <li><button onClick={() => setActiveView('help')} className="hover:text-amber-600">FAQ & Buyer Protection</button></li>
                   </ul>
                 )}
@@ -651,9 +652,9 @@ export const MeView: React.FC = () => {
                 <Store className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-black text-gray-900">Seller Hub</h3>
+                <h3 className="text-sm font-black text-gray-900">Vendor Dashboard</h3>
                 <p className="text-[11px] text-gray-500 font-medium">
-                  Add products & talk to buyers
+                  Post products, manage ads & track store performance
                 </p>
               </div>
               <ChevronRight className="w-5 h-5 text-gray-300 shrink-0" />
@@ -1175,7 +1176,7 @@ export const MeView: React.FC = () => {
               </label>
 
               <label className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
-                <span>In-App Seller Alerts</span>
+                <span>In-App Seller Notifications</span>
                 <input type="checkbox" defaultChecked className="rounded text-amber-500" />
               </label>
             </div>
