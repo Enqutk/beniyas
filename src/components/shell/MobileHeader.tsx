@@ -19,21 +19,14 @@ import {
 const TOP_TABS = ['All', 'Women', 'Curve', 'Kids', 'Men', 'Home'];
 
 const DRAWER_CATEGORIES = [
-  { name: 'Just for You', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Tops' },
-  { name: 'New In', image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Dresses' },
-  { name: 'Sale', image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Sale' },
+  { name: 'Just for You', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Women Fashion' },
   { name: 'Women Clothing', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Women Fashion' },
-  { name: 'Beachwear', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Beachwear' },
-  { name: 'Kids', image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Kids' },
-  { name: 'Curve', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Curve' },
   { name: 'Men Clothing', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Men Fashion' },
-  { name: 'Underwear & Sleepwear', image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Underwear' },
-  { name: 'Shoes', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Shoes' },
+  { name: 'Shoes', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Shoes & Sneakers' },
+  { name: 'Phones', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=120&auto=format&fit=crop&q=80', catId: 'phones', sub: 'iPhone' },
+  { name: 'Electronics', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=120&auto=format&fit=crop&q=80', catId: 'electronics', sub: 'Laptops & Computers' },
   { name: 'Home & Living', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=120&auto=format&fit=crop&q=80', catId: 'home', sub: 'Sofas & Living Room' },
-  { name: 'Jewelry & Accessories', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Jewelry' },
-  { name: 'Beauty & Health', image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=120&auto=format&fit=crop&q=80', catId: 'fashion', sub: 'Beauty' },
-  { name: 'Cell Phones & Accessories', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=120&auto=format&fit=crop&q=80', catId: 'phones', sub: 'iPhone' },
-  { name: 'Automotive', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=120&auto=format&fit=crop&q=80', catId: 'vehicles', sub: 'Toyota' }
+  { name: 'Vehicles', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=120&auto=format&fit=crop&q=80', catId: 'vehicles', sub: 'Toyota' }
 ];
 
 export const MobileHeader: React.FC = () => {
