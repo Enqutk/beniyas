@@ -24,6 +24,7 @@ import { MyAdsView } from './components/me/MyAdsView';
 import { BoostPaywallModal } from './components/me/BoostPaywallModal';
 import { AuthModal } from './components/me/AuthModal';
 import { SafetyHelpView } from './components/me/SafetyHelpView';
+import { VendorsDashboardView } from './components/vendor/VendorsDashboardView';
 
 function AppContent() {
   const { mainTab, activeView } = useApp();
@@ -55,6 +56,8 @@ function AppContent() {
         return <AuthModal />;
       case 'help':
         return <SafetyHelpView />;
+      case 'vendors':
+        return <VendorsDashboardView />;
       default:
         return null;
     }
