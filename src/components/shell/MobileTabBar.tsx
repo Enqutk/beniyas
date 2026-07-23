@@ -1,17 +1,11 @@
 import React from 'react';
 import { useApp, MainTab } from '../../context/AppContext';
-import { Home, LayoutGrid, Sparkles, MessageSquare, User } from 'lucide-react';
+import { Home, LayoutGrid, Sparkles, User } from 'lucide-react';
 
 export const MobileTabBar: React.FC = () => {
-  const {
-    mainTab,
-    setMainTab,
-    activeView,
-    setActiveView,
-    unreadMessagesCount
-  } = useApp();
+  const { mainTab, setMainTab, activeView, setActiveView } = useApp();
 
-  if (['search', 'chat', 'pdp'].includes(activeView)) {
+  if (['search', 'pdp'].includes(activeView)) {
     return null;
   }
 
@@ -62,32 +56,6 @@ export const MobileTabBar: React.FC = () => {
           />
           <span className={`text-[10px] tracking-tight ${mainTab === 'trends' && activeView === 'none' ? 'font-black' : 'font-medium'}`}>
             Trends
-          </span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => handleTabClick('messages')}
-          className={tabClass(mainTab === 'messages' && activeView === 'none')}
-        >
-          <div className="relative">
-            <MessageSquare
-              className={`w-5 h-5 mb-0.5 ${
-                mainTab === 'messages' && activeView === 'none' ? 'stroke-[2.5]' : ''
-              }`}
-            />
-            {unreadMessagesCount > 0 && (
-              <span className="absolute -top-1.5 -right-2.5 min-w-[14px] h-[14px] px-0.5 bg-[#FF3F6C] text-white text-[8px] font-black rounded-full flex items-center justify-center">
-                {unreadMessagesCount}
-              </span>
-            )}
-          </div>
-          <span
-            className={`text-[10px] tracking-tight ${
-              mainTab === 'messages' && activeView === 'none' ? 'font-black' : 'font-medium'
-            }`}
-          >
-            Chat
           </span>
         </button>
 
