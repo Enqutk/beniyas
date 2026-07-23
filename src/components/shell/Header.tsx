@@ -121,7 +121,9 @@ export const Header: React.FC = () => {
             BANIYAS STORE
           </span>
           <span className="text-gray-400">|</span>
-          <span className="text-gray-300">Local marketplace · Seller meetup or vendor delivery</span>
+          <span className="text-brand font-extrabold uppercase tracking-wide">
+            Vendors deliver · or meetup in Addis
+          </span>
         </div>
 
         <div className="flex items-center gap-4 text-xs font-bold">

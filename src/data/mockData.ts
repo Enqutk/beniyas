@@ -327,7 +327,7 @@ export const MOCK_LISTINGS: Listing[] = [
       'Material': 'Genuine Leather + Teak Wood Frame'
     },
     availableColors: ['Camel Brown', 'Dark Charcoal', 'Cream Beige'],
-    description: 'Custom handcrafted modern L-shape sectional sofa. Durable water-resistant genuine leather cushions with high-density foam interior. Delivery arranged free within Addis Ababa.',
+    description: 'Custom handcrafted modern L-shape sectional sofa. Durable water-resistant genuine leather cushions with high-density foam interior. Seller can arrange meetup or their own delivery within Addis Ababa.',
     sellerId: 'seller_5',
     sellerName: 'Ethio Living Wood & Decor',
     sellerAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
@@ -768,7 +768,7 @@ function buildCatalogListings(): Listing[] {
           },
           availableSizes: cat.id === 'fashion' ? ['S', 'M', 'L', 'XL'] : undefined,
           availableColors: ['Black', 'White', 'Pink', 'Blue', 'Brown'],
-          description: `Quality ${sub.toLowerCase()} available for quick meetup in Addis Ababa. Verified seller, photos match item. Fast local delivery available.`,
+          description: `Quality ${sub.toLowerCase()} available for meetup in Addis Ababa. Verified seller, photos match item. Ask the vendor if they offer their own delivery.`,
           sellerId: `seller_gen_${(n % 12) + 1}`,
           sellerName: `${cat.name.split(' ')[0]} Hub Store`,
           sellerAvatar:
