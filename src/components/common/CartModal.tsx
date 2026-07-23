@@ -10,8 +10,7 @@ export const CartModal: React.FC = () => {
     updateCartQuantity,
     removeFromCart,
     clearCart,
-    openChatForListing,
-    setActiveView
+    openContactModal
   } = useApp();
 
   if (!showCartModal) return null;
@@ -175,12 +174,13 @@ export const CartModal: React.FC = () => {
               onClick={() => {
                 setShowCartModal(false);
                 if (cartItems.length > 0) {
-                  openChatForListing(cartItems[0].listing);
+                  const { listing } = cartItems[0];
+                  openContactModal(listing.sellerName, listing.sellerPhone, listing.sellerAvatar);
                 }
               }}
               className="w-full py-3.5 bg-[#FF3F6C] hover:bg-[#e0345b] text-white font-black text-xs rounded-xl shadow-md uppercase tracking-wider flex items-center justify-center gap-2 transition-transform active:scale-98"
             >
-              <span>Proceed to Inquire / Order</span>
+              <span>Contact Seller to Order</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
