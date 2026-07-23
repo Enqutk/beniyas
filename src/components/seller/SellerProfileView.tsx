@@ -1,7 +1,7 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { ProductCard } from '../common/ProductCard';
-import { ArrowLeft, ShieldCheck, Star, MessageSquare, Phone, MapPin, Calendar, Clock } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Star, Phone, MapPin, Calendar, Clock } from 'lucide-react';
 
 export const SellerProfileView: React.FC = () => {
   const {
@@ -9,7 +9,6 @@ export const SellerProfileView: React.FC = () => {
     listings,
     setActiveView,
     openContactModal,
-    openChatForListing,
     language
   } = useApp();
 
@@ -60,7 +59,7 @@ export const SellerProfileView: React.FC = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
+        <div className="grid grid-cols-1 gap-2 pt-1">
           <button
             onClick={() =>
               openContactModal(
@@ -69,15 +68,9 @@ export const SellerProfileView: React.FC = () => {
                 firstListing.sellerAvatar
               )
             }
-            className="py-2.5 bg-gray-100 hover:bg-gray-200 font-bold text-xs text-gray-900 rounded-xl flex items-center justify-center gap-1.5"
+            className="py-2.5 bg-black hover:bg-zinc-800 font-bold text-xs text-white rounded-xl flex items-center justify-center gap-1.5"
           >
-            <Phone className="w-3.5 h-3.5 text-emerald-600" /> Call Seller
-          </button>
-          <button
-            onClick={() => openChatForListing(firstListing)}
-            className="py-2.5 bg-[#FF3F6C] hover:bg-[#e0345b] font-bold text-xs text-white rounded-xl shadow-md flex items-center justify-center gap-1.5"
-          >
-            <MessageSquare className="w-3.5 h-3.5 fill-current" /> Chat Store
+            <Phone className="w-3.5 h-3.5 text-emerald-400" /> Call Seller
           </button>
         </div>
       </div>
