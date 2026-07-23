@@ -258,8 +258,8 @@ export const TrendsView: React.FC = () => {
             onClick={() => onSelectTag(tag)}
             className={`shrink-0 text-xs font-bold px-3 py-1.5 rounded-md transition-all ${
               selectedTag === tag
-                ? 'bg-purple-100 text-purple-900 border border-purple-300'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-brand-muted text-ink border border-brand-ring'
+                : 'bg-paper-soft text-ink/60 hover:bg-brand-soft'
             }`}
           >
             {tag}
@@ -315,7 +315,7 @@ export const TrendsView: React.FC = () => {
                     setActiveView('none');
                     onSelectTag(tagLabel.startsWith('#') ? tagLabel : `#${tagLabel}`);
                   }}
-                  className="absolute bottom-2 left-2 bg-[#8B5CF6] text-white text-[9px] font-black px-2 py-0.5 rounded-sm flex items-center gap-1 shadow-sm hover:bg-purple-700"
+                  className="absolute bottom-2 left-2 btn-primary text-[9px] font-black px-2 py-0.5 rounded-sm flex items-center gap-1 shadow-sm"
                 >
                   <span>Trends</span>
                   <span>{tagLabel}</span>

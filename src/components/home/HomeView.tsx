@@ -43,23 +43,23 @@ export const HomeView: React.FC = () => {
         ))}
       </div>
 
-      {/* 2. Hero Fashion Banner with Purple Gradient & Floating White Cards */}
+      {/* 2. Hero Fashion Banner */}
       <div className="px-2 md:px-4">
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-950 text-white p-4 md:p-8 shadow-md">
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-ink via-ink-soft to-ink text-paper p-4 md:p-8 shadow-md">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Left Content */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className="bg-[#8B5CF6] text-white text-xs font-black px-2.5 py-0.5 rounded-sm uppercase tracking-wider inline-flex items-center gap-1">
+                <span className="btn-primary text-xs font-black px-2.5 py-0.5 rounded-sm uppercase tracking-wider inline-flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5" />
                   Trends
                 </span>
-                <span className="text-purple-200 text-xs font-semibold">#CutOutDetails</span>
+                <span className="text-brand-ring text-xs font-semibold">#CutOutDetails</span>
               </div>
-              <h2 className="text-2xl md:text-4xl font-black text-white italic tracking-tight font-serif">
+              <h2 className="text-2xl md:text-4xl font-black text-paper italic tracking-tight font-serif">
                 #CutOutDetails & #PolishedPieces
               </h2>
-              <p className="text-xs md:text-sm text-purple-200 opacity-90 max-w-md">
+              <p className="text-xs md:text-sm text-brand-muted opacity-90 max-w-md">
                 Unveil the season's most sought-after silhouettes and elevated essentials.
               </p>
               <button
@@ -68,7 +68,7 @@ export const HomeView: React.FC = () => {
                   setMainTab('trends');
                   setActiveView('none');
                 }}
-                className="mt-1 inline-flex items-center gap-1 bg-white text-purple-950 text-xs font-black px-4 py-2 rounded-full hover:bg-purple-100 transition-colors"
+                className="mt-1 inline-flex items-center gap-1 bg-paper text-ink text-xs font-black px-4 py-2 rounded-full hover:bg-brand-soft transition-colors"
               >
                 View details
                 <ChevronRight className="w-4 h-4" />
@@ -260,9 +260,9 @@ export const HomeView: React.FC = () => {
         </div>
 
         {/* Trends Teaser Card */}
-        <div className="bg-[#FAF5FF] border border-purple-200/80 rounded-xl p-3 space-y-2.5">
+        <div className="bg-brand-soft border border-brand-muted rounded-xl p-3 space-y-2.5">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="text-sm font-black text-purple-900 italic font-serif flex items-center gap-1">
+            <h3 className="text-sm font-black text-ink italic font-serif flex items-center gap-1">
               Trends
             </h3>
             <button
@@ -271,10 +271,10 @@ export const HomeView: React.FC = () => {
                 setMainTab('trends');
                 setActiveView('none');
               }}
-              className="text-[11px] font-black text-purple-800 flex items-center gap-0.5 hover:underline"
+              className="text-[11px] font-black text-brand-hover flex items-center gap-0.5 hover:underline"
             >
               View details
-              <ChevronRight className="w-4 h-4 text-purple-400" />
+              <ChevronRight className="w-4 h-4 text-brand" />
             </button>
           </div>
 
@@ -285,9 +285,9 @@ export const HomeView: React.FC = () => {
                 setMainTab('trends');
                 setActiveView('none');
               }}
-              className="bg-white rounded-lg p-2 border border-gray-100 text-left shadow-2xs cursor-pointer hover:border-black transition-all"
+              className="bg-paper rounded-lg p-2 border border-brand-muted text-left shadow-2xs cursor-pointer hover:border-ink transition-all"
             >
-              <span className="bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
+              <span className="btn-primary text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
                 #StatementGlam
               </span>
               <img
@@ -295,8 +295,8 @@ export const HomeView: React.FC = () => {
                 alt="trend"
                 className="w-full aspect-square object-cover rounded-md my-1.5"
               />
-              <span className="text-xs font-black text-black block">1,650 ETB</span>
-              <span className="text-[10px] text-purple-700 font-bold block truncate">#StatementGlam</span>
+              <span className="text-xs font-black text-ink block">1,650 ETB</span>
+              <span className="text-[10px] text-brand-hover font-bold block truncate">#StatementGlam</span>
             </button>
 
             <button
@@ -305,9 +305,9 @@ export const HomeView: React.FC = () => {
                 setMainTab('trends');
                 setActiveView('none');
               }}
-              className="bg-white rounded-lg p-2 border border-gray-100 text-left shadow-2xs cursor-pointer hover:border-black transition-all"
+              className="bg-paper rounded-lg p-2 border border-brand-muted text-left shadow-2xs cursor-pointer hover:border-ink transition-all"
             >
-              <span className="bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
+              <span className="btn-primary text-[9px] font-bold px-1.5 py-0.5 rounded-xs">
                 #GirlsNightOut
               </span>
               <img
@@ -315,8 +315,8 @@ export const HomeView: React.FC = () => {
                 alt="trend"
                 className="w-full aspect-square object-cover rounded-md my-1.5"
               />
-              <span className="text-xs font-black text-black block">1,400 ETB</span>
-              <span className="text-[10px] text-purple-700 font-bold block truncate">#GirlsNightOut</span>
+              <span className="text-xs font-black text-ink block">1,400 ETB</span>
+              <span className="text-[10px] text-brand-hover font-bold block truncate">#GirlsNightOut</span>
             </button>
           </div>
         </div>

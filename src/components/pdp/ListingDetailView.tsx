@@ -277,7 +277,7 @@ export const ListingDetailView: React.FC = () => {
                 <span>Size: <span className="font-normal text-gray-600">{selectedSize}</span></span>
                 <button
                   onClick={() => setShowSizeChart(true)}
-                  className="text-purple-700 hover:underline flex items-center gap-1 font-extrabold"
+                  className="text-brand hover:underline flex items-center gap-1 font-extrabold"
                 >
                   <Ruler className="w-3.5 h-3.5" /> Size Guide
                 </button>
@@ -344,7 +344,7 @@ export const ListingDetailView: React.FC = () => {
             {/* Express Delivery & Guarantee Banner */}
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 space-y-2.5 text-xs">
               <div className="flex items-start gap-2.5">
-                <Truck className="w-4 h-4 text-purple-700 shrink-0 mt-0.5" />
+                <Truck className="w-4 h-4 text-brand shrink-0 mt-0.5" />
                 <div>
                   <p className="font-extrabold text-gray-900">Fast Express Local Delivery</p>
                   <p className="text-[11px] text-gray-500">Addis Ababa doorstep delivery within 24-48 hours.</p>
@@ -469,7 +469,7 @@ export const ListingDetailView: React.FC = () => {
           <div className="bg-white rounded-2xl p-6 max-w-md w-full space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-gray-200 pb-3">
               <h3 className="text-sm font-black text-gray-900 uppercase tracking-wider flex items-center gap-2">
-                <Ruler className="w-4 h-4 text-purple-700" /> Standard Size Guide
+                <Ruler className="w-4 h-4 text-brand" /> Standard Size Guide
               </h3>
               <button
                 onClick={() => setShowSizeChart(false)}

@@ -102,11 +102,11 @@ export const BoostPaywallModal: React.FC = () => {
                   onClick={() => setPaymentMethod('cbe')}
                   className={`p-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-2 ${
                     paymentMethod === 'cbe'
-                      ? 'border-purple-500 bg-purple-50 text-purple-900'
-                      : 'border-gray-200 bg-gray-50 text-gray-700'
+                      ? 'border-brand bg-brand-soft text-ink'
+                      : 'border-gray-200 bg-paper-soft text-ink/70'
                   }`}
                 >
-                  <Building2 className="w-4 h-4 text-purple-600" /> CBE Birr / Chapa
+                  <Building2 className="w-4 h-4 text-brand" /> CBE Birr / Chapa
                 </button>
               </div>
             </div>
