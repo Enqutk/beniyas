@@ -10,7 +10,9 @@ export const CartModal: React.FC = () => {
     updateCartQuantity,
     removeFromCart,
     clearCart,
-    openContactModal
+    openContactModal,
+    setActiveView,
+    setMainTab
   } = useApp();
 
   if (!showCartModal) return null;
@@ -62,6 +64,7 @@ export const CartModal: React.FC = () => {
               <button
                 onClick={() => {
                   setShowCartModal(false);
+                  setMainTab('home');
                   setActiveView('none');
                 }}
                 className="px-5 py-2.5 btn-primary text-xs font-bold rounded-full shadow-md"

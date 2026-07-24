@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   Listing,
@@ -8,13 +10,13 @@ import {
   ChatMessage,
   CategoryId,
   CartItem
-} from '../types';
+} from '@/types';
 import {
   CATEGORIES,
   MOCK_LISTINGS,
   MOCK_USER,
   MOCK_CHAT_THREADS
-} from '../data/mockData';
+} from '@/data/mockData';
 
 export type ViewType =
   | 'none'

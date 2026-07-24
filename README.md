@@ -1,20 +1,41 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Baniyas Store (Next.js)
 
-# Run and deploy your AI Studio app
+Addis marketplace UI — meetup or vendor delivery. Built for the Moro web stack.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/fdc737d2-920a-4384-ab78-cb2a4464effd
+- **Next.js 15** (App Router)
+- **React 19**
+- **Tailwind CSS v4**
+- **lucide-react** / **motion**
 
-## Run Locally
+## Develop
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
+```
 
+Open [http://localhost:3000](http://localhost:3000).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Dev server on port 3000 |
+| `npm run build` | Production build |
+| `npm start` | Serve production build |
+| `npm run typecheck` | TypeScript check |
+
+## Structure
+
+```
+src/
+  app/           # Next.js App Router (layout, page, globals)
+  components/    # UI (home, shell, plp, pdp, me, …)
+  context/       # AppProvider (cart, nav, listings)
+  data/          # Mock listings & categories
+  types.ts
+```
+
+Navigation is still client-driven via `AppContext` (SPA-style shell inside Next). Easy to split into real routes later for the Moro monorepo.
