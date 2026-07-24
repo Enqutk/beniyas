@@ -206,9 +206,9 @@ export const TrendsView: React.FC = () => {
         </div>
       </header>
 
-      {/* Compact editorial strip — shorter tiles, not huge posters */}
-      <section className="bg-zinc-900 px-3 pt-2 pb-3">
-        <div className="flex items-center justify-between gap-2 mb-2">
+      {/* Compact editorial strip — short fixed-height tiles */}
+      <section className="bg-zinc-900 px-3 pt-2 pb-3 max-w-3xl mx-auto md:rounded-b-2xl">
+        <div className="flex items-center justify-between gap-2 mb-1.5">
           <button
             type="button"
             onClick={() => goToCollection((collectionIndex + 1) % TREND_COLLECTIONS.length)}
@@ -221,7 +221,7 @@ export const TrendsView: React.FC = () => {
             {collectionIndex + 1}/{TREND_COLLECTIONS.length}
           </span>
         </div>
-        <p className="text-[11px] text-white/70 mb-2.5 line-clamp-1">{collection.caption}</p>
+        <p className="text-[11px] text-white/70 mb-2 line-clamp-1">{collection.caption}</p>
 
         <div className="grid grid-cols-3 gap-1.5">
           {collection.images.map((src, idx) => {
@@ -234,17 +234,15 @@ export const TrendsView: React.FC = () => {
                 key={`${collection.id}-${idx}`}
                 type="button"
                 onClick={() => listing && openPDP(listing.id)}
-                className="relative rounded-lg overflow-hidden bg-zinc-800 text-left active:opacity-90"
+                className="relative rounded-lg overflow-hidden bg-zinc-800 text-left active:opacity-90 h-28 sm:h-32 md:h-36"
               >
-                <div className="aspect-square w-full">
-                  <SafeImage
-                    src={src}
-                    alt=""
-                    fallbackSeed={`${collection.id}-${idx}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                <SafeImage
+                  src={src}
+                  alt=""
+                  fallbackSeed={`${collection.id}-${idx}`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-1.5 bg-gradient-to-t from-black/85 to-transparent">
                   <span className="inline-block bg-white text-black text-[9px] font-black px-1.5 py-0.5 rounded-sm">
                     {price.toLocaleString()} ETB
                   </span>
@@ -254,7 +252,7 @@ export const TrendsView: React.FC = () => {
           })}
         </div>
 
-        <div className="flex items-center justify-center gap-1 mt-2.5">
+        <div className="flex items-center justify-center gap-1 mt-2">
           {TREND_COLLECTIONS.map((c, i) => (
             <button
               key={c.id}
@@ -329,7 +327,7 @@ export const TrendsView: React.FC = () => {
                     onClick={() => openPDP(listing.id)}
                     className="block w-full text-left"
                   >
-                    <div className="aspect-[4/5] bg-gray-100 overflow-hidden">
+                    <div className="aspect-square bg-gray-100 overflow-hidden">
                       <SafeImage
                         src={listing.cover}
                         alt={listing.title}
