@@ -15,7 +15,6 @@ import {
   Check,
   Truck,
   RotateCcw,
-  ShoppingBag,
   Plus,
   Minus,
   Sparkles,
@@ -37,12 +36,12 @@ export const ListingDetailView: React.FC = () => {
   const {
     selectedListingId,
     listings,
+    pdpPreview,
     setActiveView,
     toggleFavorite,
     isFavorite,
     openContactModal,
-    openSellerProfile,
-    addToCart
+    openSellerProfile
   } = useApp();
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
@@ -51,10 +50,20 @@ export const ListingDetailView: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
-  const [addedToBagToast, setAddedToBagToast] = useState(false);
   const [fullScreenImg, setFullScreenImg] = useState<string | null>(null);
 
-  const listing = listings.find(l => l.id === selectedListingId) || listings[0];
+  const baseListing = listings.find(l => l.id === selectedListingId) || listings[0];
+  const listing = baseListing
+    ? pdpPreview && pdpPreview.listingId === baseListing.id
+      ? {
+          ...baseListing,
+          price: pdpPreview.price ?? baseListing.price,
+          images: pdpPreview.cover
+            ? [pdpPreview.cover, ...baseListing.images.filter(img => img !== pdpPreview.cover)]
+            : baseListing.images
+        }
+      : baseListing
+    : undefined;
   const saved = listing ? isFavorite(listing.id) : false;
 
   useEffect(() => {
@@ -70,22 +79,17 @@ export const ListingDetailView: React.FC = () => {
     setTimeout(() => setCopiedLink(false), 2000);
   };
 
-  const handleAddToBag = () => {
-    addToCart(listing, selectedSize, selectedColor, quantity);
-    setAddedToBagToast(true);
-    setTimeout(() => setAddedToBagToast(false), 2500);
+  const handleShowLocation = () => {
+    const query = encodeURIComponent(`${listing.subcity}, ${listing.location}`);
+    window.open(
+      `https://www.google.com/maps/search/?api=1&query=${query}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   return (
     <div className="bg-white min-h-screen pb-28 md:pb-16 relative animate-in fade-in duration-200">
-      {/* Toast Notification */}
-      {addedToBagToast && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-black text-white px-5 py-2.5 rounded-full shadow-2xl text-xs font-bold flex items-center gap-2 border border-gray-800">
-          <Check className="w-4 h-4 text-emerald-400 stroke-[3]" />
-          <span>Added to your bag! Size: {selectedSize}, Color: {selectedColor}</span>
-        </div>
-      )}
-
       {/* Breadcrumb Bar */}
       <div className="bg-gray-50 border-b border-gray-200 py-2.5 px-4 text-xs font-medium text-gray-500">
         <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
@@ -320,14 +324,14 @@ export const ListingDetailView: React.FC = () => {
               </div>
             </div>
 
-            {/* Action Buttons: Add to Bag & Direct Inquire */}
+            {/* Action Buttons: Show Location & Call Seller */}
             <div className="space-y-2.5 pt-2">
               <button
-                onClick={handleAddToBag}
+                onClick={handleShowLocation}
                 className="w-full py-3.5 px-4 btn-primary font-black text-sm rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform active:scale-98 uppercase tracking-wider"
               >
-                <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
-                Add To Bag
+                <MapPin className="w-4 h-4 stroke-[2.5]" />
+                Show Location
               </button>
 
               <div className="grid grid-cols-1 gap-2">
@@ -519,10 +523,10 @@ export const ListingDetailView: React.FC = () => {
         </button>
 
         <button
-          onClick={handleAddToBag}
+          onClick={handleShowLocation}
           className="flex-1 py-3 btn-primary font-black text-xs rounded-lg uppercase tracking-wider flex items-center justify-center gap-1.5"
         >
-          <ShoppingBag className="w-4 h-4" /> Add To Bag
+          <MapPin className="w-4 h-4" /> Show Location
         </button>
 
         <button
