@@ -55,7 +55,8 @@ interface AppContextType {
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
   
   // UI Helpers & Actions
-  openPDP: (listingId: string) => void;
+  openPDP: (listingId: string, preview?: { cover?: string; price?: number }) => void;
+  pdpPreview: { listingId: string; cover?: string; price?: number } | null;
   openPLP: (categoryId?: CategoryId | 'all', subcategory?: string, searchQuery?: string) => void;
   openChatForListing: (listing: Listing) => void;
   openSellerProfile: (sellerId: string) => void;
@@ -126,6 +127,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return 'none';
   });
   const [selectedListingId, setSelectedListingId] = useState<string | null>(null);
+  const [pdpPreview, setPdpPreview] = useState<{
+    listingId: string;
+    cover?: string;
+    price?: number;
+  } | null>(null);
   const [selectedChatThreadId, setSelectedChatThreadId] = useState<string | null>(null);
   const [selectedSellerId, setSelectedSellerId] = useState<string | null>(() =>
     initialViewParam === 'seller' ? initialParams?.get('id') || 'user_me' : null
@@ -246,8 +252,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // Helpers
-  const openPDP = (listingId: string) => {
+  const openPDP = (listingId: string, preview?: { cover?: string; price?: number }) => {
     setSelectedListingId(listingId);
+    setPdpPreview(preview ? { listingId, ...preview } : null);
     setActiveView('pdp');
   };
 
@@ -450,6 +457,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setActiveView,
         selectedListingId,
         setSelectedListingId,
+        pdpPreview,
         selectedChatThreadId,
         setSelectedChatThreadId,
         selectedSellerId,

@@ -36,6 +36,7 @@ export const ListingDetailView: React.FC = () => {
   const {
     selectedListingId,
     listings,
+    pdpPreview,
     setActiveView,
     toggleFavorite,
     isFavorite,
@@ -51,7 +52,18 @@ export const ListingDetailView: React.FC = () => {
   const [copiedLink, setCopiedLink] = useState(false);
   const [fullScreenImg, setFullScreenImg] = useState<string | null>(null);
 
-  const listing = listings.find(l => l.id === selectedListingId) || listings[0];
+  const baseListing = listings.find(l => l.id === selectedListingId) || listings[0];
+  const listing = baseListing
+    ? pdpPreview && pdpPreview.listingId === baseListing.id
+      ? {
+          ...baseListing,
+          price: pdpPreview.price ?? baseListing.price,
+          images: pdpPreview.cover
+            ? [pdpPreview.cover, ...baseListing.images.filter(img => img !== pdpPreview.cover)]
+            : baseListing.images
+        }
+      : baseListing
+    : undefined;
   const saved = listing ? isFavorite(listing.id) : false;
 
   useEffect(() => {
