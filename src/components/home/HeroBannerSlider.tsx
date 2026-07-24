@@ -2,7 +2,13 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { SafeImage } from '../common/SafeImage';
 
-type HeroLook = { seed: string; price: string; img: string };
+type HeroLook = {
+  seed: string;
+  price: string;
+  priceValue: number;
+  img: string;
+  listingId: string;
+};
 
 type HeroSlide = {
   id: string;
@@ -21,9 +27,9 @@ const HERO_SLIDES: HeroSlide[] = [
     title: '#CutOutDetails & #PolishedPieces',
     subtitle: "Unveil the season's most sought-after silhouettes and elevated essentials.",
     looks: [
-      { seed: 'h1a', price: '1,850', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h1b', price: '2,400', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h1c', price: '1,950', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&auto=format&fit=crop&q=80' }
+      { seed: 'h1a', price: '1,850', priceValue: 1850, listingId: 'l10', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h1b', price: '2,400', priceValue: 2400, listingId: 'l3', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h1c', price: '1,950', priceValue: 1950, listingId: 'l14', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&auto=format&fit=crop&q=80' }
     ]
   },
   {
@@ -33,9 +39,9 @@ const HERO_SLIDES: HeroSlide[] = [
     title: '#StatementGlam for Addis Nights',
     subtitle: 'Bold looks from local vendors — meetup in Bole & Kazanchis, or ask about vendor delivery.',
     looks: [
-      { seed: 'h2a', price: '1,650', img: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h2b', price: '2,100', img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h2c', price: '1,420', img: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&auto=format&fit=crop&q=80' }
+      { seed: 'h2a', price: '1,650', priceValue: 1650, listingId: 'l10', img: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h2b', price: '2,100', priceValue: 2100, listingId: 'l3', img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h2c', price: '1,420', priceValue: 1420, listingId: 'l14', img: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&auto=format&fit=crop&q=80' }
     ]
   },
   {
@@ -45,9 +51,9 @@ const HERO_SLIDES: HeroSlide[] = [
     title: '#TechFinds · Phones & Gadgets',
     subtitle: 'Verified sellers across Addis. Inspect in person before you pay — vendors handle handoff.',
     looks: [
-      { seed: 'h3a', price: '48,900', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h3b', price: '32,500', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h3c', price: '12,800', img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&auto=format&fit=crop&q=80' }
+      { seed: 'h3a', price: '48,900', priceValue: 48900, listingId: 'l1', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h3b', price: '32,500', priceValue: 32500, listingId: 'l4', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h3c', price: '12,800', priceValue: 12800, listingId: 'l8', img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&auto=format&fit=crop&q=80' }
     ]
   },
   {
@@ -57,9 +63,9 @@ const HERO_SLIDES: HeroSlide[] = [
     title: '#HomeFinds for Your Space',
     subtitle: 'Sofas, décor & more from Addis vendors. Meet locally or request the seller’s delivery.',
     looks: [
-      { seed: 'h4a', price: '28,500', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h4b', price: '9,200', img: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=400&auto=format&fit=crop&q=80' },
-      { seed: 'h4c', price: '4,800', img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&auto=format&fit=crop&q=80' }
+      { seed: 'h4a', price: '28,500', priceValue: 28500, listingId: 'l5', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h4b', price: '9,200', priceValue: 9200, listingId: 'l6', img: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=400&auto=format&fit=crop&q=80' },
+      { seed: 'h4c', price: '4,800', priceValue: 4800, listingId: 'l9', img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&auto=format&fit=crop&q=80' }
     ]
   }
 ];
@@ -79,9 +85,10 @@ const SLIDE_PCT = 100 / LOOP_LEN;
 
 interface HeroBannerSliderProps {
   onCta: () => void;
+  onLookClick: (look: HeroLook) => void;
 }
 
-export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => {
+export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta, onLookClick }) => {
   const [pos, setPos] = useState(1);
   const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
@@ -278,7 +285,10 @@ export const HeroBannerSlider: React.FC<HeroBannerSliderProps> = ({ onCta }) => 
                 <button
                   key={look.seed}
                   type="button"
-                  onClick={onCta}
+                  onClick={e => {
+                    e.stopPropagation();
+                    onLookClick(look);
+                  }}
                   className="bg-paper text-ink rounded-lg md:rounded-xl p-1 md:p-1.5 shadow-md md:shadow-lg text-center min-w-0 cursor-pointer active:scale-[0.98] md:hover:scale-[1.03] transition-transform duration-300"
                 >
                   <SafeImage

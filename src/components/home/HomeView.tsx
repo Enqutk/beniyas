@@ -55,7 +55,12 @@ export const HomeView: React.FC = () => {
       </div>
 
       <div className="px-2 md:px-4">
-        <HeroBannerSlider onCta={goTrends} />
+        <HeroBannerSlider
+          onCta={goTrends}
+          onLookClick={look =>
+            openPDP(look.listingId, { cover: look.img, price: look.priceValue })
+          }
+        />
       </div>
 
       <div className="mx-2 md:mx-4 bg-brand-soft border border-brand-muted rounded-xl p-2.5 md:p-3 flex items-center justify-between text-xs font-bold text-ink shadow-2xs">
