@@ -8,110 +8,112 @@ import {
   Heart,
   Sparkles,
   ShoppingBag,
-  Star,
   ChevronRight,
-  SlidersHorizontal,
+  ChevronLeft,
   ArrowLeft
 } from 'lucide-react';
 
-const TREND_COLLECTIONS = [
+type Collection = {
+  id: string;
+  tag: string;
+  caption: string;
+  images: string[];
+};
+
+const COLLECTIONS: Collection[] = [
   {
     id: 'polished',
     tag: '#PolishedPieces',
-    caption: 'Elevated essentials for everyday polish.',
+    caption: "The key to any polished look — it's all in the details.",
     images: [
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=480&h=640&fit=crop&q=80'
     ]
   },
   {
     id: 'cutout',
     tag: '#CutOutDetails',
-    caption: 'Season silhouettes with bold cutouts.',
+    caption: 'Sought-after silhouettes and elevated essentials.',
     images: [
-      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=480&h=640&fit=crop&q=80'
     ]
   },
   {
     id: 'workwear',
     tag: '#WorkwearBasics',
-    caption: 'Sharp layers that still feel easy.',
+    caption: 'Sharp office-ready layers that still feel effortless.',
     images: [
-      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1487222477894-6973a9c3fd54?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1487222477894-6973a9c3fd54?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=480&h=640&fit=crop&q=80'
     ]
   },
   {
     id: 'cycling',
     tag: '#CyclingChic',
-    caption: 'Sporty polish for city days.',
+    caption: 'Sporty polish for city rides and weekends.',
     images: [
-      'https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=480&h=640&fit=crop&q=80'
     ]
   },
   {
     id: 'leather',
     tag: '#LeatherTote',
-    caption: 'Structured bags & leather accents.',
+    caption: 'Structured bags and leather accents.',
     images: [
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1590874103328-eac38a67478e?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1590874103328-eac38a67478e?w=480&h=640&fit=crop&q=80'
     ]
   },
   {
     id: 'clean',
     tag: '#CleanGirl',
-    caption: 'Soft neutrals & quiet luxury.',
+    caption: 'Soft neutrals, fresh skin, quiet luxury.',
     images: [
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=480&h=640&fit=crop&q=80'
     ]
   },
   {
     id: 'glam',
     tag: '#StatementGlam',
-    caption: 'Shine, color, and night-out energy.',
+    caption: 'Bold nights out — shine, color, attitude.',
     images: [
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=480&h=640&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=480&h=640&fit=crop&q=80'
     ]
   }
 ];
 
-const LOOK_IMAGES = [
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1487222477894-6973a9c3fd54?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&auto=format&fit=crop&q=80'
+const GRID_LOOKS = [
+  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1487222477894-6973a9c3fd54?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&h=625&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&h=625&fit=crop&q=80'
 ];
 
-const TAGS = ['For You', ...TREND_COLLECTIONS.map(c => c.tag)];
-const BRANDS = ['Firerie', 'RosyDaze', 'BizChic', 'Lumen', 'Noir'];
+const BRANDS = ['Firerie', 'RosyDaze', 'BizChic', 'Lumen', 'Noir', 'Atelier'];
+const HERO_PRICES = [1850, 2400, 1950];
 
 export const TrendsView: React.FC = () => {
   const {
@@ -124,280 +126,258 @@ export const TrendsView: React.FC = () => {
     setMainTab
   } = useApp();
 
-  const [activeTab, setActiveTab] = useState<'picks' | 'store'>('picks');
-  const [selectedTag, setSelectedTag] = useState('For You');
-  const [collectionIndex, setCollectionIndex] = useState(0);
+  const [idx, setIdx] = useState(0);
+  const [tag, setTag] = useState('For You');
+  const collection = COLLECTIONS[idx];
 
-  const collection = TREND_COLLECTIONS[collectionIndex] || TREND_COLLECTIONS[0];
-
-  const trendListings = useMemo(() => {
+  const products = useMemo(() => {
     const fashion = listings.filter(l => l.categoryId === 'fashion');
-    const pool = fashion.length > 0 ? fashion : listings;
+    const pool = fashion.length ? fashion : listings;
     const seen = new Set<string>();
-    const unique = pool.filter(l => {
-      if (seen.has(l.id)) return false;
-      seen.add(l.id);
-      return true;
-    });
+    return pool
+      .filter(l => {
+        if (seen.has(l.id)) return false;
+        seen.add(l.id);
+        return true;
+      })
+      .slice(0, 16)
+      .map((l, i) => ({
+        ...l,
+        cover: GRID_LOOKS[i % GRID_LOOKS.length],
+        brand: BRANDS[i % BRANDS.length],
+        priceShown: 890 + ((i * 211) % 3600),
+        trendTag: COLLECTIONS[i % COLLECTIONS.length].tag
+      }));
+  }, [listings]);
 
-    return unique.slice(0, 20).map((listing, i) => ({
-      ...listing,
-      // Cap display price into fashion-friendly range for Trends
-      displayPrice: Math.min(listing.price, 450 + ((i * 173) % 4200)),
-      cover: LOOK_IMAGES[i % LOOK_IMAGES.length],
-      brand: BRANDS[i % BRANDS.length],
-      tag:
-        selectedTag !== 'For You'
-          ? selectedTag
-          : TREND_COLLECTIONS[i % TREND_COLLECTIONS.length].tag
-    }));
-  }, [listings, selectedTag]);
-
-  const goToCollection = (index: number) => {
-    setCollectionIndex(index);
-    setSelectedTag(TREND_COLLECTIONS[index]?.tag || 'For You');
+  const go = (next: number) => {
+    const n = (next + COLLECTIONS.length) % COLLECTIONS.length;
+    setIdx(n);
+    setTag(COLLECTIONS[n].tag);
   };
 
-  const onSelectTag = (tag: string) => {
-    setSelectedTag(tag);
-    if (tag === 'For You') return;
-    const idx = TREND_COLLECTIONS.findIndex(c => c.tag === tag);
-    if (idx >= 0) setCollectionIndex(idx);
-  };
+  const tags = ['For You', ...COLLECTIONS.map(c => c.tag)];
 
   return (
-    <div className="bg-[#F5F5F5] min-h-screen pb-24">
-      {/* Compact header */}
-      <header className="bg-zinc-900 text-white px-3 py-2.5 flex items-center justify-between sticky top-0 z-30">
-        <div className="flex items-center gap-1 min-w-0">
+    <div className="min-h-screen bg-[#F3F3F3] pb-24">
+      {/* Top bar */}
+      <header className="sticky top-0 z-30 flex items-center justify-between bg-zinc-950 px-3 py-2.5 text-white">
+        <div className="flex items-center gap-1">
           <button
             type="button"
+            aria-label="Back to shop"
             onClick={() => {
               setMainTab('home');
               setActiveView('none');
             }}
-            className="md:hidden p-1.5 rounded-full hover:bg-zinc-800 shrink-0"
-            aria-label="Back to shop"
+            className="rounded-full p-1.5 hover:bg-white/10 md:hidden"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="h-5 w-5" />
           </button>
-          <span className="font-serif italic text-lg font-black tracking-tight flex items-center gap-1">
-            <Sparkles className="w-4 h-4 text-amber-300" />
+          <span className="flex items-center gap-1.5 font-serif text-lg font-black italic tracking-tight">
+            <Sparkles className="h-4 w-4 text-amber-300" />
             Trends
           </span>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           <button
             type="button"
-            onClick={() => setActiveView('search')}
-            className="p-1.5 hover:bg-zinc-800 rounded-full"
             aria-label="Search"
+            onClick={() => setActiveView('search')}
+            className="rounded-full p-1.5 hover:bg-white/10"
           >
-            <Search className="w-4 h-4" />
+            <Search className="h-4 w-4" />
           </button>
           <button
             type="button"
-            onClick={() => setActiveView('saved')}
-            className="p-1.5 hover:bg-zinc-800 rounded-full"
             aria-label="Saved"
+            onClick={() => setActiveView('saved')}
+            className="rounded-full p-1.5 hover:bg-white/10"
           >
-            <Heart className="w-4 h-4" />
+            <Heart className="h-4 w-4" />
           </button>
         </div>
       </header>
 
-      {/* Compact editorial strip — short fixed-height tiles */}
-      <section className="bg-zinc-900 px-3 pt-2 pb-3 max-w-3xl mx-auto md:rounded-b-2xl">
-        <div className="flex items-center justify-between gap-2 mb-1.5">
-          <button
-            type="button"
-            onClick={() => goToCollection((collectionIndex + 1) % TREND_COLLECTIONS.length)}
-            className="flex items-center gap-0.5 text-sm font-black text-white truncate"
-          >
-            {collection.tag}
-            <ChevronRight className="w-4 h-4 shrink-0 opacity-70" />
-          </button>
-          <span className="text-[10px] font-mono text-white/60 shrink-0">
-            {collectionIndex + 1}/{TREND_COLLECTIONS.length}
-          </span>
-        </div>
-        <p className="text-[11px] text-white/70 mb-2 line-clamp-1">{collection.caption}</p>
+      {/* Editorial hero — Shein glass card */}
+      <div className="relative overflow-hidden">
+        <SafeImage
+          src={collection.images[0]}
+          alt=""
+          fallbackSeed={collection.id}
+          className="absolute inset-0 h-full w-full scale-110 object-cover opacity-50 blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-zinc-950/55" />
 
-        <div className="grid grid-cols-3 gap-1.5">
-          {collection.images.map((src, idx) => {
-            const listing = trendListings[idx];
-            const price = listing
-              ? Math.max(390, Math.round(listing.displayPrice / 4))
-              : 450 + idx * 120;
-            return (
+        <div className="relative mx-auto max-w-lg px-3 py-3">
+          <div className="overflow-hidden rounded-2xl border border-white/20 bg-black/35 p-3 shadow-xl backdrop-blur-md">
+            <div className="mb-2 flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <button
+                  type="button"
+                  onClick={() => go(idx + 1)}
+                  className="flex items-center gap-0.5 text-left text-[15px] font-black text-white"
+                >
+                  <span className="truncate">{collection.tag}</span>
+                  <ChevronRight className="h-4 w-4 shrink-0 opacity-80" />
+                </button>
+                <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-white/75">
+                  {collection.caption}
+                </p>
+              </div>
+              <span className="shrink-0 rounded-full bg-white/15 px-2 py-0.5 font-mono text-[10px] text-white/80">
+                {idx + 1} / {COLLECTIONS.length}
+              </span>
+            </div>
+
+            {/* 3 looks — fixed height so they never dominate the screen */}
+            <div className="grid grid-cols-3 gap-1.5">
+              {collection.images.map((src, i) => (
+                <button
+                  key={`${collection.id}-${i}`}
+                  type="button"
+                  onClick={() => products[i] && openPDP(products[i].id)}
+                  className="group relative h-[132px] overflow-hidden rounded-xl bg-zinc-800 text-left"
+                >
+                  <SafeImage
+                    src={src}
+                    alt=""
+                    fallbackSeed={`${collection.id}-${i}`}
+                    className="h-full w-full object-cover transition-transform duration-300 group-active:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-1.5 pb-1.5 pt-5">
+                    <span className="inline-block rounded-sm bg-white px-1.5 py-0.5 text-[10px] font-black text-black">
+                      {HERO_PRICES[i].toLocaleString()} ETB
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-2.5 flex items-center justify-between">
               <button
-                key={`${collection.id}-${idx}`}
                 type="button"
-                onClick={() => listing && openPDP(listing.id)}
-                className="relative rounded-lg overflow-hidden bg-zinc-800 text-left active:opacity-90 h-28 sm:h-32 md:h-36"
+                aria-label="Previous collection"
+                onClick={() => go(idx - 1)}
+                className="rounded-full bg-white/10 p-1.5 text-white hover:bg-white/20"
               >
-                <SafeImage
-                  src={src}
-                  alt=""
-                  fallbackSeed={`${collection.id}-${idx}`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-1.5 bg-gradient-to-t from-black/85 to-transparent">
-                  <span className="inline-block bg-white text-black text-[9px] font-black px-1.5 py-0.5 rounded-sm">
-                    {price.toLocaleString()} ETB
-                  </span>
-                </div>
+                <ChevronLeft className="h-4 w-4" />
               </button>
-            );
-          })}
+              <div className="flex items-center gap-1">
+                {COLLECTIONS.map((c, i) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    aria-label={c.tag}
+                    onClick={() => go(i)}
+                    className={`h-1 rounded-full transition-all ${
+                      i === idx ? 'w-4 bg-brand' : 'w-1 bg-white/35'
+                    }`}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                aria-label="Next collection"
+                onClick={() => go(idx + 1)}
+                className="rounded-full bg-white/10 p-1.5 text-white hover:bg-white/20"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
         </div>
-
-        <div className="flex items-center justify-center gap-1 mt-2">
-          {TREND_COLLECTIONS.map((c, i) => (
-            <button
-              key={c.id}
-              type="button"
-              onClick={() => goToCollection(i)}
-              className={`h-1 rounded-full transition-all ${
-                i === collectionIndex ? 'w-4 bg-brand' : 'w-1 bg-white/35'
-              }`}
-              aria-label={c.tag}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Tabs */}
-      <div className="bg-white grid grid-cols-2 text-xs font-black border-b border-gray-200 sticky top-[44px] z-20">
-        <button
-          type="button"
-          onClick={() => setActiveTab('picks')}
-          className={`py-2.5 text-center border-b-2 ${
-            activeTab === 'picks' ? 'border-ink text-ink' : 'border-transparent text-gray-400'
-          }`}
-        >
-          Trending Picks
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('store')}
-          className={`py-2.5 text-center border-b-2 ${
-            activeTab === 'store' ? 'border-ink text-ink' : 'border-transparent text-gray-400'
-          }`}
-        >
-          Trends Store
-        </button>
       </div>
 
-      {/* Tags */}
-      <div className="px-2.5 py-2 bg-white flex items-center gap-1.5 overflow-x-auto scrollbar-none border-b border-gray-100">
-        {TAGS.map(tag => (
+      {/* Tag row */}
+      <div className="sticky top-[44px] z-20 flex gap-1.5 overflow-x-auto border-b border-gray-200 bg-white px-3 py-2 scrollbar-none">
+        {tags.map(t => (
           <button
-            key={tag}
+            key={t}
             type="button"
-            onClick={() => onSelectTag(tag)}
-            className={`shrink-0 text-[11px] font-bold px-2.5 py-1 rounded-md transition-colors ${
-              selectedTag === tag
-                ? 'bg-brand text-white'
-                : 'bg-gray-100 text-gray-600'
+            onClick={() => {
+              setTag(t);
+              if (t !== 'For You') {
+                const i = COLLECTIONS.findIndex(c => c.tag === t);
+                if (i >= 0) setIdx(i);
+              }
+            }}
+            className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold transition-colors ${
+              tag === t ? 'bg-ink text-white' : 'bg-gray-100 text-gray-600'
             }`}
           >
-            {tag}
+            {t}
           </button>
         ))}
-        <button type="button" className="shrink-0 p-1.5 bg-gray-100 text-gray-500 rounded-md" aria-label="Filters">
-          <SlidersHorizontal className="w-3.5 h-3.5" />
-        </button>
       </div>
 
-      {/* Dense compact product grid */}
-      <div className="p-2 max-w-5xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-          {trendListings.map((listing, index) => {
-            const fav = isFavorite(listing.id);
-            const discount = listing.discountPercentage || 10 + (index % 25);
-            return (
-              <article
-                key={listing.id}
-                className="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm flex flex-col"
+      {/* Product mosaic — image-led, light chrome */}
+      <div className="mx-auto grid max-w-lg grid-cols-2 gap-px bg-gray-200 sm:max-w-3xl sm:grid-cols-3 lg:max-w-5xl lg:grid-cols-4">
+        {products.map(p => {
+          const fav = isFavorite(p.id);
+          return (
+            <article key={p.id} className="group relative bg-white">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => openPDP(p.id)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openPDP(p.id);
+                  }
+                }}
+                className="cursor-pointer text-left"
               >
-                <div className="relative">
-                  <button
-                    type="button"
-                    onClick={() => openPDP(listing.id)}
-                    className="block w-full text-left"
-                  >
-                    <div className="aspect-square bg-gray-100 overflow-hidden">
-                      <SafeImage
-                        src={listing.cover}
-                        alt={listing.title}
-                        fallbackSeed={listing.id}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </button>
-
-                  <span className="pointer-events-none absolute top-1.5 left-1.5 text-[8px] font-black uppercase tracking-wide bg-white/95 text-ink px-1.5 py-0.5 rounded-sm">
-                    {listing.brand}
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                  <SafeImage
+                    src={p.cover}
+                    alt={p.title}
+                    fallbackSeed={p.id}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <span className="absolute left-2 top-2 rounded-sm bg-white/95 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide text-ink">
+                    {p.brand}
                   </span>
-
-                  <span className="pointer-events-none absolute top-1.5 right-8 text-[8px] font-black bg-red-500 text-white px-1 py-0.5 rounded-sm">
-                    -{discount}%
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => toggleFavorite(listing.id)}
-                    className="absolute top-1 right-1 w-6 h-6 rounded-full bg-white/95 shadow flex items-center justify-center"
-                    aria-label="Save"
-                  >
-                    <Heart className={`w-3 h-3 ${fav ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />
-                  </button>
-
-                  <span className="pointer-events-none absolute bottom-1.5 left-1.5 max-w-[90%] truncate text-[8px] font-bold bg-brand text-white px-1.5 py-0.5 rounded-sm">
-                    {listing.tag}
+                  <span className="absolute bottom-2 left-2 rounded-sm bg-brand px-1.5 py-0.5 text-[9px] font-bold text-white">
+                    {tag === 'For You' ? p.trendTag : tag}
                   </span>
                 </div>
-
-                <div className="p-2 flex flex-col gap-1 flex-1">
-                  <button type="button" onClick={() => openPDP(listing.id)} className="text-left">
-                    <h3 className="text-[11px] font-semibold text-ink leading-snug line-clamp-2 min-h-[2.2em]">
-                      {listing.title}
-                    </h3>
-                    <div className="flex items-center gap-1 mt-0.5 text-[9px] text-gray-500">
-                      <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                      <span className="font-bold text-gray-700">4.{8 + (index % 2)}</span>
-                      <span>·</span>
-                      <span>{80 + index * 11}+ sold</span>
-                    </div>
-                  </button>
-
-                  <div className="mt-auto flex items-center justify-between gap-1 pt-0.5">
-                    <p className="text-sm font-black text-brand leading-none truncate">
-                      {listing.displayPrice.toLocaleString()}
-                      <span className="text-[9px] font-bold text-gray-500 ml-0.5">ETB</span>
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        addToCart(
-                          listing,
-                          listing.availableSizes?.[0] || 'M',
-                          listing.availableColors?.[0] || 'Black',
-                          1
-                        )
-                      }
-                      className="shrink-0 w-7 h-7 rounded-md bg-brand-soft text-ink flex items-center justify-center hover:bg-brand hover:text-white transition-colors"
-                      aria-label="Add to bag"
-                    >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                <div className="space-y-1 p-2.5 pr-10">
+                  <h3 className="line-clamp-2 min-h-[2.4em] text-[12px] font-medium leading-snug text-ink">
+                    {p.title}
+                  </h3>
+                  <p className="text-[15px] font-black tracking-tight text-brand">
+                    {p.priceShown.toLocaleString()}
+                    <span className="ml-0.5 text-[10px] font-bold text-gray-500">ETB</span>
+                  </p>
                 </div>
-              </article>
-            );
-          })}
-        </div>
+              </div>
+
+              <button
+                type="button"
+                aria-label="Save"
+                onClick={() => toggleFavorite(p.id)}
+                className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/95 shadow-sm"
+              >
+                <Heart
+                  className={`h-3.5 w-3.5 ${fav ? 'fill-red-500 text-red-500' : 'text-gray-700'}`}
+                />
+              </button>
+
+              <button
+                type="button"
+                aria-label="Add to bag"
+                onClick={() =>
+                  addToCart(p, p.availableSizes?.[0] || 'M', p.availableColors?.[0] || 'Black', 1)
+                }
+                className="absolute bottom-2.5 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-brand-soft text-ink hover:bg-brand hover:text-white"
+              >
+                <ShoppingBag className="h-3.5 w-3.5" />
+              </button>
+            </article>
+          );
+        })}
       </div>
     </div>
   );
