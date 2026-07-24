@@ -1,13 +1,19 @@
 import React from 'react';
 import { Listing } from '../../types';
 import { useApp } from '../../context/AppContext';
-import { Heart, ShieldCheck, MapPin, ShoppingBag } from 'lucide-react';
+import { Heart, ShieldCheck, MapPin } from 'lucide-react';
 import { SafeImage } from './SafeImage';
 
 export const ProductCard: React.FC<{ listing: Listing }> = ({ listing }) => {
-  const { openPDP, toggleFavorite, isFavorite, addToCart } = useApp();
+  const { openPDP, toggleFavorite, isFavorite } = useApp();
   const saved = isFavorite(listing.id);
   const categoryLabel = listing.categoryId.toUpperCase();
+
+  const showLocation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const query = encodeURIComponent(`${listing.subcity}, ${listing.location}`);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div
@@ -94,19 +100,12 @@ export const ProductCard: React.FC<{ listing: Listing }> = ({ listing }) => {
           </div>
 
           <button
-            onClick={e => {
-              e.stopPropagation();
-              addToCart(
-                listing,
-                listing.availableSizes?.[0] || 'M',
-                listing.availableColors?.[0] || listing.attributes?.Color || 'Black',
-                1
-              );
-            }}
+            onClick={showLocation}
             className="w-7 h-7 rounded-full border border-gray-300 bg-paper hover:bg-brand hover:text-paper hover:border-brand flex items-center justify-center text-ink transition-colors shrink-0"
-            title="Add to bag"
+            title={`Show location · ${listing.subcity}`}
+            aria-label="Show location"
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
+            <MapPin className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

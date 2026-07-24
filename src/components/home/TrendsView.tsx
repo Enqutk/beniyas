@@ -7,7 +7,7 @@ import {
   Search,
   Heart,
   Sparkles,
-  ShoppingBag,
+  MapPin,
   ChevronRight,
   ChevronLeft,
   ArrowLeft
@@ -121,10 +121,14 @@ export const TrendsView: React.FC = () => {
     openPDP,
     toggleFavorite,
     isFavorite,
-    addToCart,
     setActiveView,
     setMainTab
   } = useApp();
+
+  const showLocation = (subcity: string, location: string) => {
+    const query = encodeURIComponent(`${subcity}, ${location}`);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank', 'noopener,noreferrer');
+  };
 
   const [idx, setIdx] = useState(0);
   const [tag, setTag] = useState('For You');
@@ -367,13 +371,12 @@ export const TrendsView: React.FC = () => {
 
               <button
                 type="button"
-                aria-label="Add to bag"
-                onClick={() =>
-                  addToCart(p, p.availableSizes?.[0] || 'M', p.availableColors?.[0] || 'Black', 1)
-                }
+                aria-label="Show location"
+                title={`${p.subcity}, ${p.location}`}
+                onClick={() => showLocation(p.subcity, p.location)}
                 className="absolute bottom-2.5 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-brand-soft text-ink hover:bg-brand hover:text-white"
               >
-                <ShoppingBag className="h-3.5 w-3.5" />
+                <MapPin className="h-3.5 w-3.5" />
               </button>
             </article>
           );
