@@ -8,3 +8,5 @@ coverage/
 !.env.example
 
 .vercel
+.next/
+next-env.d.ts
