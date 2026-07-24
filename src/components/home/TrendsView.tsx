@@ -144,7 +144,7 @@ export const TrendsView: React.FC = () => {
         seen.add(l.id);
         return true;
       })
-      .slice(0, 16)
+      .slice(0, 24)
       .map((l, i) => ({
         ...l,
         cover: GRID_LOOKS[i % GRID_LOOKS.length],
@@ -153,6 +153,23 @@ export const TrendsView: React.FC = () => {
         trendTag: COLLECTIONS[i % COLLECTIONS.length].tag
       }));
   }, [listings]);
+
+  /** 3 look tiles for the active collection → unique products */
+  const heroLooks = useMemo(() => {
+    return collection.images.map((src, i) => {
+      const product = products[(idx * 3 + i) % Math.max(products.length, 1)] || products[i];
+      return {
+        src,
+        price: HERO_PRICES[i] ?? product?.priceShown ?? product?.price ?? 0,
+        product
+      };
+    });
+  }, [collection.images, products, idx]);
+
+  const openLook = (look: (typeof heroLooks)[number]) => {
+    if (!look.product) return;
+    openPDP(look.product.id, { cover: look.src, price: look.price });
+  };
 
   const go = (next: number) => {
     const n = (next + COLLECTIONS.length) % COLLECTIONS.length;
@@ -234,24 +251,24 @@ export const TrendsView: React.FC = () => {
               </span>
             </div>
 
-            {/* 3 looks — fixed height so they never dominate the screen */}
+            {/* 3 looks — each opens that look’s product detail */}
             <div className="grid grid-cols-3 gap-1.5">
-              {collection.images.map((src, i) => (
+              {heroLooks.map((look, i) => (
                 <button
                   key={`${collection.id}-${i}`}
                   type="button"
-                  onClick={() => products[i] && openPDP(products[i].id)}
+                  onClick={() => openLook(look)}
                   className="group relative h-[132px] overflow-hidden rounded-xl bg-zinc-800 text-left"
                 >
                   <SafeImage
-                    src={src}
-                    alt=""
+                    src={look.src}
+                    alt={look.product?.title || collection.tag}
                     fallbackSeed={`${collection.id}-${i}`}
                     className="h-full w-full object-cover transition-transform duration-300 group-active:scale-105"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-1.5 pb-1.5 pt-5">
                     <span className="inline-block rounded-sm bg-white px-1.5 py-0.5 text-[10px] font-black text-black">
-                      {HERO_PRICES[i].toLocaleString()} ETB
+                      {look.price.toLocaleString()} ETB
                     </span>
                   </div>
                 </button>
@@ -324,11 +341,11 @@ export const TrendsView: React.FC = () => {
               <div
                 role="button"
                 tabIndex={0}
-                onClick={() => openPDP(p.id)}
+                onClick={() => openPDP(p.id, { cover: p.cover, price: p.priceShown })}
                 onKeyDown={e => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    openPDP(p.id);
+                    openPDP(p.id, { cover: p.cover, price: p.priceShown });
                   }
                 }}
                 className="cursor-pointer text-left"
